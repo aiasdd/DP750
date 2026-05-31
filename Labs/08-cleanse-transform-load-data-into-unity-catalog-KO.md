@@ -4,7 +4,7 @@ lab:
   title: Unity Catalog로 데이터 정제, 변환 및 로드
   module: Unity Catalog로 데이터 정제, 변환 및 로드
   module-url: https://learn.microsoft.com/training/wwl-databricks/cleanse-transform-load-data-into-unity-catalog/
-  notebook: https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/Allfiles/08-cleanse-transform-load-data-into-unity-catalog-KO.ipynb
+   notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/08-cleanse-transform-load-data-into-unity-catalog-KO.ipynb
   description: 이 랩에서는 Azure Databricks에서 원본 부동산 데이터를 정제하고 재구성합니다. 가격 및 타임스탬프에 적합한 데이터 유형을 선택하고, PySpark를 사용하여 중복 목록을 제거하고 누락된 값을 채우며, 내부 조인과 왼쪽 조인을 사용하여 테이블 전체의 데이터를 결합합니다. 또한 SQL PIVOT 및 UNPIVOT를 사용하여 추세 분석을 위해 시장 통계를 재구성합니다.
   duration: 45분
   level: 300
@@ -66,7 +66,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
 
 4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 클릭합니다:
-   `https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/08-cleanse-transform-load-data-into-unity-catalog-KO.ipynb`
+   `https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/08-cleanse-transform-load-data-into-unity-catalog-KO.ipynb`
 
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
 

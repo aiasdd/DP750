@@ -4,7 +4,7 @@ lab:
   title: Azure Databricks에서 워크로드 모니터링, 문제 해결 및 최적화
   module: Azure Databricks에서 워크로드 모니터링, 문제 해결 및 최적화
   module-url: https://learn.microsoft.com/training/wwl-databricks/monitor-troubleshoot-optimize-workloads-azure-databricks/
-  notebook: https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/Allfiles/13-monitor-troubleshoot-optimize-workloads-azure-databricks-KO.ipynb
+   notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/13-monitor-troubleshoot-optimize-workloads-azure-databricks-KO.ipynb
   description: 이 랩에서는 의도적인 데이터 스큐 및 과도한 셔플로 합성 워크로드를 생성하고, Spark UI를 사용하여 성능 문제를 진단하고, 브로드캐스트 조인, 적응형 쿼리 실행 및 셔플 감소 기술을 사용하여 대상 지정 수정을 적용합니다.
   duration: 45분
   level: 300
@@ -97,7 +97,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 2. 랩을 저장할 폴더로 이동하거나 생성합니다.
 3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
 4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 클릭합니다:
-   `https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/13-monitor-troubleshoot-optimize-workloads-azure-databricks-KO.ipynb`
+   `https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/13-monitor-troubleshoot-optimize-workloads-azure-databricks-KO.ipynb`
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 위에서 생성한 **perf-lab** 클러스터를 선택합니다.
 
 ---

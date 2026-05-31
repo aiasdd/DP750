@@ -4,7 +4,7 @@ lab:
   title: Unity Catalog에 데이터 수집
   module: Unity Catalog에 데이터 수집
   module-url: https://learn.microsoft.com/training/wwl-databricks/ingest-data-into-unity-catalog/
-  notebook: https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/Allfiles/07-ingest-data-into-unity-catalog-KO.ipynb
+  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/07-ingest-data-into-unity-catalog-KO.ipynb
   description: 이 랩에서는 Azure Databricks에서 사용 가능한 핵심 데이터 수집 기술을 연습합니다. PySpark DataFrames, SQL COPY INTO 및 CREATE TABLE AS SELECT를 사용하여 Unity Catalog 관리 볼륨에서 CSV 파일을 Delta 테이블로 로드합니다. 또한 Auto Loader를 구성하여 클라우드 저장소에서 새 파일을 자동으로 감지하고 처리하여 지속적으로 도착하는 데이터에 대한 정확히 한 번의 수집을 시연합니다.
   duration: 45분
   level: 300
@@ -100,7 +100,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 2. 랩을 저장할 폴더로 이동하거나 생성합니다(예: /Users/<귀사의-이메일>/Labs).
 3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
 4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 클릭합니다:
-   `https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/07-ingest-data-into-unity-catalog-KO.ipynb`
+  `https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/07-ingest-data-into-unity-catalog-KO.ipynb`
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
 
 ---

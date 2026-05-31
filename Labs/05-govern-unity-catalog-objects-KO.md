@@ -4,7 +4,7 @@ lab:
   title: Unity Catalog 개체 관리
   module: Unity Catalog 개체 관리
   module-url: https://learn.microsoft.com/training/wwl-databricks/govern-unity-catalog-objects/
-  notebook: https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/Allfiles/05-govern-unity-catalog-objects-KO.ipynb
+  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/05-govern-unity-catalog-objects-KO.ipynb
   description: 이 랩에서는 Azure Databricks에 구축된 연결 차량 데이터 플랫폼에 Unity Catalog 거버넌스 제어를 적용합니다. SQL을 사용하여 테이블 및 열에 PII 분류를 위해 태그를 지정하고, Delta Lake 보존 정책을 구성하고 VACUUM을 실행하여 삭제된 데이터를 제거하며, 예측 최적화를 사용하도록 설정합니다. 그런 다음 시스템 테이블을 쿼리하여 데이터 계보를 프로그래밍 방식으로 추적하고 감사 로그를 분석하여 누가 데이터에 액세스했는지, 언제 액세스했는지에 대한 규정 준수 질문에 답합니다.
   duration: 30분
   level: 300
@@ -78,7 +78,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 2. 이 랩을 저장할 폴더로 이동하거나 생성합니다.
 3. 폴더 옆의 **⋮**(kebab) 메뉴를 선택한 다음 **가져오기**를 선택합니다.
 4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 선택합니다:
-   `https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/05-govern-unity-catalog-objects-KO.ipynb`
+  `https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/05-govern-unity-catalog-objects-KO.ipynb`
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
 
 ---

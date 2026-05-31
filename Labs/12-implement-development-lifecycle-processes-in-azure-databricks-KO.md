@@ -4,7 +4,7 @@ lab:
   title: Azure Databricks에서 개발 수명 주기 프로세스 구현
   module: Azure Databricks에서 개발 수명 주기 프로세스 구현
   module-url: https://learn.microsoft.com/training/wwl-databricks/implement-development-lifecycle-processes-in-azure-databricks/
-  notebook: https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/Allfiles/12-implement-development-lifecycle-processes-in-azure-databricks-KO.ipynb
+  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/12-implement-development-lifecycle-processes-in-azure-databricks-KO.ipynb
   description: 이 랩에서는 pytest를 사용하여 데이터 변환 파이프라인에 대한 테스트 전략을 구현한 다음 Databricks CLI를 사용하여 파이프라인을 Databricks 자산 번들로 패키지하고 배포합니다.
   duration: 45분
   level: 300
@@ -73,7 +73,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 2. 랩을 저장할 폴더로 이동하거나 생성합니다.
 3. **⋮**(kebab 메뉴)를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
 4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 클릭합니다:
-   `https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/12-implement-development-lifecycle-processes-in-azure-databricks-KO.ipynb`
+  `https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/12-implement-development-lifecycle-processes-in-azure-databricks-KO.ipynb`
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
 
 ### 노트북 진행

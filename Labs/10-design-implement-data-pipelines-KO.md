@@ -4,7 +4,7 @@ lab:
   title: Azure Databricks를 사용한 데이터 파이프라인 설계 및 구현
   module: Azure Databricks를 사용한 데이터 파이프라인 설계 및 구현
   module-url: https://learn.microsoft.com/training/wwl-databricks/design-implement-data-pipelines/
-  notebook: https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/Allfiles/10-design-implement-data-pipelines-KO.ipynb
+    notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/10-design-implement-data-pipelines-KO.ipynb
   description: 이 랩에서는 GlobStay 호텔 예약 데이터에 대해 메달리온 아키텍처 파이프라인(Bronze → Silver → Gold)을 구축하고, 중복 제거, 널 필터링 및 날짜 검증과 같은 정리 규칙을 적용한 후 속성 및 채널 성능에 대한 Gold 계층 집계를 생성합니다. 오류 처리를 구현하고 작업 오케스트레이션을 위해 노트북을 매개변수화합니다. 그런 다음 Azure Databricks UI에서 순차적 작업 종속성, 재시도 정책, 실패 알림 및 데이터 품질 라우팅을 위한 If/else 조건 작업을 사용하여 Lakeflow 작업을 구성합니다.
   duration: 45분
   level: 300
@@ -63,7 +63,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 2. 랩을 저장할 폴더로 이동하거나 생성합니다.
 3. **⋮**(kebab 메뉴)를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
 4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 클릭합니다:
-   `https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/10-design-implement-data-pipelines-KO.ipynb`
+    `https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/10-design-implement-data-pipelines-KO.ipynb`
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
 
 ### 노트북 연습 진행

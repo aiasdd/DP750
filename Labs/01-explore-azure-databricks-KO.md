@@ -60,7 +60,7 @@ lab:
 
 **Genie Code**는 Azure Databricks에 직접 내장된 AI 기반 페어 프로그래머입니다. 사용자 인터페이스를 떠나지 않고도 코드를 생성하고, 오류를 설명하고, 개선 사항을 제안하고, 질문에 답할 수 있습니다. 이 랩과 모든 향후 랩 전반에서 이를 사용할 것을 권장합니다.
 
-1. Azure Databricks 홈 페이지에서 페이지 오른쪽 상단의 **Genie Code** 아이콘(![assistant-icon]https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Media/genie-code.svg))을 클릭하여 Genie Code 패널을 엽니다.
+1. Azure Databricks 홈 페이지에서 페이지 오른쪽 상단의 **Genie Code** 아이콘(![assistant-icon](../Labs/Media/genie-code.svg))을 클릭하여 Genie Code 패널을 엽니다.
 
 2. 다음 프롬프트를 입력하고 응답을 관찰합니다:
 
@@ -90,7 +90,7 @@ CityMoves Transit은 경로 정보가 있는 CSV 파일을 제공했습니다. �
 6. 데이터 업로드 인터페이스에서 **볼륨에 파일 업로드**를 선택합니다.
 
 7. 다음 URL에서 파일을 다운로드한 다음 **찾아보기**를 클릭하여 선택합니다:
-   `https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/data/routes.csv`
+   `https://github.com/asddai/AzureDatabricks/blob/main/Labs/data/routes.csv`
 
 8. 대상을 묻는 메시지가 나타나면 방금 생성한 볼륨을 선택합니다: **adb-ws-2026** > **default** > **lab_data**.
 
@@ -111,7 +111,7 @@ CityMoves Transit은 경로 정보가 있는 CSV 파일을 제공했습니다. �
 3. 폴더 옆의 **⋮**(kebab) 메뉴를 클릭하거나 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
 
 4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 클릭합니다:
-   `https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/01-explore-azure-databricks-KO.ipynb`
+   `https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/01-explore-azure-databricks-KO.ipynb`
 
 5. 가져온 노트북을 엽니다. 노트북 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
 

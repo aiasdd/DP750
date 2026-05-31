@@ -4,7 +4,7 @@ lab:
   title: Azure Databricks로 Lakeflow 작업 구현
   module: Azure Databricks로 Lakeflow 작업 구현
   module-url: https://learn.microsoft.com/training/wwl-databricks/implement-lakeflow-jobs/
-  notebook: https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/Allfiles/11-implement-lakeflow-jobs-KO.ipynb
+   notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/11-implement-lakeflow-jobs-KO.ipynb
   description: 이 랩에서는 Lakeflow 작업을 사용하여 TelConnect를 위한 CDR 데이터 파이프라인을 구성하고 자동화합니다. 호출 상세 기록을 bronze, silver 및 gold 계층을 통해 처리하는 사전 구축 매개변수화 노트북을 실행한 다음 Azure Databricks UI에서 작업 종속성, 작업 매개변수, 예약 및 이벤트 기반 트리거, 실패 알림 및 재시도 정책을 사용하여 Lakeflow 작업을 구성합니다.
   duration: 45분
   level: 300
@@ -66,7 +66,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 2. 랩을 저장할 폴더로 이동하거나 생성합니다.
 3. **⋮**(kebab 메뉴)를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
 4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 클릭합니다:
-   `https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/11-implement-lakeflow-jobs-KO.ipynb`
+   `https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/11-implement-lakeflow-jobs-KO.ipynb`
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
 
 ### 노트북 실행

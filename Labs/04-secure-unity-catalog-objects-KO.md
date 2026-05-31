@@ -4,7 +4,7 @@ lab:
   title: Unity Catalog 개체 보안
   module: Unity Catalog 개체 보안
   module-url: https://learn.microsoft.com/training/wwl-databricks/secure-unity-catalog-objects/
-  notebook: https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/04-secure-unity-catalog-objects-KO.ipynb
+   notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/04-secure-unity-catalog-objects-KO.ipynb
   description: 이 랩에서는 Databricks 그룹에 세분화된 액세스 제어를 부여하여 Azure Databricks의 Unity Catalog 개체를 보호하고, 행 필터를 적용하여 고객 데이터를 지역별로 제한하며, 열 마스크 함수를 사용하여 PII 이메일 주소를 마스킹합니다. 또한 Azure Key Vault 지원 비밀 범위를 생성하고 노트북 내에서 안전하게 비밀을 검색하므로 민감한 자격 증명이 코드에 노출되지 않습니다.
   duration: 45분
   level: 300
@@ -78,7 +78,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 2. 이 랩을 저장할 폴더로 이동하거나 생성합니다.
 3. 폴더 옆의 **⋮**(kebab) 메뉴를 선택한 다음 **가져오기**를 선택합니다.
 4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 선택합니다:
-   `https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/04-secure-unity-catalog-objects-KO.ipynb`
+   `https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/04-secure-unity-catalog-objects-KO.ipynb`
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
 
 ---

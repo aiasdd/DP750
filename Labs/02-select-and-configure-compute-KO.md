@@ -4,7 +4,7 @@ lab:
   title: Azure Databricks에서 컴퓨팅 선택 및 구성
   module: Azure Databricks에서 컴퓨팅 선택 및 구성
   module-url: https://learn.microsoft.com/training/wwl-databricks/select-and-configure-compute/
-  notebook: https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/02-select-and-configure-compute.ipynb
+    notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/02-select-and-configure-compute.ipynb
   description: 이 랩에서는 Azure Databricks에서 다목적 클러스터를 생성 및 구성하고, 클러스터 범위 및 노트북 범위의 라이브러리를 설치하며, faker 라이브러리를 사용하여 PySpark로 합성 환자 입원 기록을 생성 및 분석합니다.
   duration: 30분
   level: 300
@@ -42,7 +42,7 @@ lab:
 
 모든 연습에 **Genie Code**를 사용할 것을 장려합니다. Genie Code는 코드 작성, 개념 설명, 수정 제안 및 Databricks 작업 영역 내에서 직접 질문에 답하는 데 도움이 될 수 있습니다.
 
-> **Genie Code를 여는 방법:** 모든 노트북의 오른쪽 상단 도구 모음에서 ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg) 아이콘을 선택하거나 `Ctrl+Shift+P`를 누르고 "Genie Code"를 검색합니다.
+> **Genie Code를 여는 방법:** 모든 노트북의 오른쪽 상단 도구 모음에서 ![assistant-icon](Media/genie-code.svg) 아이콘을 선택하거나 `Ctrl+Shift+P`를 누르고 "Genie Code"를 검색합니다.
 
 노트북의 모든 작업에는 Genie Code에 직접 붙여넣을 수 있는 제안 프롬프트가 포함되어 있습니다. 사용하세요 — 그것이 요점입니다!
 
@@ -67,7 +67,7 @@ lab:
 3. 폴더 옆의 **⋮**(kebab) 메뉴를 선택하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
 
 4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 선택합니다:
-   `https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/02-select-and-configure-compute-KO.ipynb`
+    `https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/02-select-and-configure-compute-KO.ipynb`
 
 5. 가져온 노트북을 엽니다. 나중 단계에서 **서버리스** 컴퓨팅에 연결합니다.
 
