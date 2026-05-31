@@ -1,0 +1,90 @@
+---
+lab:
+  index: 08
+  title: Unity Catalog로 데이터 정제, 변환 및 로드
+  module: Unity Catalog로 데이터 정제, 변환 및 로드
+  module-url: https://learn.microsoft.com/training/wwl-databricks/cleanse-transform-load-data-into-unity-catalog/
+  notebook: https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/Allfiles/08-cleanse-transform-load-data-into-unity-catalog-KO.ipynb
+  description: 이 랩에서는 Azure Databricks에서 원본 부동산 데이터를 정제하고 재구성합니다. 가격 및 타임스탬프에 적합한 데이터 유형을 선택하고, PySpark를 사용하여 중복 목록을 제거하고 누락된 값을 채우며, 내부 조인과 왼쪽 조인을 사용하여 테이블 전체의 데이터를 결합합니다. 또한 SQL PIVOT 및 UNPIVOT를 사용하여 추세 분석을 위해 시장 통계를 재구성합니다.
+  duration: 45분
+  level: 300
+  islab: true
+  primarytopics:
+    - Azure Databricks
+---
+
+---
+|구분|내용|
+|---|---|
+|설명| 이 랩에서는 PySpark를 사용하여 원본 부동산 데이터를 정제, 변환 및 Delta 테이블로 로드하는 방법을 실습합니다.|
+|소요시간| 45분|
+|난이도| 300|
+---
+
+# 랩 08: Unity Catalog로 데이터 정제, 변환 및 로드
+
+## 소개
+
+이 랩에서는 네덜란드의 주요 도시에서 운영되는 부동산 중개인 **Pristine Properties**의 데이터 엔지니어 역할을 수행합니다. 회사는 여러 중개 사무실 및 위성 데이터베이스에서 원본 부동산 목록을 수집했지만 데이터가 지저분합니다: 가격 정밀도가 부족하고, 목록이 업데이트된 버전으로 중복되며, 주요 필드에 널 값이 포함되어 있고, 시장 통계는 추세 분석을 어렵게 만드는 넓은 열 형식으로 전달됩니다.
+
+귀사의 작업은 데이터를 정제하고, 유형 확인하며, 재구성하여 가격 책정 대시보드 및 시장 분석 모델에 안정적으로 공급할 수 있도록 하는 것입니다.
+
+다음 연습을 진행합니다:
+
+| 연습 | 주제 |
+|---|---|
+| 연습 1 | Pristine Properties 플랫폼 설정 |
+| 연습 2 | 목록 데이터 프로파일링 |
+| 연습 3 | 올바른 데이터 유형 선택 |
+| 연습 4 | 중복 및 누락된 값 처리 |
+| 연습 5 | 에이전트 및 판매 데이터와 목록 조인 |
+| 연습 6 | 시장 통계 피벗 및 언피벗 |
+
+---
+
+## 🤖 Genie Code — 항상 사용하세요
+
+이 랩의 모든 연습 전체에서 **Genie Code를 사용할 것을 권장합니다**. 모든 노트북 셀에는 시작하기 위한 제안 프롬프트가 포함되어 있습니다. Genie Code는 귀사의 페어 프로그래머입니다 — 코드를 생성하고, 오류 메시지를 설명하고, 대안을 탐색하며, 접근 방식을 검증하는 데 사용하세요.
+
+Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg)을 선택하거나 키보드 단축키를 사용합니다.
+
+---
+
+## 필수 조건
+
+- [랩 00: Azure Databricks 환경 설정](00-setup.md)을 사용하여 프로비저닝된 **Azure Databricks Premium 작업 영역**이 있습니다.
+- 기본 SQL 및 Python/PySpark 개념에 익숙합니다.
+
+---
+
+## 노트북 가져오기
+
+1. Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역**을 클릭합니다.
+
+2. 랩을 저장할 폴더로 이동하거나 생성합니다.
+
+3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
+
+4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 클릭합니다:
+   `https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/08-cleanse-transform-load-data-into-unity-catalog-KO.ipynb`
+
+5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
+
+---
+
+## 비노트북 작업: 카탈로그 탐색기에서 데이터 프로필 생성
+
+연습 1(환경 설정)을 완료한 후 카탈로그 탐색기 UI를 사용하여 **realestate_lab.bronze.listings** 테이블에 대한 데이터 프로필을 생성할 수 있습니다. 이것은 UI 기반 작업이며 코드가 필요하지 않습니다.
+
+1. 왼쪽 탐색 창에서 **카탈로그 탐색기**를 엽니다.
+2. **realestate_lab** 카탈로그 → **bronze** 스키마 → **listings** 테이블로 이동합니다.
+3. **품질** 탭을 선택합니다.
+4. **구성**을 클릭하여 데이터 프로파일링을 활성화합니다.
+5. 프로필 유형으로 **스냅샷**을 선택하세요 — 이는 목록과 같은 범용 테이블에 적합합니다.
+6. **저장 및 실행**을 클릭하여 첫 번째 프로필을 생성합니다.
+7. 프로필이 완료되면 생성된 메트릭을 살펴봅니다. 다음을 확인하세요:
+   - **널 개수** — 어느 열에 누락된 값이 가장 많습니까?
+   - **고유 개수** — 예기치 않은 값이 나타나는 열이 있습니까?
+   - **값 분포** — *list_price* 값의 스프레드는 무엇입니까?
+
+이것은 프로그래밍 방식으로 데이터를 정제하기 시작하기 전에 데이터의 시각적 및 통계적 개요를 제공합니다.

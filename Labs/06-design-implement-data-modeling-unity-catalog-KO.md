@@ -1,0 +1,120 @@
+---
+lab:
+  index: 06
+  title: Azure Databricks를 사용한 데이터 모델링 설계 및 구현
+  module: Azure Databricks를 사용한 데이터 모델링 설계 및 구현
+  module-url: https://learn.microsoft.com/training/wwl-databricks/design-implement-data-modeling-unity-catalog/
+  notebook: https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/Allfiles/06-design-implement-data-modeling-unity-catalog-KO.ipynb
+  description: 이 랩에서는 소매 은행 시나리오를 위해 Unity Catalog에서 Delta Lake 데이터 모델을 설계하고 구현합니다. SCD Type 2 기록 추적이 있는 고객 차원을 구축하고 액세스 클러스터링이 있는 거래 팩트 테이블을 구축합니다. Change Data Feed를 적용하여 쿼리 가능한 FCA 규정 준수 감사 추적을 구축하고 Delta Lake 시간 여행을 사용하여 이전 테이블 버전을 검사하고 복원합니다.
+  duration: 45분
+  level: 300
+  islab: true
+  primarytopics:
+    - Azure Databricks
+---
+
+---
+|구분|내용|
+|---|---|
+|설명| 이 랩에서는 Unity Catalog에서 Delta Lake 기반 데이터 모델(예: SCD Type 2 고객 차원 및 거래 팩트)을 설계하고 구현합니다.|
+|소요시간| 45분|
+|난이도| 300|
+---
+
+# 랩 06: Azure Databricks를 사용한 데이터 모델링 설계 및 구현
+
+## 시나리오
+
+귀사는 영국 전역에서 운영되는 소매 은행인 **Northbank Financial**의 데이터 엔지니어입니다. 데이터 엔지니어링 팀은 고객 분석, 규제 보고 및 사기 탐지를 지원하기 위해 Azure Databricks에서 최신 레이크하우스 플랫폼을 구축하고 있습니다.
+
+팀은 다음 요구 사항을 해결해야 합니다:
+
+- **고객 차원 관리:** 도시, 계정 세그먼트 및 계정 유형과 같은 고객 속성은 시간이 지남에 따라 변경됩니다. 규제 보고는 현재 상태뿐만 아니라 **거래 시점의 고객 프로필**을 반영해야 합니다.
+- **거래 팩트 저장소:** 플랫폼은 매일 수백만 건의 결제 거래를 효율적으로 저장하고 쿼리해야 합니다. 쿼리 패턴은 특정 날짜 범위를 대상으로 하므로 물리적 데이터 구성은 빠른 필터링을 지원해야 합니다.
+- **규정 준수를 위한 감사 추적:** Basel III 및 FCA 규제에서는 거래 기록에 대한 모든 수정이 완전히 추적 가능해야 합니다. 팀은 거래 데이터에 대한 모든 변경 사항의 쿼리 가능한 로그가 필요합니다.
+- **과거 데이터 복구:** 실수로 인한 데이터 변경을 백업에서 복원하지 않고도 복구할 수 있어야 합니다. 솔루션은 레이크하우스 내에서 직접 특정 시점 복구를 지원해야 합니다.
+
+이 랩에서는 **Delta Lake**, **Unity Catalog**, **SCD Type 2**, **Change Data Feed** 및 **Delta Lake 시간 여행**을 사용하여 이러한 요구 사항을 설계하고 구현하는 데 데이터 모델링 개념을 적용합니다.
+
+---
+
+## 목표
+
+이 랩을 완료하면 다음을 수행할 수 있습니다:
+
+- 관리 Delta Lake 테이블을 사용하여 Unity Catalog 데이터 모델을 생성합니다.
+- **액세스 클러스터링**을 적용하여 거래 테이블의 쿼리 성능을 최적화합니다.
+- **MERGE**를 사용하여 고객 차원에 **SCD Type 2**를 구현합니다.
+- 특정 시점 필터를 사용하여 과거 고객 기록을 쿼리합니다.
+- **Change Data Feed**를 활성화하고 **table_changes()**를 사용하여 감사 추적을 쿼리합니다.
+- **Delta Lake 시간 여행**을 사용하여 이전 테이블 버전을 검사하고 복원합니다.
+
+이 랩은 완료하는 데 약 **45분**이 소요됩니다.
+
+---
+
+## 🤖 이 랩 전체에서 Genie Code를 사용합니다
+
+이 랩 중에는 항상 **Genie Code를 사용**할 것을 **강력히 권장합니다**. 노트북의 모든 연습 셀에는 Genie Code 패널에 직접 붙여넣을 수 있는 제안 프롬프트가 포함되어 있습니다.
+
+Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg)을 클릭하거나 도구 모음에 표시된 키보드 단축키를 누릅니다.
+
+> 💡 **팁:** Genie Code의 출력을 무조건 복사하여 붙여넣지 마세요. 읽고 이해한 다음 현재 작업에 맞게 조정하세요. Genie Code는 사고를 대체하지 않고 가속화하는 도구입니다.
+
+---
+
+## 필수 조건
+
+이 랩을 시작하기 전에 다음을 확인하세요:
+
+- [랩 00: Azure Databricks 환경 설정](00-setup.md)을 사용하여 프로비저닝된 **Azure Databricks Premium 작업 영역**이 있습니다.
+- 작업 영역에 연결된 활성 **Unity Catalog 메타스토어**가 있습니다.
+- 메타스토어에 **CREATE CATALOG** 권한이 있습니다.
+- 기본 SQL(CREATE TABLE, SELECT, MERGE) 및 Python/PySpark에 익숙합니다.
+
+---
+
+## 랩 노트북 가져오기
+
+1. Azure Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역**을 클릭합니다.
+2. 이 랩을 저장할 폴더로 이동하거나 생성합니다.
+3. 폴더 옆의 **⋮**(kebab) 메뉴를 클릭한 다음 **가져오기**를 선택합니다.
+4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 클릭합니다:
+   `https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/06-design-implement-data-modeling-unity-catalog-KO.ipynb`
+5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
+
+---
+
+## 노트북을 열기 전에: 카탈로그 탐색기에서 관리 및 외부 테이블 둘러보기
+
+이 작업에는 노트북 코드가 필요하지 않으며 **Databricks UI**를 사용하여 완료해야 합니다.
+
+### 관리 및 외부 테이블 저장소 비교
+
+노트북에서 **연습 1**을 완료한 후(카탈로그 및 테이블 생성) 여기로 돌아와 다음 단계를 수행합니다.
+
+> ⚠️ 먼저 노트북에서 연습 1을 완료한 다음 여기로 돌아오세요.
+
+1. Databricks 작업 영역에서 왼쪽 사이드바의 **카탈로그**를 클릭하여 **카탈로그 탐색기**를 엽니다.
+2. **banking_lab** 카탈로그를 확장한 다음 **silver** 스키마를 확장합니다.
+3. **dim_customer** 테이블을 클릭하여 세부 정보 패널을 엽니다.
+4. **세부 정보** 탭 아래에서 **저장소 위치** 필드를 찾습니다.
+   - 저장소 경로가 Unity Catalog에서 관리됨을 확인합니다 — 테이블을 만들 때 *LOCATION*을 지정하지 않았습니다.
+   - 이것은 **관리 테이블**입니다: Unity Catalog가 메타데이터와 기본 데이터 파일을 모두 제어합니다.
+5. **fact_transactions** 테이블에 대해 동일한 검사를 반복합니다.
+6. **fact_transactions**에 대해 나열된 **클러스터링** 정보를 확인하세요 — 이것은 액세스 클러스터링이 활성화되어 있음을 확인합니다.
+
+### 기억할 주요 차이점
+
+| | 관리 테이블 | 외부 테이블 |
+|---|---|---|
+| **메타데이터** | Unity Catalog | Unity Catalog |
+| **데이터 파일** | Unity Catalog 관리 위치 | 사용자 지정 위치 |
+| **DROP TABLE 동작** | 8일 후 파일 삭제 | 파일 유지 |
+| **자동 최적화** | 예측 최적화 가능 | 사용 불가 |
+
+Northbank의 분석 플랫폼의 경우 관리 테이블이 올바른 선택입니다 — 자동 유지 관리 및 단순 거버넌스의 이점이 있습니다.
+
+---
+
+이제 노트북으로 돌아가 **연습 2**를 계속합니다.
