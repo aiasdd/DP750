@@ -4,13 +4,7 @@ lab:
   title: Unity Catalog에서 개체 생성 및 구성
   module: Unity Catalog에서 개체 생성 및 구성
   module-url: https://learn.microsoft.com/training/wwl-databricks/create-and-organize-objects-in-unity-catalog/
-   notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/03-create-and-organize-objects-in-unity-catalog.ipynb
-  description: 이 랩에서는 대학 데이터 플랫폼을 위한 완전한 Unity Catalog 네임스페이스를 구축합니다. 카탈로그, 메달리온 스키마, 기본 키 및 외래 키 제약 조건이 있는 관리 테이블, 뷰, 볼륨 및 재사용 가능한 SQL 함수를 생성합니다. 열 추가 및 거버넌스 태그 적용과 같은 DDL 작업을 연습하고, Unity Catalog가 메달리온 아키텍처의 모든 계층에서 구조화된 데이터를 어떻게 구성하고 관리하는지 살펴봅니다. 마지막에는 Azure Databricks의 실제 데이터 엔지니어링 관행을 반영하는 완전히 구조화되고 쿼리 준비가 된 환경을 갖게 됩니다.
-  duration: 45분
-  level: 300
-  islab: true
-  primarytopics:
-    - Azure Databricks
+  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/03-create-and-organize-objects-in-unity-catalog.ipynb
 ---
 
 ---
