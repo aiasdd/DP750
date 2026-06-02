@@ -1,1 +1,1 @@
-# adb 참석자용
+for students
