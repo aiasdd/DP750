@@ -6,18 +6,13 @@ lab:
   module-url: https://learn.microsoft.com/training/wwl-databricks/select-and-configure-compute/
   notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/02-select-and-configure-compute-KO.ipynb
   description: 이 랩에서는 Azure Databricks에서 다목적 클러스터를 생성 및 구성하고, 클러스터 범위 및 노트북 범위의 라이브러리를 설치하며, faker 라이브러리를 사용하여 PySpark로 합성 환자 입원 기록을 생성 및 분석합니다.
-  duration: 30분
-  level: 300
-  islab: true
-  primarytopics:
-    - Azure Databricks
 ---
 
 ---
 |구분|내용|
 |---|---|
 |설명| 이 랩에서는 Azure Databricks에서 다목적 클러스터를 생성 및 구성하고, 클러스터 범위 및 노트북 범위의 라이브러리를 설치하며, faker 라이브러리를 사용하여 PySpark로 합성 환자 입원 기록을 생성 및 분석합니다.|
-|소요시간| 30분|
+|소요시간| 40분|
 |난이도| 300|
 ---
 
@@ -34,7 +29,7 @@ lab:
 - `%pip install`을 사용하여 노트북 범위 라이브러리를 설치하고 설치를 확인합니다.
 - 설치된 라이브러리를 사용하여 합성 환자 데이터를 생성하고 분석합니다.
 
-이 랩은 완료하는 데 약 **30분**이 소요됩니다.
+이 랩은 완료하는 데 약 **40분**이 소요됩니다.
 
 ---
 
@@ -67,7 +62,10 @@ lab:
 3. 폴더 옆의 **⋮**(kebab) 메뉴를 선택하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
 
 4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 선택합니다:
-   `https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/02-select-and-configure-compute-KO.ipynb`
+
+```
+https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/02-select-and-configure-compute-KO.ipynb
+  ```
 
 5. 가져온 노트북을 엽니다. 나중 단계에서 **서버리스** 컴퓨팅에 연결합니다.
 
