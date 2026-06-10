@@ -4,7 +4,7 @@ lab:
   title: Azure Databricks로 Lakeflow 작업 구현
   module: Azure Databricks로 Lakeflow 작업 구현
   module-url: https://learn.microsoft.com/training/wwl-databricks/implement-lakeflow-jobs/
-   notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/11-implement-lakeflow-jobs-KO.ipynb
+  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/11-implement-lakeflow-jobs-KO.ipynb
   description: 이 랩에서는 Lakeflow 작업을 사용하여 TelConnect를 위한 CDR 데이터 파이프라인을 구성하고 자동화합니다. 호출 상세 기록을 bronze, silver 및 gold 계층을 통해 처리하는 사전 구축 매개변수화 노트북을 실행한 다음 Azure Databricks UI에서 작업 종속성, 작업 매개변수, 예약 및 이벤트 기반 트리거, 실패 알림 및 재시도 정책을 사용하여 Lakeflow 작업을 구성합니다.
   duration: 45분
   level: 300
@@ -16,7 +16,7 @@ lab:
 ---
 |구분|내용|
 |---|---|
-|설명| 이 랩에서는 Lakeflow 작업을 사용해 CDR 데이터 파이프라인을 자동화하고 작업 종속성, 매개변수 및 재시도 정책을 구성하는 방법을 연습합니다.|
+|설명| 이 랩에서는 Lakeflow 작업을 사용하여 TelConnect를 위한 CDR 데이터 파이프라인을 구성하고 자동화합니다. 호출 상세 기록을 bronze, silver 및 gold 계층을 통해 처리하는 사전 구축 매개변수화 노트북을 실행한 다음 Azure Databricks UI에서 작업 종속성, 작업 매개변수, 예약 및 이벤트 기반 트리거, 실패 알림 및 재시도 정책을 사용하여 Lakeflow 작업을 구성합니다.|
 |소요시간| 45분|
 |난이도| 300|
 ---

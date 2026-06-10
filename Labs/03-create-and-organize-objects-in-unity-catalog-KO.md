@@ -4,14 +4,20 @@ lab:
   title: Unity Catalog에서 개체 생성 및 구성
   module: Unity Catalog에서 개체 생성 및 구성
   module-url: https://learn.microsoft.com/training/wwl-databricks/create-and-organize-objects-in-unity-catalog/
-  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/03-create-and-organize-objects-in-unity-catalog.ipynb
+  notebook: https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/03-create-and-organize-objects-in-unity-catalog.ipynb
+  description: 이 랩에서는 대학 데이터 플랫폼을 위한 완전한 Unity Catalog 네임스페이스를 구축합니다. 카탈로그, 메달리온 스키마, 기본 키 및 외래 키 제약 조건이 있는 관리 테이블, 뷰, 볼륨 및 재사용 가능한 SQL 함수를 생성합니다. 열 추가 및 거버넌스 태그 적용과 같은 DDL 작업을 연습하고, Unity Catalog가 메달리온 아키텍처의 모든 계층에서 구조화된 데이터를 어떻게 구성하고 관리하는지 살펴봅니다. 마지막에는 Azure Databricks의 실제 데이터 엔지니어링 관행을 반영하는 완전히 구조화되고 쿼리 준비가 된 환경을 갖게 됩니다.
+  duration: 60분
+  level: 300
+  islab: true
+  primarytopics:
+    - Azure Databricks
 ---
 
 ---
 |구분|내용|
 |---|---|
-|설명| 이 랩에서는 대학 데이터 플랫폼을 위한 완전한 Unity Catalog 네임스페이스를 구축하고 DDL 작업 및 거버넌스 태스크를 연습합니다.|
-|소요시간| 45분|
+|설명| 이 랩에서는 대학 데이터 플랫폼을 위한 완전한 Unity Catalog 네임스페이스를 구축합니다. 카탈로그, 메달리온 스키마, 기본 키 및 외래 키 제약 조건이 있는 관리 테이블, 뷰, 볼륨 및 재사용 가능한 SQL 함수를 생성합니다. 열 추가 및 거버넌스 태그 적용과 같은 DDL 작업을 연습하고, Unity Catalog가 메달리온 아키텍처의 모든 계층에서 구조화된 데이터를 어떻게 구성하고 관리하는지 살펴봅니다. 마지막에는 Azure Databricks의 실제 데이터 엔지니어링 관행을 반영하는 완전히 구조화되고 쿼리 준비가 된 환경을 갖게 됩니다.|
+|소요시간| 60분|
 |난이도| 300|
 ---
 
@@ -34,7 +40,7 @@ lab:
 - 성적 분류를 위한 재사용 가능한 SQL 스칼라 함수를 작성합니다.
 - **ALTER** 문을 사용하여 테이블을 확장하고 거버넌스 태그를 적용합니다.
 
-이 랩은 완료하는 데 약 **45분**이 소요됩니다.
+이 랩은 완료하는 데 약 **60분**이 소요됩니다.
 
 ---
 
@@ -65,7 +71,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 2. 랩 노트북을 저장할 폴더로 이동하거나 생성합니다(예: 홈 폴더).
 3. **⋮**(kebab) 메뉴를 선택하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
 4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 선택합니다:
-   `https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/03-create-and-organize-objects-in-unity-catalog-KO.ipynb`
+   `https://github.com/asddai/AzureDatabricks202606/blob/main/Labs/Notebooks/03-create-and-organize-objects-in-unity-catalog-KO.ipynb`
 5. 가져온 노트북을 엽니다. 노트북 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
 
 ---

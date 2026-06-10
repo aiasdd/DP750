@@ -4,7 +4,7 @@ lab:
   title: Azure Databricks에서 워크로드 모니터링, 문제 해결 및 최적화
   module: Azure Databricks에서 워크로드 모니터링, 문제 해결 및 최적화
   module-url: https://learn.microsoft.com/training/wwl-databricks/monitor-troubleshoot-optimize-workloads-azure-databricks/
-   notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/13-monitor-troubleshoot-optimize-workloads-azure-databricks-KO.ipynb
+  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/13-monitor-troubleshoot-optimize-workloads-azure-databricks-KO.ipynb
   description: 이 랩에서는 의도적인 데이터 스큐 및 과도한 셔플로 합성 워크로드를 생성하고, Spark UI를 사용하여 성능 문제를 진단하고, 브로드캐스트 조인, 적응형 쿼리 실행 및 셔플 감소 기술을 사용하여 대상 지정 수정을 적용합니다.
   duration: 45분
   level: 300
@@ -16,7 +16,7 @@ lab:
 ---
 |구분|내용|
 |---|---|
-|설명| 이 랩에서는 데이터 스큐와 과도한 셔플을 재현하고 Spark UI를 사용해 성능 문제를 진단한 후 최적화 기법을 적용합니다.|
+|설명|이 랩에서는 의도적인 데이터 스큐 및 과도한 셔플로 합성 워크로드를 생성하고, Spark UI를 사용하여 성능 문제를 진단하고, 브로드캐스트 조인, 적응형 쿼리 실행 및 셔플 감소 기술을 사용하여 대상 지정 수정을 적용합니다.|
 |소요시간| 45분|
 |난이도| 300|
 ---

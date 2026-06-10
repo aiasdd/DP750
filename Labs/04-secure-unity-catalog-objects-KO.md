@@ -4,9 +4,9 @@ lab:
   title: Unity Catalog 개체 보안
   module: Unity Catalog 개체 보안
   module-url: https://learn.microsoft.com/training/wwl-databricks/secure-unity-catalog-objects/
-   notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/04-secure-unity-catalog-objects-KO.ipynb
+  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/04-secure-unity-catalog-objects-KO.ipynb
   description: 이 랩에서는 Databricks 그룹에 세분화된 액세스 제어를 부여하여 Azure Databricks의 Unity Catalog 개체를 보호하고, 행 필터를 적용하여 고객 데이터를 지역별로 제한하며, 열 마스크 함수를 사용하여 PII 이메일 주소를 마스킹합니다. 또한 Azure Key Vault 지원 비밀 범위를 생성하고 노트북 내에서 안전하게 비밀을 검색하므로 민감한 자격 증명이 코드에 노출되지 않습니다.
-  duration: 45분
+  duration: 50분
   level: 300
   islab: true
   primarytopics:
@@ -16,8 +16,8 @@ lab:
 ---
 |구분|내용|
 |---|---|
-|설명| 이 랩에서는 Unity Catalog 개체에 대해 세분화된 액세스 제어, 행 필터 및 열 마스킹을 적용하고 Key Vault 지원 비밀 범위를 구성하는 방법을 연습합니다.|
-|소요시간| 45분|
+|설명| 이 랩에서는 Databricks 그룹에 세분화된 액세스 제어를 부여하여 Azure Databricks의 Unity Catalog 개체를 보호하고, 행 필터를 적용하여 고객 데이터를 지역별로 제한하며, 열 마스크 함수를 사용하여 PII 이메일 주소를 마스킹합니다. 또한 Azure Key Vault 지원 비밀 범위를 생성하고 노트북 내에서 안전하게 비밀을 검색하므로 민감한 자격 증명이 코드에 노출되지 않습니다|
+|소요시간| 50분|
 |난이도| 300|
 ---
 
@@ -46,7 +46,7 @@ lab:
 - Azure Databricks에서 Key Vault 지원 비밀 범위를 생성합니다.
 - 노트북 내에서 안전하게 비밀을 검색합니다.
 
-이 랩은 완료하는 데 약 **35~40분**이 소요됩니다.
+이 랩은 완료하는 데 약 **50분**이 소요됩니다.
 
 ---
 
@@ -88,7 +88,10 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 연습 1에서 Databricks 그룹에 권한을 부여합니다. 그 연습에 도달할 때 준비되도록 지금 그룹을 생성하세요.
 
 1. Databricks 작업 영역에서 **사용자별 이름**(오른쪽 위) → **설정**을 선택합니다.
+![alt text](./Media/Lab04creatingagroup00.png) 
+
 2. **ID 및 액세스** → **그룹** → **관리** 선택 → **그룹 추가**로 이동합니다.
+![alt text](./Media/Lab04creatingagroup01.png)
 3. 그룹 이름을 `retail-analysts`로 지정하고 **저장**을 선택합니다.
 4. 그룹이 생성되면 자신의 사용자 계정을 구성원으로 추가합니다.
 
@@ -116,13 +119,15 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 1. Key Vault가 배포되면 포털에서 엽니다.
 2. **액세스 정책** → **만들기**를 선택합니다.
-3. **비밀 권한** 아래에서 **가져오기** 및 **나열**을 선택합니다.
+3. **비밀 권한** 아래에서 **가져오기** 및 **목록**을 선택합니다.
 4. **주체** 아래에서 자신의 Azure 사용자 계정을 검색하고 선택합니다.
 5. **만들기**를 선택하여 정책을 저장합니다.
+   (자신의 Azure 사용자 계정이 추가되어있는 경우 이 단계는 건너뛸 수 있습니다.)
+
 
 ### 단계 3: 비밀 추가
 
-1. Key Vault에서 **비밀** → **생성/가져오기**를 선택합니다.
+1. Key Vault에서 왼쪽 블레이드 **개체** →  **비밀** → **생성/가져오기**를 선택합니다.
 2. 다음을 설정합니다:
    - **이름**: `loyalty-api-key`
    - **값**: `NORTHMART-LOYALTY-2026-SECURE`
@@ -130,9 +135,10 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 ### 단계 4: Key Vault 세부 정보 기록
 
-Key Vault를 떠나기 전에 **속성**으로 이동하고 다음을 복사합니다:
+Key Vault를 떠나기 전에 **개요**로 이동하고 다음을 복사합니다:
 - **자격 증명 모음 URI**(DNS 이름), 예: *https://kv-northmart-abc.vault.azure.net/*
 - **리소스 ID**, 예: */subscriptions/xxxxxxxx/resourceGroups/rg-lab/providers/Microsoft.KeyVault/vaults/kv-northmart-abc*
+![alt text](./Media/Lab04creatingagroup02.png)
 
 연습 4에서 Databricks 비밀 범위를 생성할 때 두 값 모두 필요합니다.
 
@@ -143,7 +149,7 @@ Key Vault를 떠나기 전에 **속성**으로 이동하고 다음을 복사합�
     ```
     https://<귀사의-databricks-작업-영역-url>#secrets/createScope
     ```
-
+   ![alt text](./Media/Lab04creatingagroup03.png)
     > ⚠️ **createScope**의 **S**는 대문자여야 합니다. `<귀사의-databricks-작업-영역-url>`을 실제 작업 영역 URL로 바꿉니다(뒤에 '/' 제거).
 
 2. 범위를 구성합니다:
@@ -152,7 +158,7 @@ Key Vault를 떠나기 전에 **속성**으로 이동하고 다음을 복사합�
    - **DNS 이름**: 단계 4의 자격 증명 모음 URI를 붙여넣습니다.
    - **리소스 ID**: 단계 4의 리소스 ID를 붙여넣습니다.
 3. **만들기**를 선택합니다.
-
+![alt text](./Media/Lab04creatingagroup04.png)
 > ✅ **예상 결과:** 범위가 생성되었음을 나타내는 확인 메시지가 표시되어야 합니다. 범위는 이제 Azure Key Vault와 연결되며, 여기에 추가하는 모든 비밀은 Databricks 노트북에서 액세스할 수 있습니다.
 
 ---

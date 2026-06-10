@@ -1,7 +1,6 @@
 # ==============================================================
-# ClearCover Insurance — Claims Data Quality Pipeline
-# INSTRUCTOR ANSWER KEY
-# 한글 번역본
+# ClearCover Insurance — 클레임 데이터 품질 파이프라인
+# 강사용 정답 키
 # ==============================================================
 
 from pyspark import pipelines as dp
@@ -9,8 +8,7 @@ from pyspark.sql.functions import expr, col, count, sum as spark_sum
 
 
 # --------------------------------------------------------------
-# Exercise 3 + 4: Nullability, Status, and Data Type Validation
-# 연습 3 + 4: Null 여부, 상태 및 데이터 유형 검증
+# 연습 3 + 4: Null 허용 여부, 상태, 데이터 타입 검증
 # --------------------------------------------------------------
 
 @dp.table(name='silver.claims_validated')
@@ -22,8 +20,7 @@ from pyspark.sql.functions import expr, col, count, sum as spark_sum
 @dp.expect_or_drop('valid_claim_amount',  'claim_amount IS NOT NULL')
 @dp.expect_or_drop('non_negative_amount', 'claim_amount >= 0')
 def claims_validated():
-    '''Silver: validated insurance claims with full quality constraints applied.
-    Silver: 전체 품질 제약 조건이 적용된 검증된 보험 청구.'''
+    '''Silver: 전체 품질 제약 조건이 적용된 검증된 보험 클레임.'''
     return (
         spark.readStream
         .table('insurance_lab.bronze.claims_raw')
@@ -33,14 +30,12 @@ def claims_validated():
 
 
 # --------------------------------------------------------------
-# Exercise 5: Schema Drift — Rescued Data
-# 연습 5: 스키마 드리프트 — 구조 변경 데이터
+# 연습 5: 스키마 드리프트 — 복구된 데이터
 # --------------------------------------------------------------
 
 @dp.table(name='silver.claims_rescued')
 def claims_rescued():
-    '''Silver: raw claims loaded via Auto Loader with rescue schema evolution.
-    Silver: Auto Loader로 로드된 원본 청구(스키마 진화 복구 포함).'''
+    '''Silver: rescue 스키마 진화를 사용하여 Auto Loader로 로드된 원시 클레임.'''
     return (
         spark.readStream
         .format('cloudFiles')
@@ -55,14 +50,12 @@ def claims_rescued():
 
 
 # --------------------------------------------------------------
-# Gold: Claims Summary
-# 금색: 청구 요약
+# Gold: 클레임 요약
 # --------------------------------------------------------------
 
 @dp.table(name='gold.claims_summary')
 def claims_summary():
-    '''Gold: aggregate claim counts and total amounts per type and status.
-    Gold: 유형 및 상태별 청구 수 및 총액 집계.'''
+    '''Gold: 유형 및 상태별 클레임 건수와 총 금액 집계.'''
     return (
         spark.read.table('insurance_lab.silver.claims_validated')
         .groupBy('claim_type', 'status')
