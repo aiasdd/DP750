@@ -2,9 +2,6 @@
 lab:
   index: 02
   title: Azure Databricks에서 컴퓨팅 선택 및 구성
-  module: Azure Databricks에서 컴퓨팅 선택 및 구성
-  module-url: https://learn.microsoft.com/training/wwl-databricks/select-and-configure-compute/
-  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/02-select-and-configure-compute-KO.ipynb
 ---
 
 ---

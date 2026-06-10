@@ -2,7 +2,6 @@
 lab:
     index: 00
     title: Azure Databricks 환경 설정
-    module: Azure Databricks 환경 설정
 ---
 ---
 |구분|내용|
