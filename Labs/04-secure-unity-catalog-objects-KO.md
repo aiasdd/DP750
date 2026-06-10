@@ -88,8 +88,8 @@ https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/04-secure-uni
 2. **ID 및 액세스** → **그룹** → **관리** 선택 → **그룹 추가**로 이동합니다.
 ![alt text](./Media/Lab04creatingagroup01.png)
 3. 그룹 이름을 `retail-analysts`로 지정하고 **저장**을 선택합니다.
-4. 그룹이 생성되면 자신의 사용자 계정을 구성원으로 추가합니다.
-
+4. 그룹이 생성되면 **자신의 실습 계정**을 구성원으로 추가합니다.
+![alt text](./Media/Lab04creatingagroup05.png)
 > ℹ️ 이 그룹은 NorthMart Retail의 지역 분석가 팀을 나타냅니다. 연습 1에서 이 그룹에 실습 스키마에 대한 액세스 권한을 부여합니다.
 
 ---
