@@ -4,7 +4,7 @@ lab:
   title: Azure Databricks를 사용한 데이터 모델링 설계 및 구현
   module: Azure Databricks를 사용한 데이터 모델링 설계 및 구현
   module-url: https://learn.microsoft.com/training/wwl-databricks/design-implement-data-modeling-unity-catalog/
-  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/06-design-implement-data-modeling-unity-catalog-KO.ipynb
+  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/06-design-implement-data-modeling-unity-catalog-KO.ipynb
   description: 이 랩에서는 소매 은행 시나리오를 위해 Unity Catalog에서 Delta Lake 데이터 모델을 설계하고 구현합니다. SCD Type 2 기록 추적이 있는 고객 차원을 구축하고 액세스 클러스터링이 있는 거래 팩트 테이블을 구축합니다. Change Data Feed를 적용하여 쿼리 가능한 FCA 규정 준수 감사 추적을 구축하고 Delta Lake 시간 여행을 사용하여 이전 테이블 버전을 검사하고 복원합니다.
   duration: 45분
   level: 300

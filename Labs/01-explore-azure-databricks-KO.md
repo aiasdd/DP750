@@ -4,7 +4,7 @@ lab:
   title: Azure Databricks 살펴보기
   module: Azure Databricks 살펴보기
   module-url: https://learn.microsoft.com/training/modules/explore-azure-databricks/
-  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/01-explore-azure-databricks.ipynb
+  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/01-explore-azure-databricks-KO.ipynb
 ---
 ---
 |구분|내용|
