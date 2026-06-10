@@ -79,7 +79,7 @@ CityMoves Transit은 경로 정보가 있는 CSV 파일을 제공했습니다. �
 업로드하기 전에 파일을 저장할 Unity Catalog **볼륨**이 필요합니다. 다음 단계를 따르세요:
 
 1. Databricks 워크스페이스 사이드바에서 **카탈로그**를 클릭합니다.
-2. 카탈로그 탐색기에서 **adb-ws-2026** 카탈로그를 확장한 다음 **default** 스키마를 확장합니다.
+2. 카탈로그 탐색기에서 **adb-ws-####** 카탈로그를 확장한 다음 **default** 스키마를 확장합니다.
 3. **default** 옆의 **⋮** 메뉴를 클릭한 다음 **만들기** > **볼륨**을 선택합니다.
 4. 볼륨 이름으로 `lab_data`를 입력하고, 유형을 **관리 볼륨**으로 두고 **만들기**를 클릭합니다.
 
@@ -91,9 +91,9 @@ CityMoves Transit은 경로 정보가 있는 CSV 파일을 제공했습니다. �
 
 7. 다음 파일 [routes.csv](https://github.com/asddai/AzureDatabricks/raw/main/Labs/data/routes.csv) 을 다운로드한 다음 **찾아보기**를 클릭하여 선택합니다:
 
-8. 대상을 묻는 메시지가 나타나면 방금 생성한 볼륨을 선택합니다: **adb-ws-2026** > **default** > **lab_data**.
+8. 대상을 묻는 메시지가 나타나면 방금 생성한 볼륨을 선택합니다: **adb-ws-####** > **default** > **lab_data**.
 
-9. 업로드가 완료되면 왼쪽 사이드바의 **카탈로그**로 이동하고 업로드된 파일을 찾습니다. 카탈로그 계층(**adb-ws-2026** > **default** > **lab_data**)을 확장하여 routes.csv가 표시되는지 확인합니다.
+9. 업로드가 완료되면 왼쪽 사이드바의 **카탈로그**로 이동하고 업로드된 파일을 찾습니다. 카탈로그 계층(**adb-ws-####** > **default** > **lab_data**)을 확장하여 routes.csv가 표시되는지 확인합니다.
 
     > **참고**: 이 랩에서는 데이터를 쿼리하거나 로드할 필요가 없습니다. 목표는 단순히 업로드 워크플로에 익숙해지는 것입니다. 이후 랩에서 이 데이터로 작업할 것입니다.
 
@@ -110,7 +110,9 @@ CityMoves Transit은 경로 정보가 있는 CSV 파일을 제공했습니다. �
 3. 폴더 옆의 **⋮** 메뉴를 클릭하거나 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
 
 4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 클릭합니다:
-   `https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/01-explore-azure-databricks-KO.ipynb`
+  ```
+   https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/01-explore-azure-databricks-KO.ipynb
+  ```
 
 5. 가져온 노트북을 엽니다. 노트북 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
 
