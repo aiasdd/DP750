@@ -2,22 +2,13 @@
 lab:
   index: 07
   title: Unity Catalog에 데이터 수집
-  module: Unity Catalog에 데이터 수집
-  module-url: https://learn.microsoft.com/training/wwl-databricks/ingest-data-into-unity-catalog/
-  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/07-ingest-data-into-unity-catalog-KO.ipynb
-  description: 이 랩에서는 Azure Databricks에서 사용 가능한 핵심 데이터 수집 기술을 연습합니다. PySpark DataFrames, SQL COPY INTO 및 CREATE TABLE AS SELECT를 사용하여 Unity Catalog 관리 볼륨에서 CSV 파일을 Delta 테이블로 로드합니다. 또한 Auto Loader를 구성하여 클라우드 저장소에서 새 파일을 자동으로 감지하고 처리하여 지속적으로 도착하는 데이터에 대한 정확히 한 번의 수집을 시연합니다.
-  duration: 45분
-  level: 300
-  islab: true
-  primarytopics:
-    - Azure Databricks
 ---
 
 ---
 |구분|내용|
 |---|---|
 |설명| 이 랩에서는 Azure Databricks에서 사용 가능한 핵심 데이터 수집 기술을 연습합니다. PySpark DataFrames, SQL COPY INTO 및 CREATE TABLE AS SELECT를 사용하여 Unity Catalog 관리 볼륨에서 CSV 파일을 Delta 테이블로 로드합니다. 또한 Auto Loader를 구성하여 클라우드 저장소에서 새 파일을 자동으로 감지하고 처리하여 지속적으로 도착하는 데이터에 대한 정확히 한 번의 수집을 시연합니다.|
-|소요시간| 45분|
+|소요시간| 50분|
 |난이도| 300|
 ---
 

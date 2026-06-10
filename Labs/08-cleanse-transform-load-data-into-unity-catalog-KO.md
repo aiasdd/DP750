@@ -2,22 +2,13 @@
 lab:
   index: 08
   title: Unity Catalog로 데이터 정제, 변환 및 로드
-  module: Unity Catalog로 데이터 정제, 변환 및 로드
-  module-url: https://learn.microsoft.com/training/wwl-databricks/cleanse-transform-load-data-into-unity-catalog/
-  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/08-cleanse-transform-load-data-into-unity-catalog-KO.ipynb
-  description: 이 랩에서는 Azure Databricks에서 원본 부동산 데이터를 정제하고 재구성합니다. 가격 및 타임스탬프에 적합한 데이터 유형을 선택하고, PySpark를 사용하여 중복 목록을 제거하고 누락된 값을 채우며, 내부 조인과 왼쪽 조인을 사용하여 테이블 전체의 데이터를 결합합니다. 또한 SQL PIVOT 및 UNPIVOT를 사용하여 추세 분석을 위해 시장 통계를 재구성합니다.
-  duration: 45분
-  level: 300
-  islab: true
-  primarytopics:
-    - Azure Databricks
 ---
 
 ---
 |구분|내용|
 |---|---|
 |설명| 이 랩에서는 Azure Databricks에서 원본 부동산 데이터를 정제하고 재구성합니다. 가격 및 타임스탬프에 적합한 데이터 유형을 선택하고, PySpark를 사용하여 중복 목록을 제거하고 누락된 값을 채우며, 내부 조인과 왼쪽 조인을 사용하여 테이블 전체의 데이터를 결합합니다. 또한 SQL PIVOT 및 UNPIVOT를 사용하여 추세 분석을 위해 시장 통계를 재구성합니다.|
-|소요시간| 45분|
+|소요시간| 50분|
 |난이도| 300|
 ---
 
