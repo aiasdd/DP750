@@ -111,7 +111,7 @@ CityMoves Transit은 경로 정보가 있는 CSV 파일을 제공했습니다. �
 
 4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 클릭합니다:
   ```
-   https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/01-explore-azure-databricks-KO.ipynb
+https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/01-explore-azure-databricks-KO.ipynb
   ```
 
 5. 가져온 노트북을 엽니다. 노트북 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
