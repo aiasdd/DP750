@@ -5,7 +5,6 @@ lab:
   module: Azure Databricks에서 컴퓨팅 선택 및 구성
   module-url: https://learn.microsoft.com/training/wwl-databricks/select-and-configure-compute/
   notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/02-select-and-configure-compute-KO.ipynb
-  description: 이 랩에서는 Azure Databricks에서 다목적 클러스터를 생성 및 구성하고, 클러스터 범위 및 노트북 범위의 라이브러리를 설치하며, faker 라이브러리를 사용하여 PySpark로 합성 환자 입원 기록을 생성 및 분석합니다.
 ---
 
 ---
