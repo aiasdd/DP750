@@ -51,9 +51,10 @@ lab:
     az account list --output table 
     ```
 
-1. 실습에서 할당받은 계정과 동일한 끝 번호를 갖은 구독을 찾아 Subscription Id를 복사합니다. 예를 들어, 할당된 계정이 `azure_training_00'로 끝나면 구독 ID도 `...00`으로 끝납니다.
+1. 실습에서 할당받은 계정과 동일한 끝 번호를 갖은 구독을 찾아 Subscription Id를 복사합니다.
+   예를 들어, 할당된 계정이 `azure_training_00'로 끝나면 구독 ID도 `...00`으로 끝납니다.
 
-2. 다음 명령을 실행하여 구독을 설정합니다(복사한 Subscription Id로 `<your-subscription-id>`를 바꿔주세요):
+3. 다음 명령을 실행하여 구독을 설정합니다(복사한 Subscription Id로 `<your-subscription-id>`를 바꿔주세요):
 
     ```bash
     az account set --subscription <your-subscription-id>
