@@ -60,8 +60,7 @@ lab:
 
 **Genie Code**는 Azure Databricks에 직접 내장된 AI 기반 페어 프로그래머입니다. 사용자 인터페이스를 떠나지 않고도 코드를 생성하고, 오류를 설명하고, 개선 사항을 제안하고, 질문에 답할 수 있습니다. 이 랩과 모든 향후 랩 전반에서 이를 사용할 것을 권장합니다.
 
-1. Azure Databricks 홈 페이지에서 페이지 오른쪽 상단의 **Genie Code** 아이콘(!![assistant-icon](./media/GenieCode.png)
-을 클릭하여 Genie Code 패널을 엽니다.
+1. Azure Databricks 홈 페이지에서 페이지 오른쪽 상단의 **Genie Code** 아이콘(![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg))을 클릭하여 Genie Code 패널을 엽니다.
 
 2. 다음 프롬프트를 입력하고 응답을 관찰합니다:
 
