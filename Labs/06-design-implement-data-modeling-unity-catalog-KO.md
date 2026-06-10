@@ -2,22 +2,13 @@
 lab:
   index: 06
   title: Azure Databricks를 사용한 데이터 모델링 설계 및 구현
-  module: Azure Databricks를 사용한 데이터 모델링 설계 및 구현
-  module-url: https://learn.microsoft.com/training/wwl-databricks/design-implement-data-modeling-unity-catalog/
-  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/06-design-implement-data-modeling-unity-catalog-KO.ipynb
-  description: 이 랩에서는 소매 은행 시나리오를 위해 Unity Catalog에서 Delta Lake 데이터 모델을 설계하고 구현합니다. SCD Type 2 기록 추적이 있는 고객 차원을 구축하고 액세스 클러스터링이 있는 거래 팩트 테이블을 구축합니다. Change Data Feed를 적용하여 쿼리 가능한 FCA 규정 준수 감사 추적을 구축하고 Delta Lake 시간 여행을 사용하여 이전 테이블 버전을 검사하고 복원합니다.
-  duration: 45분
-  level: 300
-  islab: true
-  primarytopics:
-    - Azure Databricks
 ---
 
 ---
 |구분|내용|
 |---|---|
 |설명| 이 랩에서는 소매 은행 시나리오를 위해 Unity Catalog에서 Delta Lake 데이터 모델을 설계하고 구현합니다. SCD Type 2 기록 추적이 있는 고객 차원을 구축하고 액세스 클러스터링이 있는 거래 팩트 테이블을 구축합니다. Change Data Feed를 적용하여 쿼리 가능한 FCA 규정 준수 감사 추적을 구축하고 Delta Lake 시간 여행을 사용하여 이전 테이블 버전을 검사하고 복원합니다.|
-|소요시간| 45분|
+|소요시간| 50분|
 |난이도| 300|
 ---
 
@@ -49,7 +40,7 @@ lab:
 - **Change Data Feed**를 활성화하고 **table_changes()**를 사용하여 감사 추적을 쿼리합니다.
 - **Delta Lake 시간 여행**을 사용하여 이전 테이블 버전을 검사하고 복원합니다.
 
-이 랩은 완료하는 데 약 **45분**이 소요됩니다.
+이 랩은 완료하는 데 약 **50분**이 소요됩니다.
 
 ---
 
@@ -80,7 +71,10 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 2. 이 랩을 저장할 폴더로 이동하거나 생성합니다.
 3. 폴더 옆의 **⋮**(kebab) 메뉴를 클릭한 다음 **가져오기**를 선택합니다.
 4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 클릭합니다:
-   `https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/06-design-implement-data-modeling-unity-catalog-KO.ipynb`
+```
+https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/06-design-implement-data-modeling-unity-catalog-KO.ipynb
+```
+
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
 
 ---
