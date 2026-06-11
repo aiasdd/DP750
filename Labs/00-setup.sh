@@ -6,7 +6,7 @@
 set -e
 
 # Select a region: use the first argument if provided, otherwise pick a random one
-REGIONS=( japaneast koreacentral )
+REGIONS=( koreacentral )
 REGION=${1:-${REGIONS[$RANDOM % ${#REGIONS[@]}]}}
 
 # Generate random 5-character alphanumeric string
