@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DP-750 Azure Databricks Labs (KO)</title>
+  <title>Azure Databricks Labs (00-06)</title>
   <style>
     :root {
       --bg: #f3f6fb;
@@ -217,170 +217,104 @@
   <div class="layout">
     <header class="hero">
       <span class="badge">GitHub Pages Ready</span>
-      <h1>DP-750 Azure Databricks Labs (Korean)</h1>
+      <h1>Azure Databricks Labs (00-06)</h1>
       <p>
-        Microsoft Learning의 Online Hosted Instructions 구성을 참고해,
-        실습 안내서와 노트북을 한 곳에서 빠르게 접근할 수 있도록 구성한 메인 페이지입니다.
+        현재 실습 운영 범위에 맞춰 Labs 폴더의 MD 기준 Lab 00-06만 선별해 제공합니다.
+        각 항목에서 가이드와 노트북을 바로 열어 핵심 학습 흐름을 빠르게 진행할 수 있습니다.
       </p>
       <div class="hero-links">
         <a href="Labs/00-setup.md">시작하기 (Lab 00)</a>
         <a href="Labs/Notebooks/01-explore-azure-databricks-KO.ipynb">첫 노트북 열기</a>
-        <a href="https://microsoftlearning.github.io/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/" target="_blank" rel="noreferrer">참고 디자인 보기</a>
       </div>
     </header>
 
     <section>
       <div class="section-head">
         <h2>Labs</h2>
-        <p>총 14개 실습 (00-13)</p>
+        <p>Labs 폴더의 MD 기준: Lab 00-06만 표시</p>
       </div>
 
-      <main class="grid">
-        <article class="card">
-          <div class="meta"><strong>Lab 00</strong><span class="chip">Setup</span></div>
-          <h3>Set up your Azure Databricks environment</h3>
-          <p>실습 환경을 준비하고 Azure Databricks 워크스페이스를 초기화합니다.</p>
-          <div class="card-links">
-            <a href="Labs/00-setup.md">가이드</a>
-            <a href="Labs/Notebooks/01-explore-azure-databricks-KO.ipynb">관련 노트북</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="meta"><strong>Lab 01</strong><span>30 min</span></div>
-          <h3>Explore Azure Databricks</h3>
-          <p>워크스페이스 UI, 데이터 업로드, 노트북 기본 기능을 익힙니다.</p>
-          <div class="card-links">
-            <a href="Labs/01-explore-azure-databricks-KO.md">가이드</a>
-            <a href="Labs/Notebooks/01-explore-azure-databricks-KO.ipynb">노트북</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="meta"><strong>Lab 02</strong><span>30 min</span></div>
-          <h3>Select and Configure Compute</h3>
-          <p>클러스터 생성, 라이브러리 설치, PySpark 기반 데이터 분석을 수행합니다.</p>
-          <div class="card-links">
-            <a href="Labs/02-select-and-configure-compute-KO.md">가이드</a>
-            <a href="Labs/Notebooks/02-select-and-configure-compute-KO.ipynb">노트북</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="meta"><strong>Lab 03</strong><span>45 min</span></div>
-          <h3>Create and Organize Objects in Unity Catalog</h3>
-          <p>카탈로그/스키마/테이블/뷰/볼륨/함수를 구성하고 객체를 체계화합니다.</p>
-          <div class="card-links">
-            <a href="Labs/03-create-and-organize-objects-in-unity-catalog-KO.md">가이드</a>
-            <a href="Labs/Notebooks/03-create-and-organize-objects-in-unity-catalog-KO.ipynb">노트북</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="meta"><strong>Lab 04</strong><span>45 min</span></div>
-          <h3>Secure Unity Catalog Objects</h3>
-          <p>권한 제어, 행/열 보안, 비밀 관리로 데이터 보호를 적용합니다.</p>
-          <div class="card-links">
-            <a href="Labs/04-secure-unity-catalog-objects-KO.md">가이드</a>
-            <a href="Labs/Notebooks/04-secure-unity-catalog-objects-KO.ipynb">노트북</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="meta"><strong>Lab 05</strong><span>30 min</span></div>
-          <h3>Govern Unity Catalog Objects</h3>
-          <p>태깅, 보존 정책, 계보 추적과 감사 로그 분석을 실습합니다.</p>
-          <div class="card-links">
-            <a href="Labs/05-govern-unity-catalog-objects-KO.md">가이드</a>
-            <a href="Labs/Notebooks/05-govern-unity-catalog-objects-KO.ipynb">노트북</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="meta"><strong>Lab 06</strong><span>45 min</span></div>
-          <h3>Design and Implement Data Modeling</h3>
-          <p>Delta Lake 기반 데이터 모델링과 이력 관리, 시간 여행을 다룹니다.</p>
-          <div class="card-links">
-            <a href="Labs/06-design-implement-data-modeling-unity-catalog-KO.md">가이드</a>
-            <a href="Labs/Notebooks/06-design-implement-data-modeling-unity-catalog-KO.ipynb">노트북</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="meta"><strong>Lab 07</strong><span>45 min</span></div>
-          <h3>Ingest Data into Unity Catalog</h3>
-          <p>COPY INTO, CTAS, Auto Loader를 사용한 데이터 적재 패턴을 익힙니다.</p>
-          <div class="card-links">
-            <a href="Labs/07-ingest-data-into-unity-catalog-KO.md">가이드</a>
-            <a href="Labs/Notebooks/07-ingest-data-into-unity-catalog-KO.ipynb">노트북</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="meta"><strong>Lab 08</strong><span>45 min</span></div>
-          <h3>Cleanse, Transform, and Load Data</h3>
-          <p>중복 제거, 결측치 처리, 조인 및 PIVOT/UNPIVOT 변환을 수행합니다.</p>
-          <div class="card-links">
-            <a href="Labs/08-cleanse-transform-load-data-into-unity-catalog-KO.md">가이드</a>
-            <a href="Labs/Notebooks/08-cleanse-transform-load-data-into-unity-catalog-KO.ipynb">노트북</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="meta"><strong>Lab 09</strong><span>45 min</span></div>
-          <h3>Manage Data Quality Constraints</h3>
-          <p>Lakeflow 파이프라인에서 기대치 기반 데이터 품질 규칙을 적용합니다.</p>
-          <div class="card-links">
-            <a href="Labs/09-implement-manage-data-quality-constraints-unity-catalog-KO.md">가이드</a>
-            <a href="Labs/Notebooks/09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb">노트북</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="meta"><strong>Lab 10</strong><span>45 min</span></div>
-          <h3>Design and Implement Data Pipelines</h3>
-          <p>브론즈-실버-골드 구조 파이프라인 및 작업 오케스트레이션을 구성합니다.</p>
-          <div class="card-links">
-            <a href="Labs/10-design-implement-data-pipelines-KO.md">가이드</a>
-            <a href="Labs/Notebooks/10-design-implement-data-pipelines-KO.ipynb">노트북</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="meta"><strong>Lab 11</strong><span>45 min</span></div>
-          <h3>Implement Lakeflow Jobs</h3>
-          <p>트리거, 재시도, 알림, 종속성 기반 잡 자동화를 설계합니다.</p>
-          <div class="card-links">
-            <a href="Labs/11-implement-lakeflow-jobs-KO.md">가이드</a>
-            <a href="Labs/Notebooks/11-implement-lakeflow-jobs-KO.ipynb">노트북</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="meta"><strong>Lab 12</strong><span>45 min</span></div>
-          <h3>Implement Development Lifecycle Processes</h3>
-          <p>테스트 자동화와 Databricks CLI 기반 배포 흐름을 구성합니다.</p>
-          <div class="card-links">
-            <a href="Labs/12-implement-development-lifecycle-processes-in-azure-databricks-KO.md">가이드</a>
-            <a href="Labs/Notebooks/12-implement-development-lifecycle-processes-in-azure-databricks-KO.ipynb">노트북</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="meta"><strong>Lab 13</strong><span>45 min</span></div>
-          <h3>Monitor, Troubleshoot, and Optimize Workloads</h3>
-          <p>Spark UI 분석과 성능 최적화 기법을 통해 워크로드를 개선합니다.</p>
-          <div class="card-links">
-            <a href="Labs/13-monitor-troubleshoot-optimize-workloads-azure-databricks-KO.md">가이드</a>
-            <a href="Labs/Notebooks/13-monitor-troubleshoot-optimize-workloads-azure-databricks-KO.ipynb">노트북</a>
-          </div>
-        </article>
-      </main>
+      <main class="grid" id="labs-grid"></main>
     </section>
 
     <p class="footer-note">
       GitHub Pages에서 루트 페이지로 사용되며, 상대 경로 기반 링크를 사용합니다.
     </p>
   </div>
+
+  <script>
+    const labs = [
+      {
+        lab: "00",
+        md: "00-setup.md",
+        minutes: "Setup",
+        note: "실습 환경을 준비하고 Azure Databricks 워크스페이스를 초기화합니다.",
+        notebook: "01-explore-azure-databricks-KO.ipynb"
+      },
+      {
+        lab: "01",
+        md: "01-explore-azure-databricks-KO.md",
+        minutes: "30 min",
+        note: "워크스페이스 UI, 데이터 업로드, 노트북 기본 기능을 익힙니다.",
+        notebook: "01-explore-azure-databricks-KO.ipynb"
+      },
+      {
+        lab: "02",
+        md: "02-select-and-configure-compute-KO.md",
+        minutes: "30 min",
+        note: "클러스터 생성, 라이브러리 설치, PySpark 기반 데이터 분석을 수행합니다.",
+        notebook: "02-select-and-configure-compute-KO.ipynb"
+      },
+      {
+        lab: "03",
+        md: "03-create-and-organize-objects-in-unity-catalog-KO.md",
+        minutes: "45 min",
+        note: "카탈로그와 스키마를 만들고 Unity Catalog 객체를 구조화합니다.",
+        notebook: "03-create-and-organize-objects-in-unity-catalog-KO.ipynb"
+      },
+      {
+        lab: "04",
+        md: "04-secure-unity-catalog-objects-KO.md",
+        minutes: "45 min",
+        note: "권한 제어, 행/열 보안, 비밀 관리로 데이터 보호를 적용합니다.",
+        notebook: "04-secure-unity-catalog-objects-KO.ipynb"
+      },
+      {
+        lab: "05",
+        md: "05-govern-unity-catalog-objects-KO.md",
+        minutes: "30 min",
+        note: "태깅, 보존 정책, 계보 추적과 감사 로그 분석을 실습합니다.",
+        notebook: "05-govern-unity-catalog-objects-KO.ipynb"
+      },
+      {
+        lab: "06",
+        md: "06-design-implement-data-modeling-unity-catalog-KO.md",
+        minutes: "45 min",
+        note: "Delta Lake 기반 데이터 모델링과 이력 관리, 시간 여행을 다룹니다.",
+        notebook: "06-design-implement-data-modeling-unity-catalog-KO.ipynb"
+      }
+    ];
+
+    const labsGrid = document.getElementById("labs-grid");
+
+    labs.forEach((item) => {
+      const card = document.createElement("article");
+      card.className = "card";
+
+      const badge = item.lab === "00" ? "<span class=\"chip\">Setup</span>" : `<span>${item.minutes}</span>`;
+
+      card.innerHTML = `
+        <div class="meta"><strong>Lab ${item.lab}</strong>${badge}</div>
+        <h3>${item.md}</h3>
+        <p>${item.note}</p>
+        <div class="card-links">
+          <a href="Labs/${item.md}">가이드</a>
+          <a href="Labs/Notebooks/${item.notebook}">노트북</a>
+        </div>
+      `;
+
+      labsGrid.appendChild(card);
+    });
+  </script>
 </body>
 </html>
