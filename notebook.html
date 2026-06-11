@@ -363,6 +363,7 @@
     const file = params.get("file") || "";
     const cellsRoot = document.getElementById("cells");
     const summary = document.getElementById("summary");
+    const contentArea = document.querySelector(".content-area");
     const tocNav = document.getElementById("toc");
     const tocList = document.getElementById("toc-list");
     const filterBtns = document.querySelectorAll(".filter-btn");
@@ -420,9 +421,21 @@
         a.href = `#${h.id}`;
         a.className = `toc-link level-${h.level}`;
         a.textContent = h.text;
+        a.addEventListener("click", (event) => {
+          event.preventDefault();
+          scrollToHeading(h.id);
+          history.replaceState(null, "", `#${h.id}`);
+        });
         li.appendChild(a);
         tocList.appendChild(li);
       });
+    }
+
+    function scrollToHeading(id) {
+      const target = document.getElementById(id);
+      if (!target || !contentArea) return;
+      const offsetTop = target.getBoundingClientRect().top - contentArea.getBoundingClientRect().top + contentArea.scrollTop - 8;
+      contentArea.scrollTo({ top: offsetTop, behavior: "smooth" });
     }
 
     function applyFilter(filter) {
@@ -515,6 +528,9 @@
         });
 
         renderTOC();
+        if (window.location.hash) {
+          scrollToHeading(window.location.hash.slice(1));
+        }
       })
       .catch((error) => {
         showError(error.message);

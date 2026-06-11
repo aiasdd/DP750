@@ -288,6 +288,7 @@
     const params = new URLSearchParams(window.location.search);
     const file = params.get("file") || "";
     const content = document.getElementById("content");
+    const contentArea = document.querySelector(".content-area");
     const tocNav = document.getElementById("toc");
     const tocList = document.getElementById("toc-list");
     const headings = [];
@@ -442,9 +443,21 @@
         a.href = `#${h.id}`;
         a.className = `toc-link level-${h.level}`;
         a.textContent = h.text;
+        a.addEventListener("click", (event) => {
+          event.preventDefault();
+          scrollToHeading(h.id);
+          history.replaceState(null, "", `#${h.id}`);
+        });
         li.appendChild(a);
         tocList.appendChild(li);
       });
+    }
+
+    function scrollToHeading(id) {
+      const target = document.getElementById(id);
+      if (!target || !contentArea) return;
+      const offsetTop = target.getBoundingClientRect().top - contentArea.getBoundingClientRect().top + contentArea.scrollTop - 8;
+      contentArea.scrollTo({ top: offsetTop, behavior: "smooth" });
     }
 
     if (!isAllowedPath) {
@@ -467,6 +480,9 @@
         content.innerHTML = html;
         addCopyButtons(content);
         renderTOC();
+        if (window.location.hash) {
+          scrollToHeading(window.location.hash.slice(1));
+        }
       })
       .catch((error) => {
         content.innerHTML = `<p class="error">${error.message}</p>`;
