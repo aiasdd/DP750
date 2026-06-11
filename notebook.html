@@ -62,6 +62,9 @@
       gap: 1rem;
       flex-wrap: wrap;
       margin-bottom: 1rem;
+      position: sticky;
+      top: 1rem;
+      z-index: 10;
     }
 
     .topbar a {
@@ -311,7 +314,6 @@
         <button class="filter-btn" data-filter="code">코드만</button>
         <button class="filter-btn" data-filter="markdown">마크다운만</button>
       </div>
-      <span class="path" id="doc-path"></span>
     </div>
 
     <div class="main-container">
@@ -332,7 +334,6 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const file = params.get("file") || "";
-    const pathNode = document.getElementById("doc-path");
     const cellsRoot = document.getElementById("cells");
     const summary = document.getElementById("summary");
     const tocNav = document.getElementById("toc");
@@ -422,8 +423,6 @@
       showError("잘못된 노트북 경로입니다.");
       throw new Error("Invalid notebook path");
     }
-
-    pathNode.textContent = file;
 
     fetch(file)
       .then((response) => {

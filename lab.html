@@ -41,6 +41,9 @@
       gap: 1rem;
       flex-wrap: wrap;
       margin-bottom: 1rem;
+      position: sticky;
+      top: 1rem;
+      z-index: 10;
     }
 
     .topbar a {
@@ -238,7 +241,6 @@
   <div class="layout">
     <div class="topbar">
       <a href="./index.html">메인으로 돌아가기</a>
-      <span class="path" id="doc-path"></span>
     </div>
 
     <div class="main-container">
@@ -259,7 +261,6 @@
     const params = new URLSearchParams(window.location.search);
     const file = params.get("file") || "";
     const content = document.getElementById("content");
-    const docPath = document.getElementById("doc-path");
     const tocNav = document.getElementById("toc");
     const tocList = document.getElementById("toc-list");
     const headings = [];
@@ -423,8 +424,6 @@
       content.innerHTML = '<p class="error">잘못된 문서 경로입니다.</p>';
       throw new Error("Invalid file path");
     }
-
-    docPath.textContent = file;
 
     fetch(file)
       .then((response) => {
