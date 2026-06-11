@@ -137,6 +137,135 @@
       border-radius: 10px;
       padding: 0.8rem;
     }
+
+    .filters {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .filter-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.45rem 0.8rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      color: var(--ink-soft);
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .filter-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .filter-btn:hover {
+      border-color: var(--accent);
+    }
+
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1.2rem;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .toc-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.8rem;
+    }
+
+    .toc-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .toc-item {
+      margin: 0;
+      padding: 0;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 0.35rem 0;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      border-left: 2px solid transparent;
+      padding-left: 0.5rem;
+      transition: all 0.15s;
+    }
+
+    .toc-link:hover {
+      color: #0054cc;
+      border-left-color: var(--accent);
+    }
+
+    .toc-link.level-1 {
+      margin-left: 0;
+      font-weight: 600;
+    }
+
+    .toc-link.level-2 {
+      margin-left: 0.8rem;
+    }
+
+    .toc-link.level-3 {
+      margin-left: 1.6rem;
+    }
+
+    .cell-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .cell-head-label {
+      flex: 1;
+    }
+
+    .collapse-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--accent);
+      font-size: 1rem;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.5rem;
+      height: 1.5rem;
+      transition: transform 0.2s;
+    }
+
+    .collapse-btn:hover {
+      opacity: 0.8;
+    }
+
+    .collapse-btn.collapsed {
+      transform: rotate(-90deg);
+    }
+
+    .cell-body.collapsed {
+      display: none;
+    }
+
+    .cell.hidden {
+      display: none;
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
@@ -144,8 +273,18 @@
   <div class="layout">
     <div class="topbar">
       <a href="./index.html">메인으로 돌아가기</a>
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">모두</button>
+        <button class="filter-btn" data-filter="code">코드만</button>
+        <button class="filter-btn" data-filter="markdown">마크다운만</button>
+      </div>
       <span class="path" id="doc-path"></span>
     </div>
+
+    <nav class="toc" id="toc" style="display: none;">
+      <div class="toc-title">목차</div>
+      <ul class="toc-list" id="toc-list"></ul>
+    </nav>
 
     <p class="summary" id="summary"></p>
     <section class="cells" id="cells"></section>
@@ -157,6 +296,13 @@
     const pathNode = document.getElementById("doc-path");
     const cellsRoot = document.getElementById("cells");
     const summary = document.getElementById("summary");
+    const tocNav = document.getElementById("toc");
+    const tocList = document.getElementById("toc-list");
+    const filterBtns = document.querySelectorAll(".filter-btn");
+
+    let currentFilter = "all";
+    let allCells = [];
+    const headings = [];
 
     const isAllowedPath = file.startsWith("Labs/Notebooks/") && file.endsWith(".ipynb") && !file.includes("..");
 
@@ -170,7 +316,68 @@
     function showError(message) {
       cellsRoot.innerHTML = `<div class="error">${message}</div>`;
       summary.textContent = "";
+      tocNav.style.display = "none";
     }
+
+    function extractHeadings(html, cellIndex) {
+      const temp = document.createElement("div");
+      temp.innerHTML = html;
+      const headingElements = temp.querySelectorAll("h1, h2, h3, h4");
+      headingElements.forEach((h, idx) => {
+        const level = parseInt(h.tagName[1]);
+        const id = `heading-${cellIndex}-${idx}`;
+        h.id = id;
+        headings.push({
+          id,
+          level,
+          text: h.textContent,
+          element: h,
+        });
+      });
+      return temp.innerHTML;
+    }
+
+    function renderTOC() {
+      if (headings.length === 0) {
+        tocNav.style.display = "none";
+        return;
+      }
+
+      tocNav.style.display = "block";
+      tocList.innerHTML = "";
+
+      headings.forEach((h) => {
+        const li = document.createElement("li");
+        li.className = "toc-item";
+        const a = document.createElement("a");
+        a.href = `#${h.id}`;
+        a.className = `toc-link level-${h.level}`;
+        a.textContent = h.text;
+        li.appendChild(a);
+        tocList.appendChild(li);
+      });
+    }
+
+    function applyFilter(filter) {
+      currentFilter = filter;
+      allCells.forEach((cell) => {
+        if (filter === "all") {
+          cell.classList.remove("hidden");
+        } else if (filter === "code") {
+          cell.classList.toggle("hidden", cell.dataset.type !== "code");
+        } else if (filter === "markdown") {
+          cell.classList.toggle("hidden", cell.dataset.type !== "markdown");
+        }
+      });
+    }
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        filterBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        applyFilter(btn.dataset.filter);
+      });
+    });
 
     if (!isAllowedPath) {
       showError("잘못된 노트북 경로입니다.");
@@ -198,18 +405,38 @@
         cells.forEach((cell, index) => {
           const wrap = document.createElement("article");
           wrap.className = "cell";
+          wrap.dataset.type = cell.cell_type;
 
           const head = document.createElement("div");
           head.className = "cell-head";
           const type = cell.cell_type === "code" ? "Code" : "Markdown";
-          head.textContent = `Cell ${index + 1} · ${type}`;
+
+          const label = document.createElement("div");
+          label.className = "cell-head-label";
+          label.textContent = `Cell ${index + 1} · ${type}`;
+
+          head.appendChild(label);
+
+          if (cell.cell_type === "code") {
+            const collapseBtn = document.createElement("button");
+            collapseBtn.className = "collapse-btn";
+            collapseBtn.innerHTML = "▼";
+            collapseBtn.addEventListener("click", () => {
+              const body = wrap.querySelector(".cell-body");
+              body.classList.toggle("collapsed");
+              collapseBtn.classList.toggle("collapsed");
+            });
+            head.appendChild(collapseBtn);
+          }
 
           const body = document.createElement("div");
           body.className = "cell-body";
 
           const source = toText(cell.source);
           if (cell.cell_type === "markdown") {
-            body.innerHTML = marked.parse(source);
+            let html = marked.parse(source);
+            html = extractHeadings(html, index);
+            body.innerHTML = html;
           } else {
             const lang = (cell.metadata && cell.metadata.language) ? String(cell.metadata.language) : "python";
             body.innerHTML = `<pre><code class="language-${lang}"></code></pre>`;
@@ -219,7 +446,10 @@
           wrap.appendChild(head);
           wrap.appendChild(body);
           cellsRoot.appendChild(wrap);
+          allCells.push(wrap);
         });
+
+        renderTOC();
       })
       .catch((error) => {
         showError(error.message);
