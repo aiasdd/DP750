@@ -53,7 +53,7 @@ lab:
 1. 실습에서 할당받은 계정과 동일한 끝 번호를 갖은 구독을 찾아 Subscription Id를 복사합니다.
    예를 들어, 할당된 계정이 `azure_training_00' 로 끝나면 구독 ID도 '...00'으로 끝납니다. (예시: sub-open-techedu-training-00) 
 
-3. 다음 명령을 실행하여 구독을 설정합니다(복사한 Subscription Id로 `<your-subscription-id>`를 바꿔주세요):
+3. 다음 명령을 실행하여 구독을 설정합니다. (복사한 Subscription Id로 `<your-subscription-id>`를 변경 후 명령을 실행합니다):
 
     ```bash
     az account set --subscription <your-subscription-id>
@@ -74,11 +74,11 @@ lab:
 
 1. Azure 포털 상단 검색 창에서 **Azure Databricks**를 검색하여 선택합니다.
 
-2. 목록에서 **rg-adb-#####** 작업 영역을 선택합니다.
+2. 목록에서 **adb-ws-#####** 작업 영역을 선택합니다.
 
-3. 작업 영역 개요 페이지에서 **Launch workspace**를 선택합니다. Azure Databricks UI가 새 브라우저 탭에서 열립니다.
+3. 작업 영역 개요 페이지에서 **작업 영역 시작**를 선택합니다. Azure Databricks UI가 새 브라우저 탭에서 열립니다.
 
 4. Azure Databricks 홈 페이지가 표시되는지 확인합니다. 이제 코스 랩을 시작할 준비가 되었습니다.
 
 > [!IMPORTANT]
-> **rg-adb-#####** 리소스 그룹과 Region을 기록해 두세요. 이 정보는 나중 랩에서 Azure Databricks 작업 영역에 연결 및 Key vault 생성 시 필요합니다.
+> **rg-adb-#####** 리소스 그룹, **adb-ws-#####** 작업 영역 및 리소스배 배포된 **Region**을 기록해 두세요. 이 정보는 이후 실습에서 catalog 구성 및 Key vault 생성 시 필요합니다.

@@ -6,13 +6,13 @@
 set -e
 
 # Select a region: use the first argument if provided, otherwise pick a random one
-REGIONS=( koreacentral )
+REGIONS=( japaneast koreacentral )
 REGION=${1:-${REGIONS[$RANDOM % ${#REGIONS[@]}]}}
 
 # Generate random 5-character alphanumeric string
 RAND_SUFFIX=$(cat /dev/urandom | tr -dc 'a-z0-9' | head -c5)
 
-RESOURCE_GROUP="rg-adb-$RAND_SUFFIX"
+RESOURCE_GROUP="rg-adb$RAND_SUFFIX"
 WORKSPACE_NAME="adb-ws-$RAND_SUFFIX"
 
 echo "Installing az databricks extension..."
