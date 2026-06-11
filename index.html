@@ -137,6 +137,24 @@
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
 
+    .stages {
+      display: grid;
+      gap: 1.1rem;
+    }
+
+    .stage {
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.95rem;
+    }
+
+    .stage-title {
+      margin: 0 0 0.7rem;
+      font-size: 1rem;
+      color: #123b7d;
+    }
+
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -217,29 +235,24 @@
   <div class="layout">
     <header class="hero">
       <span class="badge">GitHub Pages Ready</span>
-      <h1>Azure Databricks Labs (00-06)</h1>
+      <h1>Azure Databricks Labs</h1>
       <p>
-        현재 실습 운영 범위에 맞춰 Labs 폴더의 MD 기준 Lab 00-06만 선별해 제공합니다.
-        각 항목에서 가이드와 노트북을 바로 열어 핵심 학습 흐름을 빠르게 진행할 수 있습니다.
+        이 페이지는 Lab 00-06 핵심 실습을 순서대로 진행할 수 있도록 구성되어 있습니다.
+        환경 프로비저닝부터 워크스페이스 탐색, 컴퓨팅 구성, Unity Catalog 객체 생성/보안/거버넌스,
+        그리고 Delta Lake 기반 데이터 모델링(SCD Type 2, CDF, Time Travel)까지 단계적으로 학습합니다.
       </p>
       <div class="hero-links">
-        <a href="lab.html?file=Labs/00-setup.md">시작하기 (Lab 00)</a>
-        <a href="Labs/Notebooks/01-explore-azure-databricks-KO.ipynb">첫 노트북 열기</a>
       </div>
     </header>
 
     <section>
       <div class="section-head">
         <h2>Labs</h2>
-        <p>Labs 폴더의 MD 기준: Lab 00-06만 표시</p>
       </div>
 
-      <main class="grid" id="labs-grid"></main>
+      <main class="stages" id="labs-stages"></main>
     </section>
 
-    <p class="footer-note">
-      GitHub Pages에서 루트 페이지로 사용되며, 상대 경로 기반 링크를 사용합니다.
-    </p>
   </div>
 
   <script>
@@ -247,73 +260,97 @@
       {
         lab: "00",
         md: "00-setup.md",
-        minutes: "Setup",
-        note: "실습 환경을 준비하고 Azure Databricks 워크스페이스를 초기화합니다.",
+        minutes: "15 min",
+        note: "Azure Cloud Shell에서 스크립트를 실행해 Databricks Premium 작업 영역과 리소스 그룹을 프로비저닝합니다.",
         notebook: "01-explore-azure-databricks-KO.ipynb"
       },
       {
         lab: "01",
         md: "01-explore-azure-databricks-KO.md",
-        minutes: "30 min",
-        note: "워크스페이스 UI, 데이터 업로드, 노트북 기본 기능을 익힙니다.",
+        minutes: "40 min",
+        note: "워크스페이스 UI를 탐색하고 Unity Catalog 볼륨에 데이터를 업로드한 뒤 Python/SQL/Markdown 노트북 작업을 익힙니다.",
         notebook: "01-explore-azure-databricks-KO.ipynb"
       },
       {
         lab: "02",
         md: "02-select-and-configure-compute-KO.md",
-        minutes: "30 min",
-        note: "클러스터 생성, 라이브러리 설치, PySpark 기반 데이터 분석을 수행합니다.",
+        minutes: "40 min",
+        note: "다목적 클러스터를 구성하고 클러스터/노트북 범위 라이브러리를 설치해 PySpark로 합성 데이터를 생성 및 분석합니다.",
         notebook: "02-select-and-configure-compute-KO.ipynb"
       },
       {
         lab: "03",
         md: "03-create-and-organize-objects-in-unity-catalog-KO.md",
-        minutes: "45 min",
-        note: "카탈로그와 스키마를 만들고 Unity Catalog 객체를 구조화합니다.",
+        minutes: "60 min",
+        note: "카탈로그·메달리온 스키마·제약조건 테이블·뷰·볼륨·SQL 함수를 생성해 Unity Catalog 네임스페이스를 설계합니다.",
         notebook: "03-create-and-organize-objects-in-unity-catalog-KO.ipynb"
       },
       {
         lab: "04",
         md: "04-secure-unity-catalog-objects-KO.md",
-        minutes: "45 min",
-        note: "권한 제어, 행/열 보안, 비밀 관리로 데이터 보호를 적용합니다.",
+        minutes: "50 min",
+        note: "그룹 권한 부여, 행 필터, 열 마스킹과 Azure Key Vault 기반 비밀 범위를 설정해 데이터 접근 보안을 구현합니다.",
         notebook: "04-secure-unity-catalog-objects-KO.ipynb"
       },
       {
         lab: "05",
         md: "05-govern-unity-catalog-objects-KO.md",
-        minutes: "30 min",
-        note: "태깅, 보존 정책, 계보 추적과 감사 로그 분석을 실습합니다.",
+        minutes: "40 min",
+        note: "태그/주석 관리, Delta 보존 정책과 VACUUM, 계보·감사 로그 쿼리로 거버넌스와 규정 준수 추적을 수행합니다.",
         notebook: "05-govern-unity-catalog-objects-KO.ipynb"
       },
       {
         lab: "06",
         md: "06-design-implement-data-modeling-unity-catalog-KO.md",
-        minutes: "45 min",
-        note: "Delta Lake 기반 데이터 모델링과 이력 관리, 시간 여행을 다룹니다.",
+        minutes: "50 min",
+        note: "Delta Lake 모델에서 SCD Type 2, 액세스 클러스터링, Change Data Feed, Time Travel로 이력·감사·복구를 구현합니다.",
         notebook: "06-design-implement-data-modeling-unity-catalog-KO.ipynb"
       }
     ];
 
-    const labsGrid = document.getElementById("labs-grid");
+    const stageConfig = [
+      { title: "Lab00", start: 0, end: 0 },
+      { title: "Lab01~03", start: 1, end: 3 },
+      { title: "Lab04~06", start: 4, end: 6 }
+    ];
 
-    labs.forEach((item) => {
-      const card = document.createElement("article");
-      card.className = "card";
+    const labsStages = document.getElementById("labs-stages");
 
-      const badge = item.lab === "00" ? "<span class=\"chip\">Setup</span>" : `<span>${item.minutes}</span>`;
+    stageConfig.forEach((stage) => {
+      const section = document.createElement("section");
+      section.className = "stage";
 
-      card.innerHTML = `
-        <div class="meta"><strong>Lab ${item.lab}</strong>${badge}</div>
-        <h3>${item.md}</h3>
-        <p>${item.note}</p>
-        <div class="card-links">
-          <a href="lab.html?file=Labs/${item.md}">가이드</a>
-          <a href="Labs/Notebooks/${item.notebook}">노트북</a>
-        </div>
-      `;
+      const title = document.createElement("h3");
+      title.className = "stage-title";
+      title.textContent = stage.title;
+      section.appendChild(title);
 
-      labsGrid.appendChild(card);
+      const grid = document.createElement("div");
+      grid.className = "grid";
+
+      labs
+        .filter((item) => Number(item.lab) >= stage.start && Number(item.lab) <= stage.end)
+        .forEach((item) => {
+          const card = document.createElement("article");
+          card.className = "card";
+
+          const badge = item.lab === "00" ? "<span class=\"chip\">Setup</span>" : `<span>${item.minutes}</span>`;
+
+          card.innerHTML = `
+            <div class="meta"><strong>Lab ${item.lab}</strong>${badge}</div>
+            <h3>${item.md}</h3>
+            <p>${item.note}</p>
+            <div class="card-links">
+              <a href="lab.html?file=Labs/${item.md}">가이드</a>
+              <a href="Labs/Notebooks/${item.notebook}">노트북</a>
+            </div>
+          `;
+
+          grid.appendChild(card);
+        });
+
+      section.appendChild(grid);
+      labsStages.appendChild(section);
     });
   </script>
 </body>
