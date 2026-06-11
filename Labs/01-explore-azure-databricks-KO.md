@@ -77,20 +77,23 @@ CityMoves Transit은 경로 정보가 있는 CSV 파일을 제공했습니다. �
 
 1. Databricks 워크스페이스 사이드바에서 **카탈로그**를 클릭합니다.
 2. 카탈로그 탐색기에서 **adb-ws-####** 카탈로그를 확장한 다음 **default** 스키마를 확장합니다.
-3. **default** 옆의 **⋮** 메뉴를 클릭한 다음 **만들기** > **볼륨**을 선택합니다.
+3. **카탈로드** 옆의 **+** 메뉴를 클릭한 다음 **볼륨만들기**를 선택합니다.
+    ![lab010creatingvolume](Media/Lab010creatingingvolume.png)
 4. 볼륨 이름으로 `lab_data`를 입력하고, 유형을 **관리 볼륨**으로 두고 **만들기**를 클릭합니다.
+    ![lab011creatingvolume](Media/Lab011creatingvolumedetail.png)
+   이제 데이터 파일을 업로드합니다:
 
-이제 데이터 파일을 업로드합니다:
+5. 데이터 업로드 인터페이스에서 **이 볼륨 upload**를 선택합니다.
+    ![lab012creatingvolume](Media/Lab012uploadfiles.png)
 
-5. Databricks 워크스페이스 사이드바에서 **+ 새로 만들기**를 클릭한 다음 **데이터 추가**를 선택합니다.
-
-6. 데이터 업로드 인터페이스에서 **이 볼륨 upload**를 선택합니다.
-
-7. 다음 파일 [routes.csv](https://github.com/asddai/AzureDatabricks/raw/main/Labs/data/routes.csv) 을 다운로드한 다음 **찾아보기**를 클릭하여 선택합니다:
+7. 다음 파일 [routes.csv](https://github.com/asddai/AzureDatabricks/raw/main/Labs/data/routes.csv) 을 다운로드한 다음 **찾아보기**를 클릭하여 선택합니다.
+    ![lab013creatingvolume](Media/Lab013selectingfiles.png)
 
 8. 대상을 묻는 메시지가 나타나면 방금 생성한 볼륨을 선택합니다: **adb-ws-####** > **default** > **lab_data**.
+    ![lab014creatingvolume](Media/Lab014selectingvolume.png)
 
 9. 업로드가 완료되면 왼쪽 사이드바의 **카탈로그**로 이동하고 업로드된 파일을 찾습니다. 카탈로그 계층(**adb-ws-####** > **default** > **lab_data**)을 확장하여 routes.csv가 표시되는지 확인합니다.
+    ![Lab015listingexcel](Media/Lab015listingexcel.png)
 
     > **참고**: 이 랩에서는 데이터를 쿼리하거나 로드할 필요가 없습니다. 목표는 단순히 업로드 워크플로에 익숙해지는 것입니다. 이후 랩에서 이 데이터로 작업할 것입니다.
 
