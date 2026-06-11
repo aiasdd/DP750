@@ -6,7 +6,7 @@ lab:
   module-url: https://learn.microsoft.com/training/wwl-databricks/implement-development-lifecycle-processes-in-azure-databricks/
   notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/12-implement-development-lifecycle-processes-in-azure-databricks-KO.ipynb
   description: 이 랩에서는 pytest를 사용하여 데이터 변환 파이프라인에 대한 테스트 전략을 구현한 다음 Databricks CLI를 사용하여 파이프라인을 Databricks 자산 번들로 패키지하고 배포합니다.
-  duration: 45분
+  duration: 50분
   level: 300
   islab: true
   primarytopics:
@@ -17,7 +17,7 @@ lab:
 |구분|내용|
 |---|---|
 |설명| 이 랩에서는 pytest를 사용하여 데이터 변환 파이프라인에 대한 테스트 전략을 구현한 다음 Databricks CLI를 사용하여 파이프라인을 Databricks 자산 번들로 패키지하고 배포합니다.|
-|소요시간| 45분|
+|소요시간| 50분|
 |난이도| 300|
 ---
 

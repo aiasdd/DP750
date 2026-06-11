@@ -6,7 +6,7 @@ lab:
   module-url: https://learn.microsoft.com/training/wwl-databricks/implement-manage-data-quality-constraints-unity-catalog/
   notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb
   description: 이 랩에서는 원본 청구 데이터에 대한 데이터 품질 제약 조건을 시행하는 ClearCover Insurance에 대한 Lakeflow Spark 선언형 파이프라인을 구축합니다. 파이프라인 예상을 사용하여 널 가능성 및 범위 검사를 구현하고, col().cast()를 사용하여 데이터 유형을 검증하며, Auto Loader의 구조 도움말 열을 사용하여 스키마 드리프트를 처리합니다. 그런 다음 Databricks UI에서 파이프라인을 생성하고 실행하며 데이터 품질 메트릭을 모니터링합니다.
-  duration: 45분
+  duration: 50분
   level: 300
   islab: true
   primarytopics:
@@ -17,7 +17,7 @@ lab:
 |구분|내용|
 |---|---|
 |설명|이 랩에서는 원본 청구 데이터에 대한 데이터 품질 제약 조건을 시행하는 ClearCover Insurance에 대한 Lakeflow Spark 선언형 파이프라인을 구축합니다. 파이프라인 예상을 사용하여 널 가능성 및 범위 검사를 구현하고, col().cast()를 사용하여 데이터 유형을 검증하며, Auto Loader의 구조 도움말 열을 사용하여 스키마 드리프트를 처리합니다. 그런 다음 Databricks UI에서 파이프라인을 생성하고 실행하며 데이터 품질 메트릭을 모니터링합니다.|
-|소요시간| 45분|
+|소요시간| 50분|
 |난이도| 300|
 ---
 
