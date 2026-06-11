@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Azure Databricks Labs (00-06)
+title: Azure Databricks Labs (1차)
 ---
 
 <meta http-equiv="refresh" content="0; url=./index.html" />
