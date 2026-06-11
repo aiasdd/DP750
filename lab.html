@@ -105,6 +105,99 @@
       color: inherit;
       padding: 0;
     }
+
+    .main-container {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .toc-sidebar {
+      flex: 0 0 240px;
+      position: sticky;
+      top: 1rem;
+      max-height: calc(100vh - 2rem);
+      overflow-y: auto;
+    }
+
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+
+    .toc-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.8rem;
+    }
+
+    .toc-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .toc-item {
+      margin: 0;
+      padding: 0;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 0.4rem 0;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      border-left: 2px solid transparent;
+      padding-left: 0.5rem;
+      transition: all 0.15s;
+    }
+
+    .toc-link:hover {
+      color: #0054cc;
+      border-left-color: var(--accent);
+    }
+
+    .toc-link.level-1 {
+      margin-left: 0;
+      font-weight: 600;
+      margin-top: 0.3rem;
+    }
+
+    .toc-link.level-2 {
+      margin-left: 0.8rem;
+    }
+
+    .toc-link.level-3 {
+      margin-left: 1.6rem;
+    }
+
+    .toc-link.level-4 {
+      margin-left: 2.4rem;
+    }
+
+    .content-area {
+      flex: 1;
+      min-width: 0;
+    }
+
+    @media (max-width: 768px) {
+      .main-container {
+        flex-direction: column;
+      }
+
+      .toc-sidebar {
+        flex: 1 1 auto;
+        position: static;
+        max-height: 300px;
+      }
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
@@ -115,7 +208,18 @@
       <span class="path" id="doc-path"></span>
     </div>
 
-    <article class="content" id="content">로딩 중...</article>
+    <div class="main-container">
+      <aside class="toc-sidebar">
+        <nav class="toc" id="toc" style="display: none;">
+          <div class="toc-title">목차</div>
+          <ul class="toc-list" id="toc-list"></ul>
+        </nav>
+      </aside>
+
+      <article class="content-area">
+        <div class="content" id="content">로딩 중...</div>
+      </article>
+    </div>
   </div>
 
   <script>
@@ -123,8 +227,49 @@
     const file = params.get("file") || "";
     const content = document.getElementById("content");
     const docPath = document.getElementById("doc-path");
+    const tocNav = document.getElementById("toc");
+    const tocList = document.getElementById("toc-list");
+    const headings = [];
 
     const isAllowedPath = file.startsWith("Labs/") && file.endsWith(".md") && !file.includes("..");
+
+    function extractHeadings(html) {
+      const temp = document.createElement("div");
+      temp.innerHTML = html;
+      const headingElements = temp.querySelectorAll("h1, h2, h3, h4");
+      headingElements.forEach((h, idx) => {
+        const level = parseInt(h.tagName[1]);
+        const id = `heading-${idx}`;
+        h.id = id;
+        headings.push({
+          id,
+          level,
+          text: h.textContent,
+        });
+      });
+      return temp.innerHTML;
+    }
+
+    function renderTOC() {
+      if (headings.length === 0) {
+        tocNav.style.display = "none";
+        return;
+      }
+
+      tocNav.style.display = "block";
+      tocList.innerHTML = "";
+
+      headings.forEach((h) => {
+        const li = document.createElement("li");
+        li.className = "toc-item";
+        const a = document.createElement("a");
+        a.href = `#${h.id}`;
+        a.className = `toc-link level-${h.level}`;
+        a.textContent = h.text;
+        li.appendChild(a);
+        tocList.appendChild(li);
+      });
+    }
 
     if (!isAllowedPath) {
       content.innerHTML = '<p class="error">잘못된 문서 경로입니다.</p>';
@@ -141,10 +286,14 @@
         return response.text();
       })
       .then((markdown) => {
-        content.innerHTML = marked.parse(markdown);
+        let html = marked.parse(markdown);
+        html = extractHeadings(html);
+        content.innerHTML = html;
+        renderTOC();
       })
       .catch((error) => {
         content.innerHTML = `<p class="error">${error.message}</p>`;
+        tocNav.style.display = "none";
       });
   </script>
 </body>
