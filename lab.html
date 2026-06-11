@@ -27,7 +27,8 @@
 
     .layout {
       width: min(1320px, calc(100% - 2rem));
-      margin: 1.4rem auto 3rem;
+      margin: 0 auto 3rem;
+      padding-top: 5.4rem;
     }
 
     .topbar {
@@ -40,7 +41,13 @@
       align-items: center;
       gap: 1rem;
       flex-wrap: wrap;
-      margin-bottom: 1rem;
+      position: fixed;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1320px, calc(100% - 2rem));
+      margin-bottom: 0;
+      z-index: 20;
     }
 
     .topbar a {
