@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab Guide Viewer</title>
+  <style>
+    :root {
+      --bg: #f4f7fc;
+      --surface: #ffffff;
+      --ink: #1b2432;
+      --ink-soft: #5a6b84;
+      --border: #dbe4f1;
+      --accent: #0a6cff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Noto Sans KR", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+
+    .layout {
+      width: min(980px, calc(100% - 2rem));
+      margin: 1.4rem auto 3rem;
+    }
+
+    .topbar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.8rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .topbar a {
+      text-decoration: none;
+      color: #0a3b89;
+      font-weight: 600;
+    }
+
+    .topbar .path {
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+    }
+
+    .content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.2rem;
+      line-height: 1.7;
+      overflow-x: auto;
+    }
+
+    .error {
+      color: #b00020;
+      font-weight: 600;
+    }
+
+    .content h1,
+    .content h2,
+    .content h3 {
+      line-height: 1.3;
+    }
+
+    .content table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .content th,
+    .content td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.55rem;
+      text-align: left;
+    }
+
+    .content code {
+      background: #eef3ff;
+      padding: 0.1rem 0.28rem;
+      border-radius: 4px;
+    }
+
+    .content pre {
+      background: #0f1724;
+      color: #f3f7ff;
+      padding: 0.9rem;
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+
+    .content pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <div class="topbar">
+      <a href="./index.html">메인으로 돌아가기</a>
+      <span class="path" id="doc-path"></span>
+    </div>
+
+    <article class="content" id="content">로딩 중...</article>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const file = params.get("file") || "";
+    const content = document.getElementById("content");
+    const docPath = document.getElementById("doc-path");
+
+    const isAllowedPath = file.startsWith("Labs/") && file.endsWith(".md") && !file.includes("..");
+
+    if (!isAllowedPath) {
+      content.innerHTML = '<p class="error">잘못된 문서 경로입니다.</p>';
+      throw new Error("Invalid file path");
+    }
+
+    docPath.textContent = file;
+
+    fetch(file)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("문서를 불러오지 못했습니다.");
+        }
+        return response.text();
+      })
+      .then((markdown) => {
+        content.innerHTML = marked.parse(markdown);
+      })
+      .catch((error) => {
+        content.innerHTML = `<p class="error">${error.message}</p>`;
+      });
+  </script>
+</body>
+</html>
