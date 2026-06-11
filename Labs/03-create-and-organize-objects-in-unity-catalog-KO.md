@@ -97,8 +97,8 @@ https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/03-create-and
 4. `enrollments.grade` 열의 경우 설명을 다음과 같이 업데이트합니다: `0.0~10.0 척도의 수치 등급이며, 8.5 이상은 A, 7.0 이상은 B, 5.5 이상은 C, 4.0 이상은 D, 4.0 미만은 F입니다.`
      ![Lab033updatgrade](Media/Lab033updatgrade.png)
 5. **채팅** 탭으로 이동하여 다음을 질문합니다: *"어느 학과가 가장 높은 평균 성적을 가지고 있나요?"*
-6. Genie가 생성한 SQL을 검토하고 **vw_department_enrollment_stats** 구체화된 뷰와 비교합니다.
      ![Lab034query](Media/Lab034query.png)
+6. Genie가 생성한 SQL을 검토하고 **vw_department_enrollment_stats** 구체화된 뷰와 비교합니다.
 > 🤖 **Genie Code 팁:** Genie space 내에서 Genie Code를 요청하여 SQL 지침을 작성하거나 열 동의어를 정의하는 데 도움을 받을 수 있습니다.
 
 ---

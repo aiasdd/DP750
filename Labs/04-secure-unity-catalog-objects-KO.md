@@ -145,7 +145,7 @@ Key Vault를 떠나기 전에 **개요**로 이동하고 다음을 복사합니�
     ```
     https://<귀사의-databricks-작업-영역-url>#secrets/createScope
     ```
-   ![alt text](./Media/Lab04creatingagroup03.png)
+   ![alt text](./Media/Lab04creatingagroup03-1.png)
     > ⚠️ **createScope**의 **S**는 대문자여야 합니다. `<귀사의-databricks-작업-영역-url>`을 실제 작업 영역 URL로 바꿉니다(뒤에 '/' 제거).
 
 2. 범위를 구성합니다:

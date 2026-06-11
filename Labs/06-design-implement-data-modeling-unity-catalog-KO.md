@@ -97,6 +97,7 @@ https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/06-design-imp
    - 이것은 **관리 테이블**입니다: Unity Catalog가 메타데이터와 기본 데이터 파일을 모두 제어합니다.
 5. **fact_transactions** 테이블에 대해 동일한 검사를 반복합니다.
 6. **fact_transactions**에 대해 나열된 **클러스터링** 정보를 확인하세요 — 이것은 액세스 클러스터링이 활성화되어 있음을 확인합니다.
+     ![Lab061tabledetails](Media/Lab061tabledetails.png)
 
 ### 기억할 주요 차이점
 
