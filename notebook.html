@@ -28,8 +28,27 @@
     }
 
     .layout {
-      width: min(1050px, calc(100% - 2rem));
+      width: min(1320px, calc(100% - 2rem));
       margin: 1.2rem auto 2.5rem;
+    }
+
+    .main-container {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .toc-sidebar {
+      flex: 0 0 240px;
+      position: sticky;
+      top: 1rem;
+      max-height: calc(100vh - 2rem);
+      overflow-y: auto;
+    }
+
+    .content-area {
+      flex: 1;
+      min-width: 0;
     }
 
     .topbar {
@@ -170,10 +189,13 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 1rem;
-      margin-bottom: 1.2rem;
-      max-height: 400px;
-      overflow-y: auto;
     }
+    .cell-body img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
 
     .toc-title {
       font-size: 0.9rem;
@@ -266,6 +288,17 @@
     .cell.hidden {
       display: none;
     }
+    @media (max-width: 768px) {
+      .main-container {
+        flex-direction: column;
+      }
+
+      .toc-sidebar {
+        flex: 1 1 auto;
+        position: static;
+        max-height: 300px;
+      }
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
@@ -281,13 +314,19 @@
       <span class="path" id="doc-path"></span>
     </div>
 
-    <nav class="toc" id="toc" style="display: none;">
-      <div class="toc-title">목차</div>
-      <ul class="toc-list" id="toc-list"></ul>
-    </nav>
+    <div class="main-container">
+      <aside class="toc-sidebar">
+        <nav class="toc" id="toc" style="display: none;">
+          <div class="toc-title">목차</div>
+          <ul class="toc-list" id="toc-list"></ul>
+        </nav>
+      </aside>
 
-    <p class="summary" id="summary"></p>
-    <section class="cells" id="cells"></section>
+      <section class="content-area">
+        <p class="summary" id="summary"></p>
+        <section class="cells" id="cells"></section>
+      </section>
+    </div>
   </div>
 
   <script>
