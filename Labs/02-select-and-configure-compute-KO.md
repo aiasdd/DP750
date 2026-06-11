@@ -33,7 +33,7 @@ lab:
 
 모든 연습에 **Genie Code**를 사용할 것을 장려합니다. Genie Code는 코드 작성, 개념 설명, 수정 제안 및 Databricks 작업 영역 내에서 직접 질문에 답하는 데 도움이 될 수 있습니다.
 
-> **Genie Code를 여는 방법:** 모든 노트북의 오른쪽 상단 도구 모음에서 ![assistant-icon](https://github.com/asddai/media/blob/main/genie-code.svg) 아이콘을 선택하거나 `Ctrl+Shift+P`를 누르고 "Genie Code"를 검색합니다.
+> **Genie Code를 여는 방법:** 모든 노트북의 오른쪽 상단 도구 모음에서 아이콘(![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg))을 선택하거나 `Ctrl+Shift+P`를 누르고 "Genie Code"를 검색합니다.
 
 노트북의 모든 작업에는 Genie Code에 직접 붙여넣을 수 있는 제안 프롬프트가 포함되어 있습니다. 사용하세요 — 그것이 요점입니다!
 
@@ -73,9 +73,9 @@ HealthBridge의 데이터 엔지니어링 팀은 대화형 개발용 공유 클�
 
 ### 작업 1.1: 새 다목적 클러스터 생성
 
-1. 왼쪽 사이드바에서 **컴퓨팅**을 선택합니다.
-2. **컴퓨팅 생성**을 선택합니다.
-3. **간단한 양식** 드롭다운을 **끔**으로 설정합니다.
+1. 왼쪽 사이드바에서 **컴퓨트**를 선택합니다.
+2. **Compute 만들기**를 선택합니다.
+    ![Lab020creatingcluster2](Media/Lab020creatingcluster2.png)
 4. 클러스터 생성 양식에서 다음을 설정합니다:
 
     | 설정          | 값              |
@@ -106,7 +106,7 @@ HealthBridge의 데이터 엔지니어링 팀은 대화형 개발용 공유 클�
     > **왜 15분인가요?** 이렇게 하면 분석 세션 간에 클러스터가 유휴 상태로 유지되지 않으므로 엄격한 예산 거버넌스가 있는 의료 조직의 비용 제어에 중요합니다.
 
 5. 위로 스크롤하여 **Photon 가속화**가 **사용**으로 설정되어 있는지 확인합니다.
-
+    ![Lab020creatingclusterdetails](Media/Lab020creatingclusterdetails.png)
 6. **컴퓨팅 생성**을 선택합니다.
 
 계속하기 전에 클러스터가 **실행 중** 상태에 도달할 때까지 기다립니다. 이는 몇 분이 걸릴 수 있습니다.
