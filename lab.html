@@ -238,6 +238,7 @@
       temp.innerHTML = html;
       const headingElements = temp.querySelectorAll("h1, h2, h3, h4");
       headingElements.forEach((h, idx) => {
+        if (idx === 0) return; // 첫 번째 헤딩 스킵
         const level = parseInt(h.tagName[1]);
         const id = `heading-${idx}`;
         h.id = id;
