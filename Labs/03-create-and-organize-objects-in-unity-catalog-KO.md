@@ -16,7 +16,7 @@ lab:
 
 ## 시나리오
 
-귀사는 **Lakeside University**의 데이터 엔지니어입니다. Lakeside University는 학사 운영을 디지털화하는 중순 규모 교육 기관입니다. 귀사의 팀은 학생 기록, 과정 목록 및 등록 데이터를 관리하기 위해 Azure Databricks에서 최신 데이터 플랫폼을 구축하는 작업을 맡았습니다.
+귀사는 **Lakeside University**의 데이터 엔지니어입니다. Lakeside University는 학사 운영을 디지털화하는 중소 규모 교육 기관입니다. 귀사의 팀은 학생 기록, 과정 목록 및 등록 데이터를 관리하기 위해 Azure Databricks에서 최신 데이터 플랫폼을 구축하는 작업을 맡았습니다.
 
 이 랩에서는 Lakeside University 개발 환경을 위한 완전한 Unity Catalog 네임스페이스를 설계하고 구현합니다. 조직 명명 규칙을 따르는 카탈로그, 스키마, 제약 조건이 있는 테이블, 뷰, 볼륨 및 재사용 가능한 SQL 함수를 생성합니다.
 
@@ -83,18 +83,22 @@ https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/03-create-and
 
 노트북 연습을 완료한 후 Genie Space를 선택적으로 생성하여 Lakeside University 데이터에 대한 자연어 쿼리를 경험할 수 있습니다.
 
-1. 왼쪽 사이드바에서 **+ 새로 만들기** > **Genie space**를 선택합니다.
+1. 왼쪽 사이드바에서 ** **Genie space + 신규** >**를 선택합니다.
+    ![Lab031geniespace](Media/Lab031geniespace.png)
 2. **데이터** 아래에 다음 테이블을 추가합니다:
    - `edu_dev.silver.students`
    - `edu_dev.silver.courses`
    - `edu_dev.silver.enrollments`
    - `edu_dev.silver.vw_student_enrollments`
    - `edu_dev.gold.vw_department_enrollment_stats`
+     ![Lab032addingtables](Media/Lab032addingtables.png)
 3. 스페이스 이름을 `Lakeside University Analytics`로 지정합니다.
+     ![Lab033updatetitle](Media/Lab033updatetitle.png)
 4. `enrollments.grade` 열의 경우 설명을 다음과 같이 업데이트합니다: `0.0~10.0 척도의 수치 등급이며, 8.5 이상은 A, 7.0 이상은 B, 5.5 이상은 C, 4.0 이상은 D, 4.0 미만은 F입니다.`
+     ![Lab033updatgrade](Media/Lab033updatgrade.png)
 5. **채팅** 탭으로 이동하여 다음을 질문합니다: *"어느 학과가 가장 높은 평균 성적을 가지고 있나요?"*
 6. Genie가 생성한 SQL을 검토하고 **vw_department_enrollment_stats** 구체화된 뷰와 비교합니다.
-
+     ![Lab034query](Media/Lab034query.png)
 > 🤖 **Genie Code 팁:** Genie space 내에서 Genie Code를 요청하여 SQL 지침을 작성하거나 열 동의어를 정의하는 데 도움을 받을 수 있습니다.
 
 ---
