@@ -201,31 +201,6 @@
       color: #0a3b89;
       border: 1px solid #cad9f6;
     }
-    .copy-btn {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.45rem 0.9rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      border-radius: 999px;
-      background: var(--surface-soft);
-      color: #0a3b89;
-      border: 1px solid #cad9f6;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-    }
-
-    .copy-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(5, 38, 89, 0.2);
-      background: #d4e3ff;
-    }
-
-    .copy-btn.copied {
-      background: #c8f0e8;
-      color: #015a59;
-      border-color: #95e5e0;
-    }
 
     .footer-note {
       margin-top: 2.2rem;
@@ -373,27 +348,8 @@
             <div class="card-links">
               <a href="lab.html?file=Labs/${item.md}">가이드</a>
               <a href="notebook.html?file=Labs/Notebooks/${item.notebook}">노트북</a>
-              <button class="copy-btn" data-text="lab.html?file=Labs/${item.md}">복사</button>
             </div>
           `;
-          const copyBtn = card.querySelector('.copy-btn');
-          if (copyBtn) {
-            copyBtn.addEventListener('click', async (e) => {
-              e.preventDefault();
-              const text = copyBtn.getAttribute('data-text');
-              try {
-                await navigator.clipboard.writeText(text);
-                copyBtn.classList.add('copied');
-                copyBtn.textContent = '✓ 복사됨';
-                setTimeout(() => {
-                  copyBtn.classList.remove('copied');
-                  copyBtn.textContent = '복사';
-                }, 2000);
-              } catch (err) {
-                console.error('복사 실패:', err);
-              }
-            });
-          }
 
           grid.appendChild(card);
         });
