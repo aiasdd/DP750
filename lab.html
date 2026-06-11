@@ -233,6 +233,36 @@
 
     const isAllowedPath = file.startsWith("Labs/") && file.endsWith(".md") && !file.includes("..");
 
+    function stripFrontMatter(markdown) {
+      return markdown.replace(/^\uFEFF?---\r?\n[\s\S]*?\r?\n---\r?\n?/, "");
+    }
+
+    function resolveRelativePath(path, baseDir) {
+      if (!path || /^(https?:|mailto:|tel:|#|data:)/i.test(path)) {
+        return path;
+      }
+      const resolved = new URL(path, `${window.location.origin}/${baseDir}/`);
+      return `${resolved.pathname}${resolved.search}${resolved.hash}`.replace(/^\/+/, "");
+    }
+
+    function rewriteRelativeUrls(html, markdownPath) {
+      const baseDir = markdownPath.split("/").slice(0, -1).join("/");
+      const temp = document.createElement("div");
+      temp.innerHTML = html;
+
+      temp.querySelectorAll("img").forEach((img) => {
+        const src = img.getAttribute("src");
+        img.setAttribute("src", resolveRelativePath(src, baseDir));
+      });
+
+      temp.querySelectorAll("a").forEach((a) => {
+        const href = a.getAttribute("href");
+        a.setAttribute("href", resolveRelativePath(href, baseDir));
+      });
+
+      return temp.innerHTML;
+    }
+
     function extractHeadings(html) {
       const temp = document.createElement("div");
       temp.innerHTML = html;
@@ -287,7 +317,9 @@
         return response.text();
       })
       .then((markdown) => {
-        let html = marked.parse(markdown);
+        const cleanMarkdown = stripFrontMatter(markdown);
+        let html = marked.parse(cleanMarkdown);
+        html = rewriteRelativeUrls(html, file);
         html = extractHeadings(html);
         content.innerHTML = html;
         renderTOC();
