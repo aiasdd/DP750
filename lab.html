@@ -266,6 +266,34 @@
       return `${resolved.pathname}${resolved.search}${resolved.hash}`.replace(/^\/+/, "");
     }
 
+    function toGuideViewerUrl(originalHref, markdownPath) {
+      if (!originalHref || /^(mailto:|tel:|#|data:)/i.test(originalHref)) {
+        return originalHref;
+      }
+
+      const baseDir = markdownPath.split("/").slice(0, -1).join("/");
+      let normalizedPath = "";
+
+      if (/^https?:/i.test(originalHref)) {
+        const url = new URL(originalHref);
+        const prefix = "/AzureDatabricks/";
+        if (!url.pathname.includes("/Labs/") || !url.pathname.endsWith(".md")) {
+          return originalHref;
+        }
+        normalizedPath = url.pathname.includes(prefix)
+          ? url.pathname.slice(url.pathname.indexOf(prefix) + prefix.length)
+          : url.pathname.replace(/^\/+/, "");
+      } else {
+        normalizedPath = resolveRelativePath(originalHref, baseDir);
+      }
+
+      if (!normalizedPath.endsWith(".md")) {
+        return originalHref;
+      }
+
+      return `lab.html?file=${encodeURIComponent(normalizedPath)}`;
+    }
+
     function rewriteRelativeUrls(html, markdownPath) {
       const baseDir = markdownPath.split("/").slice(0, -1).join("/");
       const temp = document.createElement("div");
@@ -278,6 +306,11 @@
 
       temp.querySelectorAll("a").forEach((a) => {
         const href = a.getAttribute("href");
+        const guideViewerHref = toGuideViewerUrl(href, markdownPath);
+        if (guideViewerHref !== href) {
+          a.setAttribute("href", guideViewerHref);
+          return;
+        }
         a.setAttribute("href", resolveRelativePath(href, baseDir));
       });
 
