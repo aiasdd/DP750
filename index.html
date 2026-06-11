@@ -257,6 +257,7 @@
     const labs = [
       {
         lab: "00",
+        title: "Azure Databricks 환경 설정",
         md: "00-setup.md",
         minutes: "15 min",
         note: "Azure Cloud Shell에서 스크립트를 실행해 Databricks Premium 작업 영역과 리소스 그룹을 프로비저닝합니다.",
@@ -264,6 +265,7 @@
       },
       {
         lab: "01",
+        title: "Azure Databricks 탐색하기",
         md: "01-explore-azure-databricks-KO.md",
         minutes: "40 min",
         note: "워크스페이스 UI를 탐색하고 Unity Catalog 볼륨에 데이터를 업로드한 뒤 Python/SQL/Markdown 노트북 작업을 익힙니다.",
@@ -271,6 +273,7 @@
       },
       {
         lab: "02",
+        title: "Azure Databricks에서 컴퓨트 선택 및 구성",
         md: "02-select-and-configure-compute-KO.md",
         minutes: "40 min",
         note: "다목적 클러스터를 구성하고 클러스터/노트북 범위 라이브러리를 설치해 PySpark로 합성 데이터를 생성 및 분석합니다.",
@@ -278,6 +281,7 @@
       },
       {
         lab: "03",
+        title: "Unity 카탈로그에서 객체 생성 및 구성",
         md: "03-create-and-organize-objects-in-unity-catalog-KO.md",
         minutes: "60 min",
         note: "카탈로그·메달리온 스키마·제약조건 테이블·뷰·볼륨·SQL 함수를 생성해 Unity Catalog 네임스페이스를 설계합니다.",
@@ -285,6 +289,7 @@
       },
       {
         lab: "04",
+        title: "보안 Unity 카탈로그 객체",
         md: "04-secure-unity-catalog-objects-KO.md",
         minutes: "50 min",
         note: "그룹 권한 부여, 행 필터, 열 마스킹과 Azure Key Vault 기반 비밀 범위를 설정해 데이터 접근 보안을 구현합니다.",
@@ -292,6 +297,7 @@
       },
       {
         lab: "05",
+        title: "Unity Catalog 개체 관리",
         md: "05-govern-unity-catalog-objects-KO.md",
         minutes: "40 min",
         note: "태그/주석 관리, Delta 보존 정책과 VACUUM, 계보·감사 로그 쿼리로 거버넌스와 규정 준수 추적을 수행합니다.",
@@ -299,6 +305,7 @@
       },
       {
         lab: "06",
+        title: "Azure Databricks를 사용한 데이터 모델링 설계 및 구현",
         md: "06-design-implement-data-modeling-unity-catalog-KO.md",
         minutes: "50 min",
         note: "Delta Lake 모델에서 SCD Type 2, 액세스 클러스터링, Change Data Feed, Time Travel로 이력·감사·복구를 구현합니다.",
@@ -336,7 +343,7 @@
 
           card.innerHTML = `
             <div class="meta"><strong>Lab ${item.lab}</strong>${badge}</div>
-            <h3>${item.md}</h3>
+            <h3>${item.title}</h3>
             <p>${item.note}</p>
             <div class="card-links">
               <a href="lab.html?file=Labs/${item.md}">가이드</a>
