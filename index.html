@@ -141,6 +141,10 @@
       gap: 1.1rem;
     }
 
+    .demo-stages {
+      margin: 1.6rem 0;
+    }
+
     .stage {
       background: rgba(255, 255, 255, 0.62);
       border: 1px solid var(--border);
@@ -251,6 +255,10 @@
       <main class="stages" id="labs-stages"></main>
     </section>
 
+    <section>
+      <main class="stages demo-stages" id="demo-stages"></main>
+    </section>
+
   </div>
 
   <script>
@@ -319,7 +327,36 @@
       { title: "보안 및 거버넌스", start: 4, end: 6 }
     ];
 
+    const demoScenarios = [
+      {
+        title: "의료 산업 시나리오- 컴퓨팅 선택 및 구성",
+        md: "22-Demo-scenario2.md",
+        note: "실시간 환자 모니터링, 임상 데이터 웨어하우징, 의료 연구 분석, 규정 보고, 예측 의료 모델을 Azure Databricks에서 지원합니다."
+      },
+      {
+        title: "대학 데이터 플랫폼",
+        md: "23-Demo-scenario3.md",
+        note: "교육 데이터 자산 전체에 일관된 명명 규칙을 적용하고, 대학 조직 구조에 맞는 카탈로그와 스키마를 생성하며, 정형 및 비정형 교육 데이터를 위한 테이블, 뷰, 볼륨과 셀프 서비스 분석을 구현합니다."
+      },
+      {
+        title: "RetailNow - 옴니채널 소매업체 데이터 플랫폼",
+        md: "24-Demo-scenario4.md",
+        note: "Unity Catalog를 통해 테이블을 복제하거나 수십 개의 뷰를 관리하지 않고도 소매 데이터에 대한 세밀하고 통제된 액세스를 지원합니다."
+      },
+      {
+        title: "AutoNova Group 글로벌 자동차 제조업체",
+        md: "25-Demo-scenario5.md",
+        note: "테이블 정의 문서화, 액세스 정책 적용, 데이터 보존 관리, 계보 추적, 액세스 감사, 딜러 파트너와의 안전한 델타 공유 전략 설계를 수행합니다."
+      },
+      {
+        title: "금융 서비스 데이터 모델링 설계 및 구현",
+        md: "26-Demo-scenario6.md",
+        note: "규제 쿼리를 위한 거래 날짜별 분할, 고객 위험 등급 변경을 위한 SCD 유형 2, 감사 추적을 위한 변경 데이터 피드, 다차원 거래 분석을 위한 유동 클러스터링을 구현합니다."
+      }
+    ];
+
     const labsStages = document.getElementById("labs-stages");
+    const demoStages = document.getElementById("demo-stages");
 
     stageConfig.forEach((stage) => {
       const section = document.createElement("section");
@@ -357,6 +394,35 @@
       section.appendChild(grid);
       labsStages.appendChild(section);
     });
+
+    const demoSection = document.createElement("section");
+    demoSection.className = "stage";
+
+    const demoTitle = document.createElement("h3");
+    demoTitle.className = "stage-title";
+    demoTitle.textContent = "데모 시나리오";
+    demoSection.appendChild(demoTitle);
+
+    const demoGrid = document.createElement("div");
+    demoGrid.className = "grid";
+
+    demoScenarios.forEach((item) => {
+      const card = document.createElement("article");
+      card.className = "card";
+
+      card.innerHTML = `
+        <h3>${item.title}</h3>
+        <p>${item.note}</p>
+        <div class="card-links">
+          <a href="lab.html?file=Labs/${item.md}">보기</a>
+        </div>
+      `;
+
+      demoGrid.appendChild(card);
+    });
+
+    demoSection.appendChild(demoGrid);
+    demoStages.appendChild(demoSection);
   </script>
 </body>
 </html>
