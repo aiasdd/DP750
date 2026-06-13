@@ -142,7 +142,11 @@
     }
 
     .demo-stages {
-      margin: 1.6rem 0;
+      margin: 0.8rem 0;
+    }
+
+    .demo-section {
+      margin-top: 2.4rem;
     }
 
     .stage {
@@ -255,7 +259,11 @@
       <main class="stages" id="labs-stages"></main>
     </section>
 
-    <section>
+    <section class="demo-section">
+      <div class="section-head">
+        <h2>데모 시나리오</h2>
+      </div>
+
       <main class="stages demo-stages" id="demo-stages"></main>
     </section>
 
@@ -395,14 +403,6 @@
       labsStages.appendChild(section);
     });
 
-    const demoSection = document.createElement("section");
-    demoSection.className = "stage";
-
-    const demoTitle = document.createElement("h3");
-    demoTitle.className = "stage-title";
-    demoTitle.textContent = "데모 시나리오";
-    demoSection.appendChild(demoTitle);
-
     const demoGrid = document.createElement("div");
     demoGrid.className = "grid";
 
@@ -421,8 +421,11 @@
       demoGrid.appendChild(card);
     });
 
-    demoSection.appendChild(demoGrid);
-    demoStages.appendChild(demoSection);
+    const demoBox = document.createElement("section");
+    demoBox.className = "stage";
+
+    demoBox.appendChild(demoGrid);
+    demoStages.appendChild(demoBox);
   </script>
 </body>
 </html>
