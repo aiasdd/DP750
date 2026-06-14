@@ -332,7 +332,7 @@
     const stageConfig = [
       { title: "준비", start: 0, end: 0 },
       { title: "클러스터 및 Unity Catalog", start: 1, end: 3 },
-      { title: "보안 및 거버넌스", start: 4, end: 6 }
+      { title: "보안 및 거버넌스", start: 4, end: 6, blocked: true }
     ];
 
     const demoScenarios = [
@@ -366,7 +366,7 @@
     const labsStages = document.getElementById("labs-stages");
     const demoStages = document.getElementById("demo-stages");
 
-    stageConfig.forEach((stage) => {
+    stageConfig.filter((stage) => !stage.blocked).forEach((stage) => {
       const section = document.createElement("section");
       section.className = "stage";
 
