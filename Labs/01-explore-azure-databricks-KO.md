@@ -108,7 +108,7 @@ CityMoves Transit은 경로 정보가 있는 CSV 파일을 제공했습니다. �
 2. 랩을 저장할 폴더로 이동하거나 생성합니다(예: Labs/01-explore-azure-databricks).
 
 3. 폴더 옆의 **⋮** 메뉴를 클릭하거나 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
-    ![Lab016imporingnobooks](Media/Lab016importingnotebooks.png)
+    ![Lab016imporingnobooks](Media/Lab016imporingnobooks.png)
 4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 클릭합니다:
   ```
 https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/01-explore-azure-databricks-KO.ipynb
