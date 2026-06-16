@@ -83,7 +83,7 @@ https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/03-create-and
 
 노트북 연습을 완료한 후 Genie Space를 선택적으로 생성하여 Lakeside University 데이터에 대한 자연어 쿼리를 경험할 수 있습니다.
 
-1. 왼쪽 사이드바에서 ** **Genie space + 신규** >**를 선택합니다.
+1. 왼쪽 사이드바에서 **Genie space > +신규** 를 선택합니다.
     ![Lab031geniespace](Media/Lab031geniespace.png)
 2. **데이터** 아래에 다음 테이블을 추가합니다:
    - `edu_dev.silver.students`
