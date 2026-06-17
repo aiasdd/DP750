@@ -16,7 +16,7 @@ lab:
 
 ## 시나리오
 
-귀사는 북부, 남부, 동부 및 서부 지역 4곳에서 운영되는 전국 슈퍼마켓 체인인 **NorthMart Retail**의 데이터 엔지니어입니다. 귀사의 팀은 Azure Databricks의 중앙 집중식 데이터 플랫폼을 관리하며, 여기에는 고객 데이터, 충성도 프로그램 기록 및 지역별 판매 거래가 포함되어 있습니다.
+귀하는 북부, 남부, 동부 및 서부 지역 4곳에서 운영되는 전국 슈퍼마켓 체인인 **NorthMart Retail**의 데이터 엔지니어입니다. 귀하의 팀은 Azure Databricks의 중앙 집중식 데이터 플랫폼을 관리하며, 여기에는 고객 데이터, 충성도 프로그램 기록 및 지역별 판매 거래가 포함되어 있습니다.
 
 보안 팀에서 여러 가지 우려 사항을 제기했습니다:
 
@@ -105,7 +105,7 @@ https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/04-secure-uni
 2. **Key Vault**를 검색하고 **만들기**를 선택합니다.
 3. Key Vault를 구성합니다:
    - **리소스 그룹**: 랩 리소스 그룹을 사용합니다.
-   - **Key Vault 이름**: `kv-northmart-<귀사의-이니셜>`(전역적으로 고유해야 함).
+   - **Key Vault 이름**: `kv-northmart-<귀하의-이니셜>`(전역적으로 고유해야 함).
    - **지역**: Databricks 작업 영역과 동일한 지역입니다.
    - **가격 책정 계층**: 표준입니다.
 4. **액세스 구성** 탭에서 **권한 모델**을 **자격 증명 모음 액세스 정책**으로 설정합니다.
@@ -143,10 +143,10 @@ Key Vault를 떠나기 전에 **개요**로 이동하고 다음을 복사합니�
 1. 브라우저에서 다음으로 이동합니다:
 
     ```
-    https://<귀사의-databricks-작업-영역-url>#secrets/createScope
+    https://<귀하의-databricks-작업-영역-url>#secrets/createScope
     ```
    ![alt text](./Media/Lab04creatingagroup03-1.png)
-    > ⚠️ **createScope**의 **S**는 대문자여야 합니다. `<귀사의-databricks-작업-영역-url>`을 실제 작업 영역 URL로 바꿉니다(뒤에 '/' 제거).
+    > ⚠️ **createScope**의 **S**는 대문자여야 합니다. `<귀하의-databricks-작업-영역-url>`을 실제 작업 영역 URL로 바꿉니다(뒤에 '/' 제거).
 
 2. 범위를 구성합니다:
    - **범위 이름**: `retail-kv-scope`
