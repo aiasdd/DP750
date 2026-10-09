@@ -39,7 +39,7 @@
     }
 
     .layout {
-      width: min(1320px, calc(100% - 2rem));
+      width: min(1560px, calc(100% - 2rem));
       margin: 0 auto;
       height: 100vh;
     }
@@ -128,7 +128,7 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: clamp(1.25rem, 3.8vw, 4.5rem);
+      padding: clamp(1.25rem, 3.8vw, 4.5rem) 1.5rem;
       line-height: 1.8;
       color: #222;
       overflow-x: auto;
@@ -379,9 +379,29 @@
     }
 
     .toc-title {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      font: inherit;
       font-size: 1.05rem;
       font-weight: 700;
       color: #1a1a1a;
+      cursor: pointer;
+    }
+
+    .toc-sidebar.is-collapsed {
+      flex-basis: 64px;
+    }
+
+    .toc-sidebar.is-collapsed .toc-header {
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 1rem 0.5rem;
+      border-bottom: 0;
+    }
+
+    .toc-sidebar.is-collapsed .toc-title {
+      writing-mode: vertical-rl;
     }
 
     .toc-toggle {
@@ -502,6 +522,11 @@
         max-height: 300px;
       }
 
+      .toc-sidebar.is-collapsed {
+        flex: 0 0 auto;
+        width: 64px;
+      }
+
       .content-area {
         max-height: none;
         overflow: visible;
@@ -525,7 +550,7 @@
       <aside class="toc-sidebar">
         <nav class="toc" id="toc" style="display: none;">
           <div class="toc-header">
-            <div class="toc-title">목차</div>
+            <button class="toc-title" id="toc-title" type="button" aria-label="목차 접기" aria-expanded="true" aria-controls="toc-list">목차</button>
             <button class="toc-toggle" id="toc-toggle" type="button" aria-label="목차 접기" aria-expanded="true" aria-controls="toc-list">−</button>
           </div>
           <ul class="toc-list" id="toc-list"></ul>
@@ -547,6 +572,8 @@
     const tocNav = document.getElementById("toc");
     const tocList = document.getElementById("toc-list");
     const tocToggle = document.getElementById("toc-toggle");
+    const tocTitle = document.getElementById("toc-title");
+    const tocSidebar = document.querySelector(".toc-sidebar");
     const headings = [];
     const guideFiles = [
       "00-setup.md",
@@ -567,13 +594,19 @@
 
     const isAllowedPath = file.startsWith("Labs/") && file.endsWith(".md") && !file.includes("..");
 
-    tocToggle.addEventListener("click", () => {
+    function toggleToc() {
       const isExpanded = tocToggle.getAttribute("aria-expanded") === "true";
-      tocToggle.setAttribute("aria-expanded", String(!isExpanded));
-      tocToggle.setAttribute("aria-label", isExpanded ? "목차 펼치기" : "목차 접기");
+      [tocToggle, tocTitle].forEach((button) => {
+        button.setAttribute("aria-expanded", String(!isExpanded));
+        button.setAttribute("aria-label", isExpanded ? "목차 펼치기" : "목차 접기");
+      });
       tocToggle.textContent = isExpanded ? "+" : "−";
       tocList.hidden = isExpanded;
-    });
+      tocSidebar.classList.toggle("is-collapsed", isExpanded);
+    }
+
+    tocToggle.addEventListener("click", toggleToc);
+    tocTitle.addEventListener("click", toggleToc);
 
     function setNavigationLink(link, targetFile) {
       if (!targetFile) {
