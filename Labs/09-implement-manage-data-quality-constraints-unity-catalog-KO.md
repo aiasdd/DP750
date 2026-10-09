@@ -5,7 +5,7 @@ lab:
   module: Unity Catalog에서 데이터 품질 제약 조건 구현 및 관리
   module-url: https://learn.microsoft.com/training/wwl-databricks/implement-manage-data-quality-constraints-unity-catalog/
   notebook: https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/Allfiles/09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb
-  description: 이 랩에서는 원본 청구 데이터에 대한 데이터 품질 제약 조건을 시행하는 ClearCover Insurance에 대한 Lakeflow Spark 선언형 파이프라인을 구축합니다. 파이프라인 예상을 사용하여 널 가능성 및 범위 검사를 구현하고, col().cast()를 사용하여 데이터 유형을 검증하며, Auto Loader의 구조 도움말 열을 사용하여 스키마 드리프트를 처리합니다. 그런 다음 Databricks UI에서 파이프라인을 생성하고 실행하며 데이터 품질 메트릭을 모니터링합니다.
+  description: 이 랩에서는 원본 청구 데이터에 대한 데이터 품질 제약 조건을 시행하는 ClearCover Insurance에 대한 Lakeflow Spark 선언형 파이프라인을 구축합니다. 파이프라인 기대치를 사용하여 널 가능성 및 범위 검사를 구현하고, col().cast()를 사용하여 데이터 유형을 검증하며, Auto Loader의 구조 도움말 열을 사용하여 스키마 드리프트를 처리합니다. 그런 다음 Databricks UI에서 파이프라인을 생성하고 실행하며 데이터 품질 메트릭을 모니터링합니다.
   duration: 50분
   level: 300
   islab: true
@@ -16,7 +16,7 @@ lab:
 ---
 |구분|내용|
 |---|---|
-|설명|이 랩에서는 원본 청구 데이터에 대한 데이터 품질 제약 조건을 시행하는 ClearCover Insurance에 대한 Lakeflow Spark 선언형 파이프라인을 구축합니다. 파이프라인 예상을 사용하여 널 가능성 및 범위 검사를 구현하고, col().cast()를 사용하여 데이터 유형을 검증하며, Auto Loader의 구조 도움말 열을 사용하여 스키마 드리프트를 처리합니다. 그런 다음 Databricks UI에서 파이프라인을 생성하고 실행하며 데이터 품질 메트릭을 모니터링합니다.|
+|설명|이 랩에서는 원본 청구 데이터에 대한 데이터 품질 제약 조건을 시행하는 ClearCover Insurance에 대한 Lakeflow Spark 선언형 파이프라인을 구축합니다. 파이프라인 기대치를 사용하여 널 가능성 및 범위 검사를 구현하고, col().cast()를 사용하여 데이터 유형을 검증하며, Auto Loader의 구조 도움말 열을 사용하여 스키마 드리프트를 처리합니다. 그런 다음 Databricks UI에서 파이프라인을 생성하고 실행하며 데이터 품질 메트릭을 모니터링합니다.|
 |소요시간| 50분|
 |난이도| 300|
 ---
@@ -141,7 +141,7 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
 2. 랩 노트북을 저장한 폴더로 이동합니다.
 3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기** 를 선택합니다.
 4. **URL** 을 선택하고 다음 URL을 입력한 다음 **가져오기** 를 클릭합니다:
-   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/09-implement-manage-data-quality-constraints.py`
+   `https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-unity-catalog-KO.py`
 5. 파일은 워크스페이스에 Python 소스 파일로 표시됩니다 — 다음 단계를 위해 경로를 기록합니다.
 
 **파이프라인 생성:**
@@ -162,9 +162,12 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
 파이프라인 편집기에서 왼쪽 창(에셋 브라우저)을 찾습니다. 메뉴를 열고 **가져오기**를 선택한 다음, 가져온 `09-implement-manage-data-quality-constraints.py` 파일을 찾아 파이프라인 소스 코드로 추가합니다.
 가져온 파이프라인 파일을 열고 실습 3~5를 진행하는 동안 계속 열어 둡니다. 이제 데이터 품질 제약 조건을 추가하기 위해 이 파일을 편집하게 됩니다.
 
+`https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-unity-catalog-KO.py`
+![alt text](image-12.png)
+
 ### 작업 3.1: `claims_validated()`에 Null 허용 여부 및 상태 관련 기대치(expectation) 추가
 
-09-implement-manage-data-quality-constraints-unity-catalog.py를 열고 다음 예상을 *claims_validated()* 함수에 추가합니다. 모든 데코레이터를 `@dp.table(...)` 및 `def claims_validated():`사이에 배치합니다.
+09-implement-manage-data-quality-constraints-unity-catalog.py를 열고 다음 기대치를 *claims_validated()* 함수에 추가합니다. 모든 데코레이터를 `@dp.table(...)` 및 `def claims_validated():`사이에 배치합니다.
 
 | 기대치 이름  | 조건                                 | 동작        |
 | ----------------- | ----------------------------------------- | ------------- |
@@ -191,7 +194,7 @@ claims_validated() 함수 본문(**return 문 이전**)에서 두 개의 withCol
 1. `col('claim_date').cast('date')`를 사용하여 claim_date를 STRING에서 DATE로 변환합니다.
 2. `col('claim_amount').cast('decimal(12,2)')`를 사용하여 claim_amount를 STRING에서 DECIMAL(12,2)로 변환합니다.
 
-변환된 열은 원본을 대체하므로 다운스트림 예상 및 소비자는 유형이 지정된 값을 봅니다.
+변환된 열은 원본을 대체하므로 다운스트림 기대치 및 소비자는 유형이 지정된 값을 봅니다.
 
 > 🤖 **Genie Code에 요청:**
 > *"PySpark에서 withColumn 및 col().cast()를 사용하여 스트리밍 데이터프레임 열을 STRING에서 DATE 유형으로 변환하고 다른 열을 STRING에서 DECIMAL(12,2)로 변환합니다. 전체 withColumn 구문을 보여주세요."*
@@ -223,16 +226,16 @@ Task 4.1에서 형 변환(cast)을 수행한 후에도 `claim_date`가 여전히
 조건:        claim_amount >= 0
 ```
 
-> 💡 **힌트:** 모든 예상 데코레이터를 @dp.table(...) 및 def claims_validated():.사이에 배치합니다. 순서는 결과에 영향을 주지 않습니다 — 모든 예상이 각 행에서 평가됩니다.
+> 💡 **힌트:** 모든 기대치 데코레이터를 @dp.table(...) 및 def claims_validated():.사이에 배치합니다. 순서는 결과에 영향을 주지 않습니다 — 모든 기대치가 각 행에서 평가됩니다.
 
 > 🤖 **Genie Code에 요청:**
-> *"Lakeflow Spark 선언형 파이프라인을 Python으로 사용하고 있습니다. col().cast()를 적용하여 열을 STRING에서 DATE로 변환한 후 캐스트가 실패한 행을 삭제하려면 어느 예상 조건을 사용합니까?"*
+> *"Lakeflow Spark 선언형 파이프라인을 Python으로 사용하고 있습니다. col().cast()를 적용하여 열을 STRING에서 DATE로 변환한 후 캐스트가 실패한 행을 삭제하려면 어느 기대치 조건을 사용합니까?"*
 
 ---
 
 ## 실습 5: Rescued Data(구조 외 데이터)를 활용한 스키마 드리프트(Schema Drift) 처리
 
-ClearCover는 여러 파트너 중개업체로부터 보험 청구 파일을 수신합니다. 간혹 중개업체가 사전 통보 없이 `broker_reference`나 `fraud_score`와 같은 추가 열을 포함하는 경우가 있습니다. 이런 상황에서 파이프라인이 중단되게 하는 대신, 예상치 못한 데이터를 별도의 열에 저장하여 추후 분석할 수 있도록 설정하고자 합니다.
+ClearCover는 여러 파트너 중개업체로부터 보험 청구 파일을 수신합니다. 간혹 중개업체가 사전 통보 없이 `broker_reference`나 `fraud_score`와 같은 추가 열을 포함하는 경우가 있습니다. 이런 상황에서 파이프라인이 중단되게 하는 대신, 기대치치 못한 데이터를 별도의 열에 저장하여 추후 분석할 수 있도록 설정하고자 합니다.
 
 ### 작업 5.1: Rescue 스키마 진화 모드(rescue schema evolution mode)를 적용한 Auto Loader 구현
 
@@ -260,7 +263,7 @@ Auto Loader(`cloudFiles` 형식)와 `spark.readStream`을 사용하여 다음 �
 > 🤖 **Genie Code에 요청:**
 > *"`cloudFiles` 형식의 CSV, `schemaEvolutionMode`를 `rescue`로 설정하고 `_rescued_data` 열을 포함하는 PySpark Auto Loader `readStream` 블록 전체를 작성합니다. 그리고 각 옵션이 어떤 역할을 하는지 설명하세요."*
 
-> 💡 **힌트:** 소스 파일이 예상된 스키마와 일치할 경우, 모든 행에서 `_rescued_data` 값은 `NULL`이 됩니다. 향후 파일에 새로운 열(예: `fraud_score`)이 추가되더라도 파이프라인이 중단되지 않고, 해당 값들은 `_rescued_data` 열에 JSON 형태로 저장됩니다.
+> 💡 **힌트:** 소스 파일이 기대치된 스키마와 일치할 경우, 모든 행에서 `_rescued_data` 값은 `NULL`이 됩니다. 향후 파일에 새로운 열(예: `fraud_score`)이 추가되더라도 파이프라인이 중단되지 않고, 해당 값들은 `_rescued_data` 열에 JSON 형태로 저장됩니다.
 
 ---
 
@@ -285,7 +288,7 @@ Auto Loader(`cloudFiles` 형식)와 `spark.readStream`을 사용하여 다음 �
 
 1. 파이프라인 그래프에서 **claims_validated** 데이터셋 노드를 클릭합니다.
 2. 오른쪽 패널에서 **데이터 품질** 탭을 엽니다.
-3. 예상 결과를 검토하고 다음 질문에 답변합니다:
+3. 기대치 결과를 검토하고 다음 질문에 답변합니다:
    - 어떤 기대치 검사에서 레코드가 **삭제(drop)** 되었으며, 그 개수는 몇 개입니까?
    - 어떤 기대치 검사에서 **경고(warning)** 가 발생했습니까(레코드는 유지되지만 위반 사항이 기록됨)?
    - `valid_coverage`에서 **실패(fail)** 가 발생했습니까? 실패했다면 이는 소스 데이터에 `coverage_amount <= 0`인 행이 있음을 의미합니다. 어떤 행이 원인인지 조사해 보십시오.
