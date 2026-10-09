@@ -4,7 +4,7 @@ lab:
   title: Azure Databricks에서 개발 수명 주기 프로세스 구현
   module: Azure Databricks에서 개발 수명 주기 프로세스 구현
   module-url: https://learn.microsoft.com/training/wwl-databricks/implement-development-lifecycle-processes-in-azure-databricks/
-  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/12-implement-development-lifecycle-processes-in-azure-databricks-KO.ipynb
+  notebook: https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/Allfiles/12-implement-development-lifecycle-processes-in-azure-databricks-KO.ipynb
   description: 이 랩에서는 pytest를 사용하여 데이터 변환 파이프라인에 대한 테스트 전략을 구현한 다음 Databricks CLI를 사용하여 파이프라인을 Databricks 자산 번들로 패키지하고 배포합니다.
   duration: 50분
   level: 300
@@ -25,13 +25,13 @@ lab:
 
 ## 소개
 
-귀사는 창고 운영 팀에서 사용하는 **주문 처리 파이프라인**을 유지 관리하는 책임을 담당하는 데이터 엔지니어입니다. 파이프라인은 원본 주문 데이터를 읽고 유효하지 않은 기록을 제거하며 상태 코드를 정규화하고 세금 포함 합계를 계산합니다.
+귀사는 창고 운영 팀에서 사용하는 **주문 처리 파이프라인** 을 유지 관리하는 책임을 담당하는 데이터 엔지니어입니다. 파이프라인은 원본 주문 데이터를 읽고 유효하지 않은 기록을 제거하며 상태 코드를 정규화하고 세금 포함 합계를 계산합니다.
 
-파이프라인이 프로덕션으로 이동함에 따라 팀은 적절한 **소프트웨어 개발 수명 주기(SDLC) 관행**을 채택하기로 결정했습니다. 즉:
+파이프라인이 프로덕션으로 이동함에 따라 팀은 적절한 **소프트웨어 개발 수명 주기(SDLC) 관행** 을 채택하기로 결정했습니다. 즉:
 
-- 배포하기 전에 버그를 포착할 수 있도록 **테스팅 전략**을 구현합니다
-- 파이프라인을 **Databricks 자산 번들(DAB)**로 패키지하여 환경 전반에서 일관되게 배포할 수 있습니다
-- **Databricks CLI**를 사용하여 번들을 검증하고 미리 보며 배포합니다
+- 배포하기 전에 버그를 포착할 수 있도록 **테스팅 전략** 을 구현합니다
+- 파이프라인을 **Databricks 자산 번들(DAB)** 로 패키지하여 환경 전반에서 일관되게 배포할 수 있습니다
+- **Databricks CLI** 를 사용하여 번들을 검증하고 미리 보며 배포합니다
 
 이 랩은 3부로 구성되어 있습니다:
 
@@ -45,7 +45,7 @@ lab:
 
 ## 🤖 이 랩 전체에서 Genie Code를 사용합니다
 
-모든 연습에 **Genie Code**를 사용할 것을 **강력히 권장합니다**. 
+모든 연습에 **Genie Code** 를 사용할 것을 **강력히 권장합니다**.
 
 Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg)을 선택하거나 키보드 단축키를 사용합니다.
 
@@ -69,13 +69,13 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 ### 노트북 가져오기
 
-1. Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역**을 클릭합니다.
+1. Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역** 을 클릭합니다.
 2. 랩을 저장할 폴더로 이동하거나 생성합니다.
-3. **⋮**(kebab 메뉴)를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
-4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 클릭합니다:
+3. **⋮**(kebab 메뉴)를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기** 를 선택합니다.
+4. **URL** 을 선택하고 다음 URL을 입력한 다음 **가져오기** 를 클릭합니다:
 
 ```
-https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/12-implement-development-lifecycle-processes-in-azure-databricks-KO.ipynb
+https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/12-implement-development-lifecycle-processes-in-azure-databricks-KO.ipynb
 ```
 
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
@@ -94,9 +94,9 @@ https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/12-implement-
 
 ## 파트 2: Databricks 자산 번들 구성
 
-Databricks 자산 번들(DAB)을 사용하면 Databricks 리소스(작업, 파이프라인, 노트북)를 YAML 구성 파일에 **코드로서의 인프라**로 정의할 수 있습니다. 이렇게 하면 배포가 반복 가능하고 감사 가능합니다.
+Databricks 자산 번들(DAB)을 사용하면 Databricks 리소스(작업, 파이프라인, 노트북)를 YAML 구성 파일에 **코드로서의 인프라** 로 정의할 수 있습니다. 이렇게 하면 배포가 반복 가능하고 감사 가능합니다.
 
-이 부분에서는 로컬 머신의 **Databricks CLI**를 사용하여 주문 처리 작업에 대한 번들을 생성합니다.
+이 부분에서는 로컬 머신의 **Databricks CLI** 를 사용하여 주문 처리 작업에 대한 번들을 생성합니다.
 
 ### Databricks CLI 설치 및 구성
 
@@ -118,7 +118,7 @@ Databricks 자산 번들(DAB)을 사용하면 Databricks 리소스(작업, 파�
    databricks auth login --host https://<귀사의-작업-영역-url>
    ```
 
-   **<귀사의-작업-영역-url>**을 작업 영역의 URL로 바꿉니다(예: https://adb-1234567890123456.7.azuredatabricks.net). 브라우저 프롬프트를 따라 인증을 완료합니다.
+   **<귀사의-작업-영역-url>** 을 작업 영역의 URL로 바꿉니다(예: https://adb-1234567890123456.7.azuredatabricks.net). 브라우저 프롬프트를 따라 인증을 완료합니다.
 
 3. 새 프로젝트 디렉터리를 생성하고 이동합니다:
 
@@ -198,7 +198,7 @@ targets:
 
 ## 파트 3: Databricks CLI로 번들 배포 및 검증
 
-번들이 구성되었으므로 **Databricks CLI**를 사용하여 검증, 미리 보기 및 작업 영역에 배포합니다.
+번들이 구성되었으므로 **Databricks CLI** 를 사용하여 검증, 미리 보기 및 작업 영역에 배포합니다.
 
 ### 단계 1 — 번들 검증
 
@@ -266,6 +266,6 @@ databricks bundle destroy -t dev
 
 이 랩에서 귀사는:
 
-- pytest 고정장치를 사용하여 **단위 테스트**를 구현하여 개별 변환 함수를 검증했습니다
-- 변수, 작업 리소스 및 다중 환경 대상을 사용하여 **Databricks 자산 번들**을 구성했습니다
-- **Databricks CLI**를 사용하여 번들 배포를 검증하고, 계획하고, 배포하고, 검증했습니다
+- pytest 고정장치를 사용하여 **단위 테스트** 를 구현하여 개별 변환 함수를 검증했습니다
+- 변수, 작업 리소스 및 다중 환경 대상을 사용하여 **Databricks 자산 번들** 을 구성했습니다
+- **Databricks CLI** 를 사용하여 번들 배포를 검증하고, 계획하고, 배포하고, 검증했습니다

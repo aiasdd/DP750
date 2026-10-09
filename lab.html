@@ -4,29 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lab Guide Viewer</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
   <style>
     :root {
-      --bg: #f4f7fc;
+      --bg: #f4f4f4;
       --surface: #ffffff;
-      --ink: #1b2432;
-      --ink-soft: #5a6b84;
-      --border: #dbe4f1;
-      --accent: #0a6cff;
-      --header-offset: 1rem;
-      --header-height: 3.9rem;
-      --header-gap: 0.75rem;
+      --ink: #222222;
+      --ink-soft: #666666;
+      --border: #dedede;
+      --accent: #ac292d;
+      --accent-strong: #8e2225;
+      --accent-soft: #f8eeee;
+      --azure: #0078d4;
+      --header-height: 5rem;
+      --header-gap: 0.85rem;
     }
 
     * {
       box-sizing: border-box;
+      font-family: "Pretendard Variable", Pretendard, sans-serif;
     }
 
     body {
       margin: 0;
-      font-family: "Segoe UI", "Noto Sans KR", sans-serif;
+      font-family: "Pretendard Variable", Pretendard, sans-serif;
       color: var(--ink);
       background: var(--bg);
       overflow: hidden;
+    }
+
+    button {
+      font: inherit;
     }
 
     .layout {
@@ -37,27 +46,77 @@
 
     .topbar {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 0.8rem 1rem;
+      border-bottom: 3px solid var(--accent);
+      padding: 0.75rem clamp(1rem, 2.5vw, 3.125rem);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
+      gap: 1.5rem;
       position: fixed;
-      top: var(--header-offset);
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(1320px, calc(100% - 2rem));
+      inset: 0 0 auto;
+      width: 100%;
+      min-height: var(--header-height);
       margin-bottom: 0;
       z-index: 20;
     }
 
-    .topbar a {
+    .topbar-title {
+      min-width: 0;
+      margin: 0;
+      color: #1a1a1a;
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.3;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex: 0 0 auto;
+    }
+
+    .nav-button {
+      display: inline-flex;
+      min-height: 2.5rem;
+      align-items: center;
+      justify-content: center;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid #d4d4d4;
+      border-radius: 0.65rem;
+      background: #fff;
       text-decoration: none;
-      color: #0a3b89;
+      color: #1a1a1a;
       font-weight: 600;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .nav-button:hover:not([aria-disabled="true"]) {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+    }
+
+    .nav-button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .nav-button.home {
+      color: var(--azure);
+    }
+
+    .nav-button.home:hover {
+      background: #eef7ff;
+      border-color: var(--azure);
+    }
+
+    .nav-button[aria-disabled="true"] {
+      color: #a6a6a6;
+      cursor: default;
     }
 
     .topbar .path {
@@ -69,8 +128,9 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 1.2rem;
-      line-height: 1.7;
+      padding: clamp(1.25rem, 3.8vw, 4.5rem);
+      line-height: 1.8;
+      color: #222;
       overflow-x: auto;
     }
 
@@ -85,6 +145,73 @@
       line-height: 1.3;
     }
 
+    .content h1 {
+      margin: 0 0 1.8rem;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-size: clamp(1.5rem, 2vw, 2.15rem);
+    }
+
+    .content h2 {
+      margin: 2.8rem 0 1.3rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid #dedede;
+      color: #222;
+      font-size: clamp(1.35rem, 1.8vw, 1.8rem);
+    }
+
+    .content h3 {
+      margin: 2rem 0 0.9rem;
+      color: #333;
+      font-size: 1.25rem;
+    }
+
+    .content p {
+      margin: 0 0 1rem;
+    }
+
+    .content blockquote {
+      margin: 1.2rem 0 1.6rem;
+      padding: 0.8rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-soft);
+      color: #4e4e4e;
+    }
+
+    .content blockquote p:last-child {
+      margin-bottom: 0;
+    }
+
+    .content ol,
+    .content ul {
+      padding-left: 1.8rem;
+    }
+
+    .content li {
+      padding-left: 0.1rem;
+      margin: 0.35rem 0;
+    }
+
+    .content li::marker {
+      color: var(--accent-strong);
+    }
+
+    .content a {
+      color: var(--azure);
+    }
+
+    .content hr {
+      margin: 2rem 0;
+      border: 0;
+      border-top: 1px solid #dedede;
+    }
+
+    .content > hr:first-child {
+      display: none;
+    }
+
     .content table {
       border-collapse: collapse;
       width: 100%;
@@ -92,9 +219,13 @@
 
     .content th,
     .content td {
-      border: 1px solid var(--border);
+      border: 1px solid #dedede;
       padding: 0.45rem 0.55rem;
       text-align: left;
+    }
+
+    .content th {
+      background: #f7f7f7;
     }
 
     .content th:first-child,
@@ -104,15 +235,59 @@
     }
 
     .content code {
-      background: #eef3ff;
+      background: #f0f0f0;
       padding: 0.1rem 0.28rem;
       border-radius: 4px;
+      font-size: 13px;
+    }
+
+    .content code.inline-code-copy {
+      position: relative;
+      display: inline-block;
+      cursor: copy;
+    }
+
+    .content code.inline-code-copy:hover,
+    .content code.inline-code-copy:focus-visible {
+      background: var(--accent-soft);
+      outline: none;
+    }
+
+    .content code.inline-code-copy::after {
+      position: absolute;
+      z-index: 2;
+      right: 0;
+      bottom: calc(100% + 0.4rem);
+      display: none;
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+      background: #333;
+      color: #fff;
+      content: attr(data-copy-label);
+      font: 0.75rem "Pretendard Variable", Pretendard, sans-serif;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .content code.inline-code-copy:hover::after,
+    .content code.inline-code-copy:focus-visible::after {
+      display: block;
+    }
+
+    .content code,
+    .content pre,
+    .content kbd,
+    .content samp {
+      font-family: Consolas, "Pretendard Variable", Pretendard, "Courier New", monospace;
     }
 
     .content pre {
-      background: #0f1724;
-      color: #f3f7ff;
-      padding: 0.9rem;
+      background: #f5f5f5;
+      color: #222;
+      border: 1px solid var(--border);
+      padding: 0.5rem 4rem 0.5rem 0.9rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
       border-radius: 10px;
       overflow-x: auto;
     }
@@ -120,6 +295,7 @@
     .content pre code {
       background: transparent;
       color: inherit;
+      font-size: inherit;
       padding: 0;
     }
 
@@ -145,27 +321,39 @@
 
     .copy-btn {
       position: absolute;
-      top: 0.45rem;
+      top: calc(0.5rem + 1px);
       right: 0.45rem;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      background: rgba(11, 47, 115, 0.9);
-      color: #f3f7ff;
-      border-radius: 8px;
-      padding: 0.2rem 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 1.44rem;
+      border: 1px solid #999;
+      background: #fff;
+      color: #222;
+      border-radius: 6px;
+      padding: 0 0.4rem;
       font-size: 0.75rem;
+      font-weight: 600;
+      line-height: 1.2;
       cursor: pointer;
     }
 
     .copy-btn:hover {
-      background: rgba(8, 37, 89, 0.95);
+      background: #ededed;
+      border-color: #666;
+    }
+
+    .copy-btn:focus-visible {
+      outline: 2px solid #666;
+      outline-offset: 2px;
     }
 
     .main-container {
       display: flex;
-      gap: 1.5rem;
+      gap: 0.5rem;
       align-items: flex-start;
-      margin-top: calc(var(--header-offset) + var(--header-height) + var(--header-gap));
-      height: calc(100vh - var(--header-offset) - var(--header-height) - var(--header-gap) - 1rem);
+      margin-top: calc(var(--header-height) + var(--header-gap));
+      height: calc(100vh - var(--header-height) - var(--header-gap) - 1rem);
       overflow: hidden;
     }
 
@@ -177,24 +365,39 @@
 
     .toc {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1rem;
+      border: 1px solid #dedede;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .toc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid #e3e3e3;
     }
 
     .toc-title {
-      font-size: 0.9rem;
+      font-size: 1.05rem;
       font-weight: 700;
-      color: var(--ink);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-bottom: 0.8rem;
+      color: #1a1a1a;
+    }
+
+    .toc-toggle {
+      border: 0;
+      padding: 0 0.2rem;
+      background: transparent;
+      color: #666;
+      font: inherit;
+      font-size: 1.1rem;
+      cursor: pointer;
     }
 
     .toc-list {
       list-style: none;
       margin: 0;
-      padding: 0;
+      padding: 0.75rem 0.5rem 1rem;
     }
 
     .toc-item {
@@ -204,18 +407,18 @@
 
     .toc-link {
       display: block;
-      padding: 0.4rem 0;
-      color: var(--accent);
+      padding: 0.45rem 0.5rem;
+      color: #666;
       text-decoration: none;
       font-size: 0.85rem;
       line-height: 1.5;
-      border-left: 2px solid transparent;
-      padding-left: 0.5rem;
-      transition: all 0.15s;
+      border-left: 3px solid transparent;
+      transition: color 0.15s, background-color 0.15s, border-color 0.15s;
     }
 
     .toc-link:hover {
-      color: #0054cc;
+      color: #333;
+      background: var(--accent-soft);
       border-left-color: var(--accent);
     }
 
@@ -226,15 +429,15 @@
     }
 
     .toc-link.level-2 {
-      margin-left: 0.8rem;
+      margin-left: 0;
     }
 
     .toc-link.level-3 {
-      margin-left: 1.6rem;
+      margin-left: 0.8rem;
     }
 
     .toc-link.level-4 {
-      margin-left: 2.4rem;
+      margin-left: 1.6rem;
     }
 
     .content-area {
@@ -246,6 +449,11 @@
     }
 
     @media (max-width: 768px) {
+      :root {
+        --header-height: 7rem;
+        --header-gap: 0.5rem;
+      }
+
       body {
         overflow: auto;
       }
@@ -254,9 +462,37 @@
         height: auto;
       }
 
+      .topbar {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.45rem;
+        padding: 0.55rem 1rem;
+      }
+
+      .topbar-title {
+        flex: 0 0 100%;
+        text-align: center;
+        font-size: 1.1rem;
+      }
+
+      .topbar-nav {
+        justify-content: center;
+        width: 100%;
+      }
+
+      .nav-button {
+        min-height: 2.35rem;
+        padding: 0.25rem 0.65rem;
+        font-size: 0.9rem;
+      }
+
+      .content {
+        padding: 1.2rem;
+      }
+
       .main-container {
         flex-direction: column;
-        margin-top: calc(var(--header-offset) + var(--header-height) + var(--header-gap));
+        margin-top: calc(var(--header-height) + var(--header-gap));
         height: auto;
         overflow: visible;
       }
@@ -276,14 +512,22 @@
 </head>
 <body>
   <div class="layout">
-    <div class="topbar">
-      <a href="./index.html">메인으로 돌아가기</a>
-    </div>
+    <header class="topbar">
+      <strong class="topbar-title" id="page-title">문서 불러오는 중...</strong>
+      <nav class="topbar-nav" aria-label="문서 이동">
+        <a class="nav-button" id="prev-link" aria-disabled="true" tabindex="-1">← 이전</a>
+        <a class="nav-button home" href="./index.html">홈으로 가기</a>
+        <a class="nav-button" id="next-link" aria-disabled="true" tabindex="-1">다음 →</a>
+      </nav>
+    </header>
 
     <div class="main-container">
       <aside class="toc-sidebar">
         <nav class="toc" id="toc" style="display: none;">
-          <div class="toc-title">목차</div>
+          <div class="toc-header">
+            <div class="toc-title">목차</div>
+            <button class="toc-toggle" id="toc-toggle" type="button" aria-label="목차 접기" aria-expanded="true" aria-controls="toc-list">−</button>
+          </div>
           <ul class="toc-list" id="toc-list"></ul>
         </nav>
       </aside>
@@ -298,15 +542,106 @@
     const params = new URLSearchParams(window.location.search);
     const file = params.get("file") || "";
     const content = document.getElementById("content");
+    const pageTitle = document.getElementById("page-title");
     const contentArea = document.querySelector(".content-area");
     const tocNav = document.getElementById("toc");
     const tocList = document.getElementById("toc-list");
+    const tocToggle = document.getElementById("toc-toggle");
     const headings = [];
+    const guideFiles = [
+      "00-setup.md",
+      "01-explore-azure-databricks-KO.md",
+      "02-select-and-configure-compute-KO.md",
+      "03-create-and-organize-objects-in-unity-catalog-KO.md",
+      "04-secure-unity-catalog-objects-KO.md",
+      "05-govern-unity-catalog-objects-KO.md",
+      "06-design-implement-data-modeling-unity-catalog-KO.md",
+      "07-ingest-data-into-unity-catalog-KO.md",
+      "08-cleanse-transform-load-data-into-unity-catalog-KO.md",
+      "09-implement-manage-data-quality-constraints-unity-catalog-KO.md",
+      "10-design-implement-data-pipelines-KO.md",
+      "11-implement-lakeflow-jobs-KO.md",
+      "12-implement-development-lifecycle-processes-in-azure-databricks-KO.md",
+      "13-monitor-troubleshoot-optimize-workloads-azure-databricks-KO.md",
+    ];
 
     const isAllowedPath = file.startsWith("Labs/") && file.endsWith(".md") && !file.includes("..");
 
+    tocToggle.addEventListener("click", () => {
+      const isExpanded = tocToggle.getAttribute("aria-expanded") === "true";
+      tocToggle.setAttribute("aria-expanded", String(!isExpanded));
+      tocToggle.setAttribute("aria-label", isExpanded ? "목차 펼치기" : "목차 접기");
+      tocToggle.textContent = isExpanded ? "+" : "−";
+      tocList.hidden = isExpanded;
+    });
+
+    function setNavigationLink(link, targetFile) {
+      if (!targetFile) {
+        link.removeAttribute("href");
+        link.setAttribute("aria-disabled", "true");
+        link.tabIndex = -1;
+        return;
+      }
+
+      link.href = `lab.html?file=${encodeURIComponent(`Labs/${targetFile}`)}`;
+      link.removeAttribute("aria-disabled");
+      link.removeAttribute("tabindex");
+    }
+
+    const currentGuideIndex = guideFiles.indexOf(file.slice("Labs/".length));
+    setNavigationLink(
+      document.getElementById("prev-link"),
+      currentGuideIndex > 0 ? guideFiles[currentGuideIndex - 1] : null
+    );
+    setNavigationLink(
+      document.getElementById("next-link"),
+      currentGuideIndex >= 0 && currentGuideIndex < guideFiles.length - 1
+        ? guideFiles[currentGuideIndex + 1]
+        : null
+    );
+
     function stripFrontMatter(markdown) {
       return markdown.replace(/^\uFEFF?---\r?\n[\s\S]*?\r?\n---\r?\n?/, "");
+    }
+
+    function replaceAdmonitionLabels(markdown) {
+      const icons = {
+        NOTE: "ℹ️",
+        TIP: "💡",
+        IMPORTANT: "❗",
+        WARNING: "⚠️",
+        CAUTION: "🛑",
+      };
+      return markdown.replace(
+        /^(\s*>[ \t]*)\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\][ \t]*$/gim,
+        (_match, prefix, label) => `${prefix}${icons[label.toUpperCase()]}`
+      );
+    }
+
+    function addSpaceAfterBoldParticles(markdown) {
+      let fenceMarker = "";
+      let fenceLength = 0;
+
+      return markdown.split("\n").map((line) => {
+        const fence = line.match(/^\s*(`{3,}|~{3,})/);
+        if (fence) {
+          const marker = fence[1][0];
+          if (!fenceMarker) {
+            fenceMarker = marker;
+            fenceLength = fence[1].length;
+          } else if (marker === fenceMarker && fence[1].length >= fenceLength) {
+            fenceMarker = "";
+            fenceLength = 0;
+          }
+          return line;
+        }
+
+        if (fenceMarker) return line;
+
+        return line.replace(/(`+)(.*?)\1|(\*\*[^*\r\n]+\*\*)(를|을|로)/g, (match, ticks, code, bold, particle) =>
+          ticks ? match : `${bold} ${particle}`
+        );
+      }).join("\n");
     }
 
     function resolveRelativePath(path, baseDir) {
@@ -381,8 +716,47 @@
       document.body.appendChild(textarea);
       textarea.focus();
       textarea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textarea);
+      try {
+        if (!document.execCommand("copy")) {
+          throw new Error("클립보드에 복사하지 못했습니다.");
+        }
+      } finally {
+        document.body.removeChild(textarea);
+      }
+    }
+
+    function addInlineCodeCopy(root) {
+      root.querySelectorAll("code").forEach((code) => {
+        if (code.closest("pre")) return;
+
+        code.classList.add("inline-code-copy");
+        code.dataset.copyLabel = "클릭하여 복사";
+        code.title = "클릭하여 복사";
+        code.tabIndex = 0;
+        code.setAttribute("role", "button");
+        code.setAttribute("aria-label", `코드 복사: ${code.textContent}`);
+
+        const copy = async () => {
+          try {
+            await copyText(code.textContent || "");
+            code.dataset.copyLabel = "복사됨";
+          } catch (_error) {
+            code.dataset.copyLabel = "복사 실패";
+          }
+
+          setTimeout(() => {
+            code.dataset.copyLabel = "클릭하여 복사";
+          }, 1200);
+        };
+
+        code.addEventListener("click", copy);
+        code.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            copy();
+          }
+        });
+      });
     }
 
     function addCopyButtons(root) {
@@ -467,7 +841,7 @@
       const target = document.getElementById(id);
       if (!target || !contentArea) return;
       const offsetTop = target.getBoundingClientRect().top - contentArea.getBoundingClientRect().top + contentArea.scrollTop - 8;
-      contentArea.scrollTo({ top: offsetTop, behavior: "smooth" });
+      contentArea.scrollTop = offsetTop;
     }
 
     if (!isAllowedPath) {
@@ -483,11 +857,18 @@
         return response.text();
       })
       .then((markdown) => {
-        const cleanMarkdown = stripFrontMatter(markdown);
+        const cleanMarkdown = addSpaceAfterBoldParticles(
+          replaceAdmonitionLabels(stripFrontMatter(markdown))
+        );
         let html = marked.parse(cleanMarkdown);
         html = rewriteRelativeUrls(html, file);
         html = extractHeadings(html);
         content.innerHTML = html;
+        const title = content.querySelector("h1")?.textContent?.trim().replace(/^랩\s*\d+\s*:\s*/i, "")
+          || file.split("/").pop().replace(/\.md$/i, "");
+        pageTitle.textContent = title;
+        document.title = `${title} | Azure Databricks Labs`;
+        addInlineCodeCopy(content);
         addCopyButtons(content);
         renderTOC();
         if (window.location.hash) {

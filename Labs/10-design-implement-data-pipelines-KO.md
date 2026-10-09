@@ -4,7 +4,7 @@ lab:
   title: Azure Databricks를 사용한 데이터 파이프라인 설계 및 구현
   module: Azure Databricks를 사용한 데이터 파이프라인 설계 및 구현
   module-url: https://learn.microsoft.com/training/wwl-databricks/design-implement-data-pipelines/
-  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/10-design-implement-data-pipelines-KO.ipynb
+  notebook: https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/Allfiles/10-design-implement-data-pipelines-KO.ipynb
   description: 이 랩에서는 GlobStay 호텔 예약 데이터에 대해 메달리온 아키텍처 파이프라인(Bronze → Silver → Gold)을 구축하고, 중복 제거, 널 필터링 및 날짜 검증과 같은 정리 규칙을 적용한 후 속성 및 채널 성능에 대한 Gold 계층 집계를 생성합니다. 오류 처리를 구현하고 작업 오케스트레이션을 위해 노트북을 매개변수화합니다. 그런 다음 Azure Databricks UI에서 순차적 작업 종속성, 재시도 정책, 실패 알림 및 데이터 품질 라우팅을 위한 If/else 조건 작업을 사용하여 Lakeflow 작업을 구성합니다.
   duration: 50분
   level: 300
@@ -30,16 +30,16 @@ lab:
 이 랩에서는 해당 파이프라인을 처음부터 끝까지 설계하고 구현합니다. 귀사는:
 
 - 호텔 예약 데이터에 대한 **메달리온 아키텍처**(Bronze → Silver → Gold)를 구축합니다
-- Lakeflow 작업으로 오케스트레이션할 수 있는 **매개변수화되고 재사용 가능한 노트북 작업**을 작성합니다
-- **오류 처리**를 추가하여 개별 작업이 정상적으로 실패하고 상태를 다운스트림 작업에 신호할 수 있도록 합니다
-- 작업 종속성, 재시도 정책 및 알림이 있는 **Lakeflow 작업**을 구성합니다
+- Lakeflow 작업으로 오케스트레이션할 수 있는 **매개변수화되고 재사용 가능한 노트북 작업** 을 작성합니다
+- **오류 처리** 를 추가하여 개별 작업이 정상적으로 실패하고 상태를 다운스트림 작업에 신호할 수 있도록 합니다
+- 작업 종속성, 재시도 정책 및 알림이 있는 **Lakeflow 작업** 을 구성합니다
 - 데이터 품질 결과를 기반으로 라우팅하기 위한 **조건부 작업 흐름**(If/else 분기)을 살펴봅니다
 
 ---
 
 ## 🤖 이 랩 전체에서 Genie Code를 사용합니다
 
-모든 연습에 **Genie Code**를 사용할 것을 권장합니다. 이를 사용하여 제안을 얻고, 오류를 설명하고, 상용구를 생성하고, API를 탐색합니다.
+모든 연습에 **Genie Code** 를 사용할 것을 권장합니다. 이를 사용하여 제안을 얻고, 오류를 설명하고, 상용구를 생성하고, API를 탐색합니다.
 
 Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg)을 선택하거나 키보드 단축키를 사용합니다.
 
@@ -59,13 +59,13 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 ### 노트북 가져오기
 
-1. Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역**을 클릭합니다.
+1. Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역** 을 클릭합니다.
 2. 랩을 저장할 폴더로 이동하거나 생성합니다.
-3. **⋮**(kebab 메뉴)를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
-4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 클릭합니다:
+3. **⋮**(kebab 메뉴)를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기** 를 선택합니다.
+4. **URL** 을 선택하고 다음 URL을 입력한 다음 **가져오기** 를 클릭합니다:
 
 ```
-https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/10-design-implement-data-pipelines-KO.ipynb
+https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/10-design-implement-data-pipelines-KO.ipynb
 ```
 
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
@@ -86,34 +86,34 @@ https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/10-design-imp
 
 ### 연습: 다중 작업 파이프라인 작업 생성
 
-1. 왼쪽 사이드바에서 **작업 및 파이프라인**을 클릭합니다.
-2. **작업 생성**을 클릭합니다.
+1. 왼쪽 사이드바에서 **작업 및 파이프라인** 을 클릭합니다.
+2. **작업 생성** 을 클릭합니다.
 3. 위쪽에서 기본 작업 이름을 `GlobStay Booking Pipeline`으로 바꿉니다.
 
 #### 작업 1 — Bronze 데이터 수집
 
 4. 작업 편집기에서 작업 이름 `ingest_bronze`를 입력합니다.
-5. **유형** 드롭다운에서 **노트북**을 선택합니다.
-6. **소스** 드롭다운에서 **작업 영역**을 선택한 다음 가져온 노트북의 경로를 선택합니다.
-7. **컴퓨팅** 필드에서 **서버리스**를 선택합니다.
-8. **작업 저장**을 클릭합니다.
+5. **유형** 드롭다운에서 **노트북** 을 선택합니다.
+6. **소스** 드롭다운에서 **작업 영역** 을 선택한 다음 가져온 노트북의 경로를 선택합니다.
+7. **컴퓨팅** 필드에서 **서버리스** 를 선택합니다.
+8. **작업 저장** 을 클릭합니다.
 
 #### 작업 2 — Silver 데이터 정제
 
-9. 작업 1 아래의 **+ 작업 추가**를 클릭합니다(작업 1에 대한 종속성을 자동으로 설정).
+9. 작업 1 아래의 **+ 작업 추가** 를 클릭합니다(작업 1에 대한 종속성을 자동으로 설정).
 10. 작업 이름 `clean_silver`, 유형 **노트북**, 동일한 노트북 경로, **서버리스** 컴퓨팅으로 지정합니다.
 11. **매개변수** 아래에서 `layer` 키에 값 `silver`를 추가합니다.
 12. **재시도** 아래에서 다음을 설정합니다:
     - **재시도 횟수:** `2`
     - **재시도 간격:** `60`초
-13. **작업 저장**을 클릭합니다.
+13. **작업 저장** 을 클릭합니다.
 
 #### 작업 3 — Gold 데이터 집계
 
-14. 작업 2 아래의 **+ 작업 추가**를 클릭합니다.
+14. 작업 2 아래의 **+ 작업 추가** 를 클릭합니다.
 15. 작업 이름 `aggregate_gold`, 유형 **노트북**, 동일한 노트북 경로, **서버리스** 컴퓨팅으로 지정합니다.
 16. **매개변수** 아래에서 `layer` 키에 값 `gold`를 추가합니다.
-17. **작업 저장**을 클릭합니다.
+17. **작업 저장** 을 클릭합니다.
 
 #### DAG 확인
 
@@ -126,10 +126,10 @@ https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/10-design-imp
 #### 실패 알림 추가
 
 20. 작업 편집기 위쪽에서 **알림** 탭을 클릭합니다(또는 알림 섹션으로 스크롤).
-21. **알림 추가**를 클릭합니다.
-22. **실패 시**를 선택하고 이메일 주소를 입력합니다.
-23. 선택적으로 **마지막 재시도까지 알림 음소거**를 활성화하여 재시도 중 경고 피로를 방지합니다.
-24. **저장**을 클릭합니다.
+21. **알림 추가** 를 클릭합니다.
+22. **실패 시** 를 선택하고 이메일 주소를 입력합니다.
+23. 선택적으로 **마지막 재시도까지 알림 음소거** 를 활성화하여 재시도 중 경고 피로를 방지합니다.
+24. **저장** 을 클릭합니다.
 
 #### 작업 실행
 
@@ -144,12 +144,12 @@ https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/10-design-imp
 실제 파이프라인에서는 데이터 품질 문제가 감지되었는지 여부에 따라 실행을 다르게 라우팅하려고 할 수 있습니다. 이 연습은 가상 데이터 품질 임계값을 기반으로 분기하는 **If/else 조건** 작업을 추가합니다.
 
 1. **GlobStay Booking Pipeline** 작업 편집기로 돌아갑니다.
-2. 작업 3 옆에 **+ 작업 추가**를 클릭합니다(종속성을 피하기 위해 먼저 작업 3의 선택을 해제).
+2. 작업 3 옆에 **+ 작업 추가** 를 클릭합니다(종속성을 피하기 위해 먼저 작업 3의 선택을 해제).
 3. 작업 이름 `check_quality`, 유형 **노트북**, 동일한 노트북 경로로 지정합니다.
 4. 이 작업을 **clean_silver**에 종속되도록 설정합니다.
 
-5. **+ 작업 추가**를 클릭합니다.
-6. **유형** 드롭다운에서 **If/else 조건**을 선택합니다.
+5. **+ 작업 추가** 를 클릭합니다.
+6. **유형** 드롭다운에서 **If/else 조건** 을 선택합니다.
 7. 이름을 `quality_gate`로 지정합니다.
 8. 이 작업을 **check_quality**에 종속되도록 설정합니다.
 9. **조건** 필드에 다음을 입력합니다:
@@ -170,6 +170,6 @@ https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/10-design-imp
 - Unity Catalog에서 호텔 예약 데이터에 대한 **메달리온 아키텍처**(Bronze → Silver → Gold)를 구축했습니다
 - **데이터 정제 패턴**(중복 제거, 널 필터링, 날짜 검증 및 값 제약)을 적용했습니다
 - **Gold 계층 집계**(부동산 수익 및 예약 채널 성능 포함)를 생성했습니다
-- try/except 및 dbutils.notebook.exit()을 사용하여 작업 수준 신호에 대한 **오류 처리**를 구현했습니다
-- **dbutils.widgets**를 사용하여 노트북을 매개변수화하고 **dbutils.jobs.taskValues**를 사용하여 작업 간 값을 전달했습니다
-- 순차적 작업 종속성, 재시도 정책, 알림 및 If/else 조건 작업이 있는 **Lakeflow 작업**을 구성했습니다
+- try/except 및 dbutils.notebook.exit()을 사용하여 작업 수준 신호에 대한 **오류 처리** 를 구현했습니다
+- **dbutils.widgets** 를 사용하여 노트북을 매개변수화하고 **dbutils.jobs.taskValues** 를 사용하여 작업 간 값을 전달했습니다
+- 순차적 작업 종속성, 재시도 정책, 알림 및 If/else 조건 작업이 있는 **Lakeflow 작업** 을 구성했습니다

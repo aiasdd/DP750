@@ -4,7 +4,7 @@ lab:
   title: Unity Catalog에서 데이터 품질 제약 조건 구현 및 관리
   module: Unity Catalog에서 데이터 품질 제약 조건 구현 및 관리
   module-url: https://learn.microsoft.com/training/wwl-databricks/implement-manage-data-quality-constraints-unity-catalog/
-  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb
+  notebook: https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/Allfiles/09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb
   description: 이 랩에서는 원본 청구 데이터에 대한 데이터 품질 제약 조건을 시행하는 ClearCover Insurance에 대한 Lakeflow Spark 선언형 파이프라인을 구축합니다. 파이프라인 예상을 사용하여 널 가능성 및 범위 검사를 구현하고, col().cast()를 사용하여 데이터 유형을 검증하며, Auto Loader의 구조 도움말 열을 사용하여 스키마 드리프트를 처리합니다. 그런 다음 Databricks UI에서 파이프라인을 생성하고 실행하며 데이터 품질 메트릭을 모니터링합니다.
   duration: 50분
   level: 300
@@ -27,7 +27,7 @@ lab:
 
 귀사는 가상의 보험 제공자인 **ClearCover Insurance**의 데이터 엔지니어입니다. 매일 원본 청구 데이터가 지역 사무실 및 파트너 브로커에서 도착합니다. 불행히도 데이터는 일치하지 않습니다: 일부 기록에 필수 식별자가 누락되어 있고, 청구 금액은 문자열로 형식화되거나 음수 값을 가지고 있으며, 날짜는 때때로 잘못된 형식이고, 소스 스키마는 시간이 지남에 따라 자동으로 새 열을 추가할 수 있습니다.
 
-귀사의 임무는 파이프라인의 모든 계층에서 데이터 품질 제약 조건을 시행하는 **Lakeflow Spark 선언형 파이프라인**을 구축하여 나쁜 기록이 보험계리 모델 및 보고 대시보드에 도달하기 전에 이를 포착하는 것입니다.
+귀사의 임무는 파이프라인의 모든 계층에서 데이터 품질 제약 조건을 시행하는 **Lakeflow Spark 선언형 파이프라인** 을 구축하여 나쁜 기록이 보험계리 모델 및 보고 대시보드에 도달하기 전에 이를 포착하는 것입니다.
 
 다음 연습을 진행합니다:
 
@@ -59,13 +59,13 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 ## 설정 노트북 가져오기
 
-1. Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역**을 클릭합니다.
+1. Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역** 을 클릭합니다.
 2. 랩을 저장할 폴더로 이동하거나 생성합니다.
-3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
-4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 클릭합니다:
+3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기** 를 선택합니다.
+4. **URL** 을 선택하고 다음 URL을 입력한 다음 **가져오기** 를 클릭합니다:
 
 ```
-https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb
+https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb
 ```
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
 
@@ -134,16 +134,16 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
 
 **파이프라인 파일 가져오기:**
 
-1. Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역**을 클릭합니다.
+1. Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역** 을 클릭합니다.
 2. 랩 노트북을 저장한 폴더로 이동합니다.
-3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
-4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 클릭합니다:
+3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기** 를 선택합니다.
+4. **URL** 을 선택하고 다음 URL을 입력한 다음 **가져오기** 를 클릭합니다:
    `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/09-implement-manage-data-quality-constraints-unity-catalog.py`
 5. 파일은 작업 영역에 Python 소스 파일로 표시됩니다 — 다음 단계를 위해 경로를 기록합니다.
 
 **파이프라인 생성:**
 
-1. Databricks 작업 영역 왼쪽 사이드바에서 **작업 및 파이프라인**을 클릭합니다.
+1. Databricks 작업 영역 왼쪽 사이드바에서 **작업 및 파이프라인** 을 클릭합니다.
 2. **ETL 파이프라인 생성**(Python)을 클릭합니다.
 3. 다음 설정으로 파이프라인을 구성합니다:
 
@@ -155,7 +155,7 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
    | 대상 카탈로그 | **insurance_lab**, 스키마 **silver**                                                               |
    | 컴퓨팅        | **서버리스**                                                                                     |
 
-4. **생성**을 클릭합니다.
+4. **생성** 을 클릭합니다.
 
 가져온 파이프라인 파일을 열고 연습 3~5 전체에서 열린 상태로 유지합니다. 이제 데이터 품질 제약 조건을 추가하도록 편집합니다.
 
@@ -271,7 +271,7 @@ spark.readStream을 Auto Loader(cloudFiles 형식)와 함께 사용하여 다음
 
 ### 작업 6.2: 파이프라인 실행
 
-**시작**을 클릭하여 전체 파이프라인 실행을 트리거합니다. 실행이 완료될 때까지 기다립니다.
+**시작** 을 클릭하여 전체 파이프라인 실행을 트리거합니다. 실행이 완료될 때까지 기다립니다.
 
 그래프 보기에서 파이프라인 DAG를 관찰합니다. 세 개의 데이터셋 노드가 표시되어야 합니다:
 - silver.claims_validated
@@ -284,8 +284,8 @@ spark.readStream을 Auto Loader(cloudFiles 형식)와 함께 사용하여 다음
 2. 오른쪽 패널에서 **데이터 품질** 탭을 엽니다.
 3. 예상 결과를 검토하고 다음 질문에 답변합니다:
    - 어느 예상이 기록을 **삭제**했으며, 몇 개를 삭제했습니까?
-   - 어느 예상이 **경고**를 발생했습니까(기록을 유지했지만 위반 로깅)?
-   - valid_coverage가 **실패**를 트리거했습니까? 그렇다면 이는 소스의 행에 `coverage_amount <= 0`이 있음을 나타냅니다 — 어느 행이 이를 유발했는지 조사합니다.
+   - 어느 예상이 **경고** 를 발생했습니까(기록을 유지했지만 위반 로깅)?
+   - valid_coverage가 **실패** 를 트리거했습니까? 그렇다면 이는 소스의 행에 `coverage_amount <= 0`이 있음을 나타냅니다 — 어느 행이 이를 유발했는지 조사합니다.
 
 > 💡 **힌트:** valid_coverage가 파이프라인을 실패시키면 insurance_lab.bronze.claims_raw에서 coverage_amount가 0 또는 NULL인 행을 검사합니다. 파이프라인 이벤트 로그의 오류 메시지도 위반 기록을 표시합니다.
 

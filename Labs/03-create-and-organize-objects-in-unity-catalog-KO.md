@@ -37,7 +37,7 @@ lab:
 
 ## 🤖 이 랩 전체에서 Genie Code를 사용합니다
 
-이 랩 중에는 항상 **Genie Code**를 사용할 것을 권장습니다. 모든 연습에는 Genie Code 패널에 직접 붙여넣을 수 있는 제안 프롬프트가 포함되어 있습니다.
+이 랩 중에는 항상 **Genie Code** 를 사용할 것을 권장습니다. 모든 연습에는 Genie Code 패널에 직접 붙여넣을 수 있는 제안 프롬프트가 포함되어 있습니다.
 
 Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg)을 선택하거나 키보드 단축키를 사용합니다.
 
@@ -58,13 +58,13 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 ## 랩 노트북 가져오기
 
-1. Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역**을 선택합니다.
+1. Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역** 을 선택합니다.
 2. 랩 노트북을 저장할 폴더로 이동하거나 생성합니다(예: 홈 폴더).
-3. **⋮** 메뉴를 선택하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
-4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 선택합니다:
+3. **⋮** 메뉴를 선택하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기** 를 선택합니다.
+4. **URL** 을 선택하고 다음 URL을 입력한 다음 **가져오기** 를 선택합니다:
 
 ```
-https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/03-create-and-organize-objects-in-unity-catalog-KO.ipynb
+https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/03-create-and-organize-objects-in-unity-catalog-KO.ipynb
 ```
 
 5. 가져온 노트북을 엽니다. 노트북 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
@@ -77,7 +77,7 @@ https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/03-create-and
 
 ---
 
-## 연습: AI/BI Genie Space 구성(선택 사항)
+### 연습: AI/BI Genie Space 구성(선택 사항)
 
 이 선택적 작업에는 Genie Space가 필요하며, 이는 노트북이 아닌 Databricks UI를 통해 완전히 구성됩니다.
 

@@ -4,7 +4,7 @@ lab:
   title: Azure Databricks에서 워크로드 모니터링, 문제 해결 및 최적화
   module: Azure Databricks에서 워크로드 모니터링, 문제 해결 및 최적화
   module-url: https://learn.microsoft.com/training/wwl-databricks/monitor-troubleshoot-optimize-workloads-azure-databricks/
-  notebook: https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/Allfiles/13-monitor-troubleshoot-optimize-workloads-azure-databricks-KO.ipynb
+  notebook: https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/Allfiles/13-monitor-troubleshoot-optimize-workloads-azure-databricks-KO.ipynb
   description: 이 랩에서는 의도적인 데이터 스큐 및 과도한 셔플로 합성 워크로드를 생성하고, Spark UI를 사용하여 성능 문제를 진단하고, 브로드캐스트 조인, 적응형 쿼리 실행 및 셔플 감소 기술을 사용하여 대상 지정 수정을 적용합니다.
   duration: 50분
   level: 300
@@ -41,7 +41,7 @@ lab:
 
 ## 🤖 이 랩 전체에서 Genie Code를 사용합니다
 
-노트북의 모든 작업에 **Genie Code**를 사용할 것을 **강력히 권장합니다**. 
+노트북의 모든 작업에 **Genie Code** 를 사용할 것을 **강력히 권장합니다**.
 
 Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg)을 선택하거나 키보드 단축키를 사용합니다.
 
@@ -67,8 +67,8 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 > ⚠️ **Photon을 비활성화해야 합니다.** Photon은 Databricks의 벡터화된 쿼리 엔진입니다. 활성화되면 셔플 및 스큐 처리를 자동으로 최적화하여 이 랩이 시연하도록 설계된 성능 문제를 숨깁니다. Photon이 활성화되어 있으면 Spark UI에서 스큐된 작업 분포나 높은 셔플 메트릭을 볼 수 없습니다.
 
-1. Databricks 작업 영역에서 왼쪽 사이드바의 **컴퓨팅**을 클릭합니다.
-2. **컴퓨팅 생성**을 클릭합니다.
+1. Databricks 작업 영역에서 왼쪽 사이드바의 **컴퓨팅** 을 클릭합니다.
+2. **컴퓨팅 생성** 을 클릭합니다.
 3. 다음 최소 설정으로 클러스터를 구성합니다:
 
    | 설정 | 값 |
@@ -81,24 +81,24 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
    | **노드 유형** | 가능한 가장 작은 것을 선택합니다(예: `Standard_DS3_v2` 또는 동등한 것) |
    | **자동 종료** | 30분 |
 
-4. **고급 옵션**을 확장한 다음 **Spark** 탭을 클릭합니다. **Spark 구성** 상자에 다음 줄을 추가하여 Photon을 명시적으로 비활성화합니다:
+4. **고급 옵션** 을 확장한 다음 **Spark** 탭을 클릭합니다. **Spark 구성** 상자에 다음 줄을 추가하여 Photon을 명시적으로 비활성화합니다:
 
    ```
    spark.databricks.photon.enabled false
    ```
 
-5. **컴퓨팅 생성**을 클릭하고 클러스터가 **실행 중** 상태에 도달할 때까지 기다립니다.
+5. **컴퓨팅 생성** 을 클릭하고 클러스터가 **실행 중** 상태에 도달할 때까지 기다립니다.
 
 ---
 
 ## 노트북 가져오기
 
-1. Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역**을 클릭합니다.
+1. Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역** 을 클릭합니다.
 2. 랩을 저장할 폴더로 이동하거나 생성합니다.
-3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기**를 선택합니다.
-4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 클릭합니다:
+3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기** 를 선택합니다.
+4. **URL** 을 선택하고 다음 URL을 입력한 다음 **가져오기** 를 클릭합니다:
 ```
-https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/13-monitor-troubleshoot-optimize-workloads-azure-databricks-KO.ipynb
+https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/13-monitor-troubleshoot-optimize-workloads-azure-databricks-KO.ipynb
 ```
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 위에서 생성한 **perf-lab** 클러스터를 선택합니다.
 
@@ -110,7 +110,7 @@ https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/13-monitor-tr
 
 ### Spark UI 열기
 
-1. Databricks 작업 영역에서 왼쪽 사이드바의 **컴퓨팅**을 클릭한 다음 **perf-lab** 클러스터를 클릭합니다. 클러스터 세부 정보 페이지에서 **Spark UI** 탭을 클릭합니다. Spark UI가 새 브라우저 탭에서 열립니다.
+1. Databricks 작업 영역에서 왼쪽 사이드바의 **컴퓨팅** 을 클릭한 다음 **perf-lab** 클러스터를 클릭합니다. 클러스터 세부 정보 페이지에서 **Spark UI** 탭을 클릭합니다. Spark UI가 새 브라우저 탭에서 열립니다.
 2. **작업** 페이지에 도착하며, 이 세션 중에 트리거된 모든 Spark 작업이 나열됩니다.
 
 ### 스큐된 집계 작업 식별
@@ -125,9 +125,9 @@ https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/13-monitor-tr
 
 ### 스큐된 조인 작업 식별
 
-8. Spark UI 왼쪽 탐색에서 **작업**을 클릭하여 작업 목록으로 돌아갑니다.
+8. Spark UI 왼쪽 탐색에서 **작업** 을 클릭하여 작업 목록으로 돌아갑니다.
 9. 작업 2.2의 정렬-병합 조인 작업을 클릭하고 분석을 반복합니다. 동일한 패턴을 찾습니다: 대다수보다 훨씬 더 긴 기간의 몇 가지 작업.
-10. 조사를 완료했으면 노트북으로 돌아가 **연습 3**을 계속합니다.
+10. 조사를 완료했으면 노트북으로 돌아가 **연습 3** 을 계속합니다.
 
 ---
 
@@ -144,10 +144,10 @@ https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/13-monitor-tr
 ### DAG에서 Exchange 노드 개수
 
 4. 높은 셔플 값이 있는 단계를 클릭하여 세부 정보 페이지를 엽니다.
-5. 단계 세부 정보 페이지의 위쪽에서 **DAG 시각화**를 확장합니다. **Exchange**라는 레이블이 지정된 노드를 찾습니다 — 각 노드는 클러스터 네트워크 전체에서 데이터의 전체 셔플을 나타냅니다.
+5. 단계 세부 정보 페이지의 위쪽에서 **DAG 시각화** 를 확장합니다. **Exchange**라는 레이블이 지정된 노드를 찾습니다 — 각 노드는 클러스터 네트워크 전체에서 데이터의 전체 셔플을 나타냅니다.
 6. 연습 4 작업의 단계 전체에서 표시되는 총 Exchange 노드 수를 개수합니다. 이를 groupBy → 조인 → 정렬 파이프라인에 실제로 필요한 최소 셔플 수와 비교합니다.
 
 ### 셔플 읽음 대 입력 크기 비교
 
-7. 여전히 단계 세부 정보 페이지에서 **요약 메트릭** 섹션으로 스크롤합니다. **입력 크기 / 기록**과 **셔플 읽음 크기 / 기록**을 비교합니다. 셔플 읽음이 원본 입력보다 훨씬 크면 파이프라인은 필요한 것보다 더 많은 네트워크 I/O를 수행합니다.
-8. 조사를 완료했으면 노트북으로 돌아가 **연습 5**를 계속합니다.
+7. 여전히 단계 세부 정보 페이지에서 **요약 메트릭** 섹션으로 스크롤합니다. **입력 크기 / 기록**과 **셔플 읽음 크기 / 기록** 을 비교합니다. 셔플 읽음이 원본 입력보다 훨씬 크면 파이프라인은 필요한 것보다 더 많은 네트워크 I/O를 수행합니다.
+8. 조사를 완료했으면 노트북으로 돌아가 **연습 5** 를 계속합니다.

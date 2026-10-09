@@ -6,15 +6,15 @@
   <title>Azure Databricks Labs All</title>
   <style>
     :root {
-      --bg: #f3f6fb;
+      --bg: #f4f4f4;
       --surface: #ffffff;
-      --surface-soft: #eef3ff;
-      --ink: #1a2433;
-      --ink-soft: #52627a;
-      --accent: #0a6cff;
-      --accent-2: #00a09d;
-      --border: #dbe4f1;
-      --shadow: 0 14px 34px rgba(14, 43, 85, 0.12);
+      --surface-soft: #f8eeee;
+      --ink: #222222;
+      --ink-soft: #666666;
+      --accent: #ac292d;
+      --accent-strong: #8e2225;
+      --border: #dedede;
+      --shadow: 0 14px 34px rgba(34, 34, 34, 0.08);
       --radius-xl: 20px;
       --radius-md: 12px;
     }
@@ -26,10 +26,7 @@
     body {
       margin: 0;
       font-family: "Segoe UI", "Noto Sans KR", sans-serif;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(10, 108, 255, 0.16), transparent 34%),
-        radial-gradient(circle at 90% 0%, rgba(0, 160, 157, 0.15), transparent 32%),
-        var(--bg);
+      background: var(--bg);
       color: var(--ink);
       line-height: 1.6;
     }
@@ -41,8 +38,8 @@
     }
 
     .hero {
-      background: linear-gradient(130deg, #0b2f73 0%, #004ca8 48%, #0082bf 100%);
-      color: #f6f9ff;
+      background: var(--accent);
+      color: var(--surface);
       border-radius: var(--radius-xl);
       padding: 2rem;
       box-shadow: var(--shadow);
@@ -72,7 +69,7 @@
 
     .hero p {
       margin: 0;
-      color: #e5edff;
+      color: var(--surface-soft);
       position: relative;
       z-index: 1;
     }
@@ -109,7 +106,7 @@
     }
 
     .stage {
-      background: rgba(255, 255, 255, 0.62);
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       padding: 0.95rem;
@@ -118,7 +115,7 @@
     .stage-title {
       margin: 0 0 0.7rem;
       font-size: 1rem;
-      color: #123b7d;
+      color: var(--accent-strong);
     }
 
     .card {
@@ -169,20 +166,22 @@
       padding: 0.45rem 0.9rem;
       font-size: 0.85rem;
       background: var(--surface-soft);
-      color: #0a3b89;
-      border: 1px solid #cad9f6;
+      color: var(--accent-strong);
+      border: 1px solid var(--border);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .card-links a:hover {
       transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(5, 38, 89, 0.2);
+      background: var(--surface);
+      border-color: var(--accent);
+      box-shadow: var(--shadow);
     }
 
     .chip {
-      background: #e7fbfa;
-      color: #015a59;
-      border: 1px solid #beeceb;
+      background: var(--surface-soft);
+      color: var(--accent-strong);
+      border: 1px solid var(--border);
       border-radius: 999px;
       padding: 0.18rem 0.52rem;
       font-weight: 600;
@@ -211,6 +210,51 @@
 
     <section>
       <main class="stages" id="labs-stages"></main>
+    </section>
+
+    <section aria-labelledby="demos-title">
+      <div class="section-head">
+        <h2 id="demos-title">데모 시나리오</h2>
+      </div>
+      <div class="stage">
+        <div class="grid">
+          <article class="card">
+            <h3>의료 산업 시나리오- 컴퓨팅 선택 및 구성</h3>
+            <p>실시간 환자 모니터링, 임상 데이터 웨어하우징, 의료 연구 분석, 규정 보고, 예측 의료 모델을 Azure Databricks에서 지원합니다.</p>
+            <div class="card-links">
+              <a href="lab.html?file=Labs/22-Demo-scenario2.md" aria-label="의료 산업 시나리오 보기">보기</a>
+            </div>
+          </article>
+          <article class="card">
+            <h3>대학 데이터 플랫폼</h3>
+            <p>교육 데이터 자산 전체에 일관된 명명 규칙을 적용하고, 대학 조직 구조에 맞는 카탈로그와 스키마를 생성하며, 정형 및 비정형 교육 데이터를 위한 테이블, 뷰, 볼륨과 셀프 서비스 분석을 구현합니다.</p>
+            <div class="card-links">
+              <a href="lab.html?file=Labs/23-Demo-scenario3.md" aria-label="대학 데이터 플랫폼 보기">보기</a>
+            </div>
+          </article>
+          <article class="card">
+            <h3>RetailNow - 옴니채널 소매업체 데이터 플랫폼</h3>
+            <p>Unity Catalog를 통해 테이블을 복제하거나 수십 개의 뷰를 관리하지 않고도 소매 데이터에 대한 세밀하고 통제된 액세스를 지원합니다.</p>
+            <div class="card-links">
+              <a href="lab.html?file=Labs/24-Demo-scenario4.md" aria-label="RetailNow 데이터 플랫폼 보기">보기</a>
+            </div>
+          </article>
+          <article class="card">
+            <h3>AutoNova Group 글로벌 자동차 제조업체</h3>
+            <p>테이블 정의 문서화, 액세스 정책 적용, 데이터 보존 관리, 계보 추적, 액세스 감사, 딜러 파트너와의 안전한 델타 공유 전략 설계를 수행합니다.</p>
+            <div class="card-links">
+              <a href="lab.html?file=Labs/25-Demo-scenario5.md" aria-label="AutoNova Group 시나리오 보기">보기</a>
+            </div>
+          </article>
+          <article class="card">
+            <h3>금융 서비스 데이터 모델링 설계 및 구현</h3>
+            <p>규제 쿼리를 위한 거래 날짜별 분할, 고객 위험 등급 변경을 위한 SCD 유형 2, 감사 추적을 위한 변경 데이터 피드, 다차원 거래 분석을 위한 유동 클러스터링을 구현합니다.</p>
+            <div class="card-links">
+              <a href="lab.html?file=Labs/26-Demo-scenario6.md" aria-label="금융 서비스 데이터 모델링 보기">보기</a>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
 
   </div>

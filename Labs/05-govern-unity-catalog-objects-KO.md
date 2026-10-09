@@ -20,7 +20,7 @@ lab:
 
 데이터 거버넌스 팀에서 다음과 같은 우려 사항을 제기했습니다:
 
-- 차량 원격 측정 데이터에는 적극적인 쓰기 패턴이 있으며 저장소 증가를 제어하고 GDPR 데이터 최소화 요구 사항을 준수하기 위해 **보존 정책**을 잘 정의해야 합니다.
+- 차량 원격 측정 데이터에는 적극적인 쓰기 패턴이 있으며 저장소 증가를 제어하고 GDPR 데이터 최소화 요구 사항을 준수하기 위해 **보존 정책** 을 잘 정의해야 합니다.
 - 데이터 팀은 테이블이 파생되는 방식을 이해하고 업스트림 변경의 영향을 추적하기 위해 **전체 계보 가시성**이 필요합니다.
 - 규정 준수 팀은 수동 로그 검색이 아닌 쿼리 가능한 로그를 사용하여 **누가 어떤 데이터에 액세스했는지, 언제 액세스했는지 감사**해야 합니다.
 
@@ -65,12 +65,12 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 ## 랩 노트북 가져오기
 
-1. Azure Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역**을 선택합니다.
+1. Azure Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역** 을 선택합니다.
 2. 이 랩을 저장할 폴더로 이동하거나 생성합니다.
-3. 폴더 옆의 **⋮** 메뉴를 선택한 다음 **가져오기**를 선택합니다.
-4. **URL**을 선택하고 다음 URL을 입력한 다음 **가져오기**를 선택합니다:
+3. 폴더 옆의 **⋮** 메뉴를 선택한 다음 **가져오기** 를 선택합니다.
+4. **URL** 을 선택하고 다음 URL을 입력한 다음 **가져오기** 를 선택합니다:
 ```
-https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/05-govern-unity-catalog-objects-KO.ipynb
+https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/05-govern-unity-catalog-objects-KO.ipynb
 ```
 
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
@@ -85,13 +85,13 @@ https://github.com/asddai/AzureDatabricks/blob/main/Labs/Notebooks/05-govern-uni
 
 ### 테이블 계보 보기
 
-1. Azure Databricks 작업 영역에서 왼쪽 사이드바의 **카탈로그**를 선택하여 카탈로그 탐색기를 엽니다.
+1. Azure Databricks 작업 영역에서 왼쪽 사이드바의 **카탈로그** 를 선택하여 카탈로그 탐색기를 엽니다.
 2. **automotive_catalog** > **governance_lab**으로 이동합니다.
      ![Lab051catalog](Media/Lab051catalog.png)
 3. **vehicle_telemetry** 테이블을 선택합니다.
 4. **계보** 탭을 선택합니다.
      ![Lab052lineage](Media/Lab052lineage.png)
-5. **계보 그래프 참조**를 선택하여 대화형 계보 시각화를 엽니다.
+5. **계보 그래프 참조** 를 선택하여 대화형 계보 시각화를 엽니다.
 
 업스트림 및 다운스트림 관계를 확인합니다. 그래프가 다음을 표시하는지 확인합니다:
 - 어느 노트북 또는 작업이 테이블에 기록했는지
