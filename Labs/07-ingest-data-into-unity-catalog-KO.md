@@ -24,9 +24,9 @@ lab:
 
 - 수집된 데이터를 저장할 Unity Catalog 계층(카탈로그, 스키마, 볼륨) 생성
 - PySpark DataFrames를 사용하여 관리 볼륨의 CSV 데이터를 Delta 테이블로 로드
-- 기본 제공 중복 제거를 사용하여 COPY INTO를 사용하여 점진적으로 파일 로드
+- COPY INTO를 사용하여 중복 제거 기능이 포함된 증분 파일 로드
 - CREATE TABLE AS SELECT를 사용하여 요약 테이블 생성
-- Auto Loader를 구성하여 클라우드 저장소에서 새 파일을 자동으로 감지하고 처리
+- 클라우드 스토리지의 신규 파일을 자동으로 감지하고 처리하도록 Auto Loader 구성
 
 ---
 
@@ -53,32 +53,15 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 ---
 
-## 비노트북 탐색: Lakeflow Connect(선택 사항)
+## 노트북 외 탐색: Lakeflow Spark 선언형 파이프라인(선택 사항)
+Lakeflow Spark 선언적 파이프라인(이전 Delta Live Tables)은 자동 오케스트레이션, 스키마 관리 및 정확한 한 번 처리 보장을 통해 프로덕션 수준의 데이터 수집 파이프라인을 구축하는 데 권장되는 방법입니다.
 
-**Lakeflow Connect**는 SQL Server, Salesforce 및 SharePoint와 같은 외부 소스에서 직접 Unity Catalog 테이블로 데이터를 수집하기 위한 그래픽, 로우 코드 접근 방식을 제공합니다 — 사용자 지정 코드를 작성할 필요 없음.
+파이프라인 편집기 탐색:
 
-작업 영역에서 Lakeflow Connect를 탐색하려면:
-
-1. Databricks 작업 영역 사이드바에서 **데이터 엔지니어링** → **데이터 수집** 을 클릭합니다.
-2. 사용 가능한 커넥터를 둘러봅니다. 범주를 확인합니다: 데이터베이스 커넥터, SaaS 커넥터 및 파일 기반 수집.
-3. **SQL Server** 를 클릭하여 연결을 구성하고, 수집할 테이블을 선택하고, 대상 카탈로그 및 스키마를 설정하는 방법을 확인합니다.
-4. **SCD Type 1**(덮어쓰기) 대 **SCD Type 2**(기록 추적) 및 **전체 새로고침** 대 **증분** 추출 옵션을 확인합니다.
-
-> 💡 이 랩의 일부로 Lakeflow Connect 설정을 완료할 필요는 없습니다 — 구성된 SQL Server 소스가 제공되지 않습니다. 위의 탐색은 숙지 목적만입니다.
-
----
-
-## 비노트북 탐색: Lakeflow Spark 선언형 파이프라인(선택 사항)
-
-**Lakeflow Spark 선언형 파이프라인**(이전의 Delta Live Tables)은 자동 오케스트레이션, 스키마 관리 및 정확히 한 번의 보장을 사용하여 프로덕션 등급 수집 파이프라인을 구축하는 권장 방법입니다.
-
-파이프라인 편집기를 탐색하려면:
-
-1. 사이드바에서 **작업 및 파이프라인** 을 선택하고 **ETL 파이프라인** 을 선택합니다.
-3. 소스 노트북 또는 SQL 파일 지정, 파이프라인 카탈로그 및 스키마 명명, 클러스터 유형 선택 옵션을 검토합니다.
-4. **취소** 를 클릭합니다 — 파이프라인을 생성하거나 실행할 필요는 없습니다.
-
-> 💡 **Auto CDC API**(create_auto_cdc_flow / AUTO CDC INTO)는 Lakeflow 선언형 파이프라인 내에서 변경 데이터 캡처(CDC) 피드를 처리하는 권장 방법입니다. 중복 제거, 순서를 벗어난 이벤트 및 SCD Type 1 또는 Type 2 패턴을 자동으로 처리합니다. 파이프라인 노트북 또는 SQL 파일에서 정의한 다음 파이프라인 UI에서 실행합니다.
+1. 사이드바에서 **작업 및 파이프라인** 을 선택합니다.
+2. **생성**, **ETL 파이프라인** 을 차례로 선택합니다.
+3. 소스 노트북 또는 SQL 파일 지정, 파이프라인 카탈로그 및 스키마 이름 지정, 클러스터 유형 선택 등의 옵션을 검토합니다.
+4. **취소** 를 클릭합니다. 파이프라인을 생성하거나 실행할 필요는 없습니다.
 
 ---
 
@@ -105,7 +88,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 | 연습 | 주제 | 기술 |
 |---|---|---|
-| 1 | 카탈로그 계층 설정 | SQL DDL — CREATE CATALOG, CREATE SCHEMA, CREATE VOLUME |
+| 1 | 카탈로그 계층 구조 설정 | SQL DDL — CREATE CATALOG, CREATE SCHEMA, CREATE VOLUME |
 | 2 | DataFrames를 사용한 배치 수집 | PySpark spark.read / df.write |
 | 3 | SQL 기반 파일 수집 | COPY INTO, CREATE TABLE AS SELECT |
 | 4 | Auto Loader | cloudFiles 형식을 사용한 spark.readStream |
