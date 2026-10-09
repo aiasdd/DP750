@@ -51,7 +51,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 ## 필수 조건
 
-- [랩 00: Azure Databricks 환경 설정](00-setup.md)을 사용하여 프로비저닝된 **Azure Databricks Premium 작업 영역**이 있습니다.
+- [랩 00: Azure Databricks 환경 설정](00-setup.md)을 사용하여 프로비저닝된 **Azure Databricks Premium 워크스페이스**이 있습니다.
 - 기본 Python 및 PySpark 개념에 익숙합니다.
 - 이 학습 경로의 이전 랩을 완료했습니다(또는 Unity Catalog 기본 사항이 편하다).
 
@@ -59,7 +59,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 ## 설정 노트북 가져오기
 
-1. Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역** 을 클릭합니다.
+1. Databricks 워크스페이스에서 왼쪽 사이드바의 **워크스페이스** 을 클릭합니다.
 2. 랩을 저장할 폴더로 이동하거나 생성합니다.
 3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기** 를 선택합니다.
 4. **URL** 을 선택하고 다음 URL을 입력한 다음 **가져오기** 를 클릭합니다:
@@ -115,6 +115,7 @@ ORDER BY claim_id NULLS LAST;
 | 음수 금액            | claim_amount가 음수임  |
 | 유효하지 않은 상태             | status가 OPEN, PENDING, CLOSED 중 하나가 아님 |
 
+![alt text](image-8.png)
 
 ### 작업 2.2: 스키마 검사
 
@@ -123,7 +124,7 @@ ORDER BY claim_id NULLS LAST;
 ```sql
 DESCRIBE TABLE insurance_lab.bronze.claims_raw;
 ```
-
+![alt text](image-9.png)
 이 컬럼들은 bronze 계층에서 의도적으로 문자열(string)로 설정되어 있습니다. 이후 파이프라인 실습 과정에서 silver 계층으로 데이터를 수집(ingestion)할 때 올바른 데이터 유형이 적용되도록 처리할 것입니다.
 
 ---
@@ -136,16 +137,16 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
 
 **파이프라인 파일 가져오기:**
 
-1. Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역** 을 클릭합니다.
+1. Databricks 워크스페이스에서 왼쪽 사이드바의 **워크스페이스** 을 클릭합니다.
 2. 랩 노트북을 저장한 폴더로 이동합니다.
 3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기** 를 선택합니다.
 4. **URL** 을 선택하고 다음 URL을 입력한 다음 **가져오기** 를 클릭합니다:
    `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/09-implement-manage-data-quality-constraints-unity-catalog.py`
-5. 파일은 작업 영역에 Python 소스 파일로 표시됩니다 — 다음 단계를 위해 경로를 기록합니다.
+5. 파일은 워크스페이스에 Python 소스 파일로 표시됩니다 — 다음 단계를 위해 경로를 기록합니다.
 
 **파이프라인 생성:**
 
-1. Databricks 작업 영역 왼쪽 사이드바에서 **작업 및 파이프라인** 을 클릭합니다.
+1. Databricks 워크스페이스 왼쪽 사이드바에서 **작업 및 파이프라인** 을 클릭합니다.
 2. **ETL 파이프라인 생성** 을 클릭합니다.
 3. 다음 설정으로 파이프라인을 구성합니다:
 
@@ -267,7 +268,7 @@ Auto Loader(`cloudFiles` 형식)와 `spark.readStream`을 사용하여 다음 �
 
 ### 작업 6.1: 파이프라인 파일 저장
 
-계속하기 전에 작업 영역 편집기에서 09-implement-manage-data-quality-constraints-unity-catalog.py에 대한 모든 변경 사항을 저장했는지 확인합니다.
+계속하기 전에 워크스페이스 편집기에서 09-implement-manage-data-quality-constraints-unity-catalog.py에 대한 모든 변경 사항을 저장했는지 확인합니다.
 
 ### 작업 6.2: 파이프라인 실행
 
