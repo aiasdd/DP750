@@ -164,6 +164,7 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
 
 `https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-unity-catalog-KO.py`
 ![alt text](image-12.png)
+![alt text](image-13.png)
 
 ### 작업 3.1: `claims_validated()`에 Null 허용 여부 및 상태 관련 기대치(expectation) 추가
 
