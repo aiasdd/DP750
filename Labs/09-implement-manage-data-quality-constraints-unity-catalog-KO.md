@@ -25,26 +25,26 @@ lab:
 
 ## 소개
 
-귀사는 가상의 보험 제공자인 **ClearCover Insurance**의 데이터 엔지니어입니다. 매일 원본 청구 데이터가 지역 사무실 및 파트너 브로커에서 도착합니다. 불행히도 데이터는 일치하지 않습니다: 일부 기록에 필수 식별자가 누락되어 있고, 청구 금액은 문자열로 형식화되거나 음수 값을 가지고 있으며, 날짜는 때때로 잘못된 형식이고, 소스 스키마는 시간이 지남에 따라 자동으로 새 열을 추가할 수 있습니다.
+여러분은 가상의 보험사인 **ClearCover Insurance** 의 데이터 엔지니어입니다. 매일 지역 지사와 파트너 중개인으로부터 원시 보험 청구(claims) 데이터가 유입됩니다. 안타깝게도 이 데이터는 일관성이 부족합니다. 일부 레코드에는 필수 식별자가 누락되어 있고, 청구 금액이 문자열 형식으로 되어 있거나 음수 값을 포함하며, 날짜 형식이 잘못된 경우도 있습니다. 또한 시간이 지남에 따라 원본 스키마에 새로운 열이 예고 없이 추가되기도 합니다.
 
-귀사의 임무는 파이프라인의 모든 계층에서 데이터 품질 제약 조건을 시행하는 **Lakeflow Spark 선언형 파이프라인** 을 구축하여 나쁜 기록이 보험계리 모델 및 보고 대시보드에 도달하기 전에 이를 포착하는 것입니다.
+여러분의 임무는 파이프라인의 모든 단계에서 데이터 품질 제약 조건을 적용하는 **Lakeflow Spark 선언형 파이프라인(Declarative Pipeline)** 을 구축하는 것입니다. 이를 통해 보험 계리 모델이나 보고용 대시보드에 도달하기 전에 품질이 낮은 레코드를 사전에 차단해야 합니다.
 
-다음 연습을 진행합니다:
+다음과 같은 실습 과정을 진행하게 됩니다:
 
-| 연습   | 주제                                                    |
+| 실습   | 주제                                                    |
 | ---------- | -------------------------------------------------------- |
-| 연습 1 | ClearCover Insurance 데이터 플랫폼 설정(노트북) |
-| 연습 2 | 카탈로그 탐색기에서 데이터 품질 문제 탐색          |
-| 연습 3 | 널 가능성 및 상태 검증 구현              |
-| 연습 4 | col().cast()를 사용하여 데이터 유형 검사 추가                  |
-| 연습 5 | 구조 도움말 데이터로 스키마 드리프트 처리                    |
-| 연습 6 | 파이프라인 실행 및 모니터링                             |
+| 실습 1 | ClearCover Insurance 데이터 플랫폼 설정(노트북) |
+| 실습 2 | Catalog Explorer에서 데이터 품질 문제 탐색        |
+| 실습 3 | Null 허용 여부 및 상태 유효성 검사 구현            |
+| 실습 4 | col().cast()를 사용하여 데이터 유형 검사 추가                  |
+| 실습 5 | Rescued Data(구조에 맞지 않는 데이터)를 활용한 스키마 변경(schema drift) 처리                   |
+| 실습 6 | 파이프라인 실행 및 모니터링                             |
 
 ---
 
 ## 🤖 Genie Code — 항상 사용하세요
 
-이 랩의 모든 연습 전체에서 **Genie Code를 사용할 것을 강력히 권장합니다**. 모든 연습에는 시작할 제안 프롬프트가 포함되어 있습니다. Genie Code는 귀사의 페어 프로그래머입니다 — 코드를 생성하고, 오류를 이해하고, 대안을 탐색하는 데 사용하세요.
+이 랩의 모든 실습 전체에서 **Genie Code를 사용할 것을 강력히 권장합니다**. 모든 실습에는 시작할 제안 프롬프트가 포함되어 있습니다. Genie Code는 귀사의 페어 프로그래머입니다 — 코드를 생성하고, 오류를 이해하고, 대안을 탐색하는 데 사용하세요.
 
 Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg)을 선택하거나 키보드 단축키를 사용합니다.
 ---
@@ -71,7 +71,7 @@ https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/09-implement-manage-dat
 
 ---
 
-## 연습 1: ClearCover Insurance 데이터 플랫폼 설정
+## 실습 1: ClearCover Insurance 데이터 플랫폼 설정
 
 설정 노트북 **09-implement-manage-data-quality-constraints-unity-catalog**의 모든 셀을 위에서 아래로 실행합니다.
 
@@ -79,24 +79,25 @@ https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/09-implement-manage-dat
 
 | 개체                                | 설명                                                  |
 | ------------------------------------- | ------------------------------------------------------------ |
-| insurance_lab 카탈로그                 | ClearCover Insurance 플랫폼의 최상위 네임스페이스    |
-| insurance_lab.bronze 스키마           | 소스 시스템에서 수신한 원본 미처리 청구 데이터 |
-| insurance_lab.silver 스키마           | 검증되고 유형 안전 기록                      |
-| insurance_lab.gold 스키마             | 집계된 보고 데이터                                    |
-| insurance_lab.bronze.raw_files 볼륨 | 원본 CSV 청구 파일의 랜딩 영역                         |
-| insurance_lab.bronze.claims_raw 테이블 | 20개의 원본 청구 기록이 있는 Delta 테이블                       |
+| insurance_lab 카탈로그	| ClearCover 보험 플랫폼을 위한 최상위 네임스페이스
+| insurance_lab.bronze 스키마	| 소스 시스템에서 수신된 가공되지 않은 원본 보험금 청구 데이터
+| insurance_lab.silver 스키마	| 검증 및 데이터 유형이 안전하게 처리된 레코드
+| insurance_lab.gold 스키마	| 집계된 보고용 데이터
+| insurance_lab.bronze.raw_files 볼륨	| 원본 CSV 보험금 청구 파일을 위한 랜딩 존(landing zone)
+| insurance_lab.bronze.claims_raw 테이블	| 20개의 원본 보험금 청구 레코드를 포함하는 Delta 테이블
 
-노트북이 완료되면 계속하기 전에 **카탈로그 탐색기**에서 개체를 확인합니다.
+노트북 실행이 완료되면 다음 단계로 넘어가기 전에 Catalog Explorer에서 해당 객체들이 생성되었는지 확인합니다.
+
 
 ---
 
-## 연습 2: 데이터 품질 문제 탐색
+## 실습 2: 데이터 품질 문제 탐색
 
-파이프라인 코드를 작성하기 전에 원본 데이터를 탐색하여 수정해야 할 품질 문제를 이해합니다.
+파이프라인 코드를 작성하기 전에 원본 데이터를 탐색하여 해결해야 할 품질 문제를 파악합니다.
 
 ### 작업 2.1: 원본 청구 테이블 쿼리
 
-새 SQL 쿼리 편집기를 엽니다(또는 노트북 셀 열어):
+새 SQL 쿼리 편집기(또는 노트북 셀)를 열고 다음을 실행합니다:
 
 ```sql
 SELECT *
@@ -106,27 +107,28 @@ ORDER BY claim_id NULLS LAST;
 
 결과를 검토하고 다음의 각 각 문제에 대해 최소 한 행을 찾습니다:
 
-| 문제                      | 확인할 열                     |
+| 문제                      | 확인할 컬럼                    |
 | -------------------------- | -------------------------------------- |
-| 누락된 기본 식별자 | claim_id 또는 customer_id가 NULL        |
-| 구문 분석할 수 없는 날짜           | claim_date에 비날짜 문자열이 포함됨  |
+| 누락된 기본 식별자 | claim_id 또는 customer_id가 NULL임      |
+| 구문 분석할 수 없는 날짜           | claim_date에 날짜 형식이 아닌 문자열이 포함됨 |
 | 구문 분석할 수 없는 금액         | claim_amount에 N/A 또는 공백 포함  |
-| 음수 금액            | claim_amount가 음수  |
-| 유효하지 않은 상태             | status가 OPEN, PENDING 또는 CLOSED이 아님 |
+| 음수 금액            | claim_amount가 음수임  |
+| 유효하지 않은 상태             | status가 OPEN, PENDING, CLOSED 중 하나가 아님 |
+
 
 ### 작업 2.2: 스키마 검사
 
-다음을 실행하여 claim_date 및 claim_amount가 STRING으로 저장되어 있는지 확인합니다:
+다음 명령을 실행하여 claim_date와 claim_amount가 STRING(문자열)으로 저장되어 있는지 확인합니다:
 
 ```sql
 DESCRIBE TABLE insurance_lab.bronze.claims_raw;
 ```
 
-이러한 열은 의도적으로 bronze 레이어의 문자열입니다. 파이프라인 연습은 silver로 수집하는 동안 올바른 유형을 시행합니다.
+이 컬럼들은 bronze 계층에서 의도적으로 문자열(string)로 설정되어 있습니다. 이후 파이프라인 실습 과정에서 silver 계층으로 데이터를 수집(ingestion)할 때 올바른 데이터 유형이 적용되도록 처리할 것입니다.
 
 ---
 
-## 연습 3: 널 가능성 및 상태 검증
+## 실습 3: Null 허용 여부 및 상태 유효성 검사
 
 ### 작업 3.0: ETL 파이프라인 생성 및 파이프라인 파일 가져오기
 
@@ -144,42 +146,40 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
 **파이프라인 생성:**
 
 1. Databricks 작업 영역 왼쪽 사이드바에서 **작업 및 파이프라인** 을 클릭합니다.
-2. **ETL 파이프라인 생성**(Python)을 클릭합니다.
+2. **ETL 파이프라인 생성** 을 클릭합니다.
 3. 다음 설정으로 파이프라인을 구성합니다:
 
    | 설정        | 값                                                                                              |
    | -------------- | -------------------------------------------------------------------------------------------------- |
    | 파이프라인 이름  | **ClearCover Claims Quality Pipeline**                                                             |
    | 파이프라인 모드  | **트리거됨**                                                                                      |
-   | 소스 코드    | 가져온 `09-implement-manage-data-quality-constraints-unity-catalog.py` 파일로 이동      |
    | 대상 카탈로그 | **insurance_lab**, 스키마 **silver**                                                               |
    | 컴퓨팅        | **서버리스**                                                                                     |
 
-4. **생성** 을 클릭합니다.
+파이프라인 편집기에서 왼쪽 창(에셋 브라우저)을 찾습니다. 메뉴를 열고 **가져오기**를 선택한 다음, 가져온 `09-implement-manage-data-quality-constraints.py` 파일을 찾아 파이프라인 소스 코드로 추가합니다.
+가져온 파이프라인 파일을 열고 실습 3~5를 진행하는 동안 계속 열어 둡니다. 이제 데이터 품질 제약 조건을 추가하기 위해 이 파일을 편집하게 됩니다.
 
-가져온 파이프라인 파일을 열고 연습 3~5 전체에서 열린 상태로 유지합니다. 이제 데이터 품질 제약 조건을 추가하도록 편집합니다.
-
-### 작업 3.1: claims_validated() 함수에 널 가능성 및 상태 예상 추가
+### 작업 3.1: `claims_validated()`에 Null 허용 여부 및 상태 관련 기대치(expectation) 추가
 
 09-implement-manage-data-quality-constraints-unity-catalog.py를 열고 다음 예상을 *claims_validated()* 함수에 추가합니다. 모든 데코레이터를 `@dp.table(...)` 및 `def claims_validated():`사이에 배치합니다.
 
-| 예상 이름  | 조건                                 | 작업        |
+| 기대치 이름  | 조건                                 | 동작        |
 | ----------------- | ----------------------------------------- | ------------- |
-| valid_claim_id    | `claim_id IS NOT NULL`                    | 삭제          |
-| valid_customer_id | `customer_id IS NOT NULL`                 | 삭제     |
-| valid_status      | `status IN ('OPEN', 'PENDING', 'CLOSED')` | 경고(유지)   |
-| valid_coverage    | `coverage_amount > 0`                     | 파이프라인 실패 |
+| valid_claim_id    | `claim_id IS NOT NULL`                    | Drop (삭제)          |
+| valid_customer_id | `customer_id IS NOT NULL`                 | Drop (삭제)     |
+| valid_status      | `status IN ('OPEN', 'PENDING', 'CLOSED')` | Warn (경고/유지)   |
+| valid_coverage    | `coverage_amount > 0`                     | Fail pipeline (파이프라인 실패) |
 
-위반 행을 삭제하려면 `@dp.expect_or_drop`을 사용하고, 삭제 없이 경고하려면 `@dp.expect`를 사용하고, 위반 시 파이프라인을 중지하려면 `@dp.expect_or_fail`을 사용합니다.
+조건을 위반하는 행을 삭제하려면 `@dp.expect_or_drop`을, 삭제하지 않고 경고만 하려면 `@dp.expect`를, 위반 시 파이프라인을 중단하려면 `@dp.expect_or_fail`을 사용합니다.
 
 > 🤖 **Genie Code에 요청:**
 > *"Lakeflow Spark 선언형 파이프라인 Python 함수에서 expect_or_drop, expect 및 expect_or_fail 데코레이터를 사용하는 방법을 보여주세요"*
 
 ---
 
-## 연습 4: 데이터 유형 검사
+## 실습 4: 데이터 유형 확인
 
-claim_date 및 claim_amount 열은 문자열로 도착합니다. col().cast()가 값을 구문 분석할 수 없으면 오류를 발생시키는 대신 NULL을 반환합니다. 이 동작을 사용하여 유효하지 않은 기록을 식별하고 삭제할 수 있습니다.
+`claim_date`와 `claim_amount` 열은 문자열(string) 형태로 들어옵니다. `col().cast()`는 값을 파싱할 수 없을 때 오류를 발생시키는 대신 `NULL`을 반환합니다. 이 동작을 활용하여 유효하지 않은 레코드를 식별하고 삭제할 수 있습니다.
 
 ### 작업 4.1: claims_validated() 내에서 col().cast() 적용
 
@@ -193,12 +193,12 @@ claims_validated() 함수 본문(**return 문 이전**)에서 두 개의 withCol
 > 🤖 **Genie Code에 요청:**
 > *"PySpark에서 withColumn 및 col().cast()를 사용하여 스트리밍 데이터프레임 열을 STRING에서 DATE 유형으로 변환하고 다른 열을 STRING에서 DECIMAL(12,2)로 변환합니다. 전체 withColumn 구문을 보여주세요."*
 
-### 작업 4.2: 구문 분석할 수 없는 날짜가 있는 기록 삭제
+### 작업 4.2: 파싱할 수 없는 날짜가 포함된 레코드 삭제
 
-작업 4.1 이후, claim_date가 여전히 NULL인 행은 유효하지 않은 원본 값을 가집니다. `@dp.expect_or_drop` 데코레이터를 추가하여 이러한 행을 삭제합니다:
+Task 4.1에서 형 변환(cast)을 수행한 후에도 `claim_date`가 여전히 NULL인 행은 원래 값이 유효하지 않았음을 의미합니다. `@dp.expect_or_drop` 데코레이터를 추가하여 이러한 행을 삭제합니다:
 
 ```
-예상 이름: valid_claim_date
+기대치 이름: valid_claim_date
 조건:        claim_date IS NOT NULL
 ```
 
@@ -207,7 +207,7 @@ claims_validated() 함수 본문(**return 문 이전**)에서 두 개의 withCol
 마찬가지로 claim_amount를 캐스트할 수 없는 행을 삭제합니다:
 
 ```
-예상 이름: valid_claim_amount
+기대치 이름: valid_claim_amount
 조건:        claim_amount IS NOT NULL
 ```
 
@@ -216,7 +216,7 @@ claims_validated() 함수 본문(**return 문 이전**)에서 두 개의 withCol
 음수 청구 금액은 모든 보험 상황에서 유효하지 않습니다. 이러한 행을 삭제합니다:
 
 ```
-예상 이름: non_negative_amount
+기대치 이름: non_negative_amount
 조건:        claim_amount >= 0
 ```
 
@@ -227,15 +227,15 @@ claims_validated() 함수 본문(**return 문 이전**)에서 두 개의 withCol
 
 ---
 
-## 연습 5: 구조 도움말 데이터로 스키마 드리프트 처리
+## 실습 5: Rescued Data(구조 외 데이터)를 활용한 스키마 드리프트(Schema Drift) 처리
 
-ClearCover는 여러 파트너 브로커에서 청구 파일을 수신합니다. 때때로 브로커는 사전 통지 없이 broker_reference 또는 fraud_score와 같은 추가 열을 추가합니다. 이런 일이 발생할 때 파이프라인이 충돌하는 대신, 조사를 위해 예기치 않은 데이터를 별도 열에 캡처하려고 합니다.
+ClearCover는 여러 파트너 중개업체로부터 보험 청구 파일을 수신합니다. 간혹 중개업체가 사전 통보 없이 `broker_reference`나 `fraud_score`와 같은 추가 열을 포함하는 경우가 있습니다. 이런 상황에서 파이프라인이 중단되게 하는 대신, 예상치 못한 데이터를 별도의 열에 저장하여 추후 분석할 수 있도록 설정하고자 합니다.
 
-### 작업 5.1: 구조 도움말 스키마 진화 모드로 Auto Loader 구현
+### 작업 5.1: Rescue 스키마 진화 모드(rescue schema evolution mode)를 적용한 Auto Loader 구현
 
-09-implement-manage-data-quality-constraints-unity-catalog.py에서 claims_rescued() 함수를 완성합니다.
+`09-implement-manage-data-quality-constraints.py` 파일 내의 `claims_rescued()` 함수를 완성합니다.
 
-spark.readStream을 Auto Loader(cloudFiles 형식)와 함께 사용하여 다음에서 CSV 파일을 읽습니다:
+Auto Loader(`cloudFiles` 형식)와 `spark.readStream`을 사용하여 다음 경로의 CSV 파일을 읽습니다:
 
 ```
 /Volumes/insurance_lab/bronze/raw_files/
@@ -255,15 +255,15 @@ spark.readStream을 Auto Loader(cloudFiles 형식)와 함께 사용하여 다음
 **pass** 문을 제거하고 구성된 readStream을 반환합니다.
 
 > 🤖 **Genie Code에 요청:**
-> *"cloudFiles 형식 CSV, schemaEvolutionMode 구조 도움말 및 _rescued_data 열을 사용하는 완전한 PySpark Auto Loader readStream 블록을 작성합니다. 각 옵션이 무엇을 하는지 설명하세요."*
+> *"`cloudFiles` 형식의 CSV, `schemaEvolutionMode`를 `rescue`로 설정하고 `_rescued_data` 열을 포함하는 PySpark Auto Loader `readStream` 블록 전체를 작성합니다. 그리고 각 옵션이 어떤 역할을 하는지 설명하세요."*
 
-> 💡 **힌트:** 소스 파일이 예상 스키마와 일치하면 _rescued_data는 모든 행에 대해 NULL입니다. 향후 파일이 새 열(예: fraud_score)을 추가하면 이 값은 파이프라인을 손상시키지 않고 대신 _rescued_data에 JSON으로 캡처됩니다.
+> 💡 **힌트:** 소스 파일이 예상된 스키마와 일치할 경우, 모든 행에서 `_rescued_data` 값은 `NULL`이 됩니다. 향후 파일에 새로운 열(예: `fraud_score`)이 추가되더라도 파이프라인이 중단되지 않고, 해당 값들은 `_rescued_data` 열에 JSON 형태로 저장됩니다.
 
 ---
 
-## 연습 6: 파이프라인 실행 및 모니터링
+## 실습 6: 파이프라인 실행 및 모니터링
 
-파이프라인 코드가 완료되었으므로 연습 3에서 생성한 파이프라인을 실행합니다.
+파이프라인 코드가 완료되었으므로 실습 3에서 생성한 파이프라인을 실행합니다.
 
 ### 작업 6.1: 파이프라인 파일 저장
 
@@ -283,40 +283,40 @@ spark.readStream을 Auto Loader(cloudFiles 형식)와 함께 사용하여 다음
 1. 파이프라인 그래프에서 **claims_validated** 데이터셋 노드를 클릭합니다.
 2. 오른쪽 패널에서 **데이터 품질** 탭을 엽니다.
 3. 예상 결과를 검토하고 다음 질문에 답변합니다:
-   - 어느 예상이 기록을 **삭제**했으며, 몇 개를 삭제했습니까?
-   - 어느 예상이 **경고** 를 발생했습니까(기록을 유지했지만 위반 로깅)?
-   - valid_coverage가 **실패** 를 트리거했습니까? 그렇다면 이는 소스의 행에 `coverage_amount <= 0`이 있음을 나타냅니다 — 어느 행이 이를 유발했는지 조사합니다.
+   - 어떤 기대치 검사에서 레코드가 **삭제(drop)** 되었으며, 그 개수는 몇 개입니까?
+   - 어떤 기대치 검사에서 **경고(warning)** 가 발생했습니까(레코드는 유지되지만 위반 사항이 기록됨)?
+   - `valid_coverage`에서 **실패(fail)** 가 발생했습니까? 실패했다면 이는 소스 데이터에 `coverage_amount <= 0`인 행이 있음을 의미합니다. 어떤 행이 원인인지 조사해 보십시오.
 
-> 💡 **힌트:** valid_coverage가 파이프라인을 실패시키면 insurance_lab.bronze.claims_raw에서 coverage_amount가 0 또는 NULL인 행을 검사합니다. 파이프라인 이벤트 로그의 오류 메시지도 위반 기록을 표시합니다.
+> 💡 **힌트:** `valid_coverage`로 인해 파이프라인이 실패했다면, `insurance_lab.bronze.claims_raw` 테이블에서 `coverage_amount`가 0이거나 NULL인 행을 확인하십시오. 파이프라인 이벤트 로그의 오류 메시지에서도 위반된 레코드를 확인할 수 있습니다.
 
 ### 작업 6.4: 출력 테이블 쿼리
 
 다음 쿼리를 실행하여 파이프라인 출력을 확인합니다:
 
 ```sql
--- 모든 검증을 통과한 청구는 몇 개입니까?
+-- 모든 검증을 통과한 청구 건수는 몇 개입니까?
 SELECT COUNT(*) AS valid_claim_count
 FROM insurance_lab.silver.claims_validated;
 
--- 검증된 silver 레이어에 어떤 유형 및 상태가 나타납니까?
+-- 검증이 완료된 Silver 레이어에는 어떤 유형(type)과 상태(status)가 포함되어 있나요?
 SELECT claim_type, status, COUNT(*) AS count
 FROM insurance_lab.silver.claims_validated
 GROUP BY claim_type, status
 ORDER BY claim_type, status;
 
--- gold 요약 검토
+-- Gold 요약 데이터 확인
 SELECT *
 FROM insurance_lab.gold.claims_summary
 ORDER BY claim_type, status;
 
--- Auto Loader가 구조 도움말 데이터를 캡처했습니까?
+-- Auto Loader가 수집한 'rescued data'(복구된 데이터)가 있나요?
 SELECT claim_id, _rescued_data
 FROM insurance_lab.silver.claims_rescued
 WHERE _rescued_data IS NOT NULL;
 ```
 
 > 🤖 **Genie Code에 요청:**
-> *"insurance_lab.bronze.claims_raw 대 insurance_lab.silver.claims_validated의 개수를 보면 각 행 감소가 bronze 데이터의 데이터 품질 문제에 대해 무엇을 알려줍니까?"*
+> *"insurance_lab.bronze.claims_raw와 insurance_lab.silver.claims_validated의 데이터 건수를 비교했을 때, 각 단계에서 데이터가 감소한 사실이 Bronze 데이터의 품질 문제에 대해 어떤 점을 시사하는지 설명해 주세요.”*
 
 ---
 

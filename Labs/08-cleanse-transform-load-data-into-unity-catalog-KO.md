@@ -83,5 +83,8 @@ https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/08-cleanse-transform-lo
     - **Null 개수(Null counts)** — 어떤 열에 결측값이 가장 많은가요?
     - **고유값 개수(Distinct counts)** — 예상치 못한 값이 포함된 열이 있나요?
     - **값 분포(Value distributions)** — `list_price` 값의 분포는 어떠한가요?
+    
+  ![alt text](image-7.png)
+  ![alt text](image-6.png)
 
 이 과정을 통해 프로그래밍 방식으로 데이터를 정제하기 전에 데이터에 대한 시각적 및 통계적 개요를 파악할 수 있습니다.
