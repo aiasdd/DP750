@@ -141,13 +141,14 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
 2. 랩 노트북을 저장한 폴더로 이동합니다.
 3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기** 를 선택합니다.
 4. **URL** 을 선택하고 다음 URL을 입력한 다음 **가져오기** 를 클릭합니다:
-   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/09-implement-manage-data-quality-constraints-unity-catalog.py`
+   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/09-implement-manage-data-quality-constraints.py`
 5. 파일은 워크스페이스에 Python 소스 파일로 표시됩니다 — 다음 단계를 위해 경로를 기록합니다.
 
 **파이프라인 생성:**
 
 1. Databricks 워크스페이스 왼쪽 사이드바에서 **작업 및 파이프라인** 을 클릭합니다.
 2. **ETL 파이프라인 생성** 을 클릭합니다.
+   ![alt text](image-10.png)
 3. 다음 설정으로 파이프라인을 구성합니다:
 
    | 설정        | 값                                                                                              |
@@ -157,6 +158,7 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
    | 대상 카탈로그 | **insurance_lab**, 스키마 **silver**                                                               |
    | 컴퓨팅        | **서버리스**                                                                                     |
 
+   ClearCover Claims Quality Pipeline
 파이프라인 편집기에서 왼쪽 창(에셋 브라우저)을 찾습니다. 메뉴를 열고 **가져오기**를 선택한 다음, 가져온 `09-implement-manage-data-quality-constraints.py` 파일을 찾아 파이프라인 소스 코드로 추가합니다.
 가져온 파이프라인 파일을 열고 실습 3~5를 진행하는 동안 계속 열어 둡니다. 이제 데이터 품질 제약 조건을 추가하기 위해 이 파일을 편집하게 됩니다.
 
