@@ -62,7 +62,7 @@ lab:
 1. Cloud Shell에서 다음 명령을 실행하여 설정 스크립트를 다운로드하고 실행합니다:
 
     ```bash
-    curl -sL https://raw.githubusercontent.com/asddai/AzureDatabricks/main/Labs/00-setup.sh | bash
+    curl -sL https://raw.githubusercontent.com/aiasdd/DP750/main/Labs/00-setup.sh | bash
     ```
 
 2. 배포가 완료될 때까지 기다립니다. 이 작업은 약 **5분** 정도 소요됩니다.
