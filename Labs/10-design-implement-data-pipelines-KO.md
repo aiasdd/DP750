@@ -25,9 +25,9 @@ lab:
 
 ## 소개
 
-귀사는 해변 리조트, 산악 오두막, 도심 여관 및 공항 환승 호텔을 포함하는 5개의 호텔 부동산 전역의 예약을 관리하는 접객업 그룹인 **GlobStay**의 데이터 엔지니어입니다. GlobStay는 부동산 관리 시스템에서 원본 예약 데이터를 수집하고, 정제 및 검증한 다음 리더십 팀을 위한 수익 분석을 생성하는 야간 배치 파이프라인을 실행합니다.
+여러분은 해변 리조트, 산악 로지, 도심 숙소, 공항 환승 호텔 등 5개 호텔 시설의 예약을 관리하는 호스피탈리티 그룹 GlobStay의 데이터 엔지니어입니다. GlobStay는 숙박 시설 관리 시스템(PMS)에서 원시 예약 데이터를 수집하고, 이를 정제 및 검증한 뒤 경영진을 위한 수익 분석 결과를 생성하는 야간 배치(batch) 파이프라인을 운영하고 있습니다.
 
-이 랩에서는 해당 파이프라인을 처음부터 끝까지 설계하고 구현합니다. 귀사는:
+이번 실습에서는 해당 파이프라인을 엔드투엔드로 설계하고 구현합니다. 구체적으로 다음 작업을 수행합니다:
 
 - 호텔 예약 데이터에 대한 **메달리온 아키텍처**(Bronze → Silver → Gold)를 구축합니다
 - Lakeflow 작업으로 오케스트레이션할 수 있는 **매개변수화되고 재사용 가능한 노트북 작업** 을 작성합니다
@@ -153,9 +153,12 @@ https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/10-design-implement-dat
 7. 이름을 `quality_gate`로 지정합니다.
 8. 이 작업을 **check_quality**에 종속되도록 설정합니다.
 9. **조건** 필드에 다음을 입력합니다:
-   ```
-   {{tasks.check_quality.values.invalid_count}} > 5
-   ```
+ | 필드 | 값 |
+ |---|---|
+ |Condition | {{tasks.check_quality.values.invalid_count}} |
+ | Operator | > |
+ |Value | 5 |
+
 10. **참이면** 경로의 경우 `alert_data_issues`(노트북, 동일한 경로)라는 작업을 추가합니다.
 11. **거짓이면** 경로의 경우 `proceed_gold`(노트북, 동일한 경로)라는 작업을 추가합니다.
 
@@ -168,8 +171,8 @@ https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/10-design-implement-dat
 이 랩에서 귀사는:
 
 - Unity Catalog에서 호텔 예약 데이터에 대한 **메달리온 아키텍처**(Bronze → Silver → Gold)를 구축했습니다
-- **데이터 정제 패턴**(중복 제거, 널 필터링, 날짜 검증 및 값 제약)을 적용했습니다
-- **Gold 계층 집계**(부동산 수익 및 예약 채널 성능 포함)를 생성했습니다
+- **데이터 정제 패턴**(중복 제거, Null 필터링, 날짜 유효성 검사 및 값 제약 조건)을 적용했습니다
+- **Gold 계층 집계**(부동산 수익 및 예약 채널 성과 포함)를 생성했습니다
 - try/except 및 dbutils.notebook.exit()을 사용하여 작업 수준 신호에 대한 **오류 처리** 를 구현했습니다
 - **dbutils.widgets** 를 사용하여 노트북을 매개변수화하고 **dbutils.jobs.taskValues** 를 사용하여 작업 간 값을 전달했습니다
 - 순차적 작업 종속성, 재시도 정책, 알림 및 If/else 조건 작업이 있는 **Lakeflow 작업** 을 구성했습니다
