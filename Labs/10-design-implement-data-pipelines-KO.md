@@ -170,7 +170,7 @@ https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/10-design-implement-dat
     ![alt text](image-24.png)
 10. **참이면** 경로의 경우 `alert_data_issues`(노트북, 동일한 경로)라는 작업을 추가합니다.
 11. **거짓이면** 경로의 경우 `proceed_gold`(노트북, 동일한 경로)라는 작업을 추가합니다.
-
+    ![alt text](image-25.png)
 > **토론:** 이는 try/except를 사용하여 노트북 자체 내에서 오류 처리를 구현하는 것과 어떻게 비교됩니까? 각 접근 방식을 언제 선택하시겠습니까?
 
 ---
