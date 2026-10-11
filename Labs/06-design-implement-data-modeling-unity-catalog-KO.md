@@ -58,8 +58,8 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 이 랩을 시작하기 전에 다음을 확인하세요:
 
-- [랩 00: Azure Databricks 환경 설정](00-setup.md)을 사용하여 프로비저닝된 **Azure Databricks Premium 작업 영역**이 있습니다.
-- 작업 영역에 연결된 활성 **Unity Catalog 메타스토어**가 있습니다.
+- [랩 00: Azure Databricks 환경 설정](00-setup.md)을 사용하여 프로비저닝된 **Azure Databricks Premium 워크스페이스**이 있습니다.
+- 워크스페이스에 연결된 활성 **Unity Catalog 메타스토어**가 있습니다.
 - 메타스토어에 **CREATE CATALOG** 권한이 있습니다.
 - 기본 SQL(CREATE TABLE, SELECT, MERGE) 및 Python/PySpark에 익숙합니다.
 
@@ -67,7 +67,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 ## 랩 노트북 가져오기
 
-1. Azure Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역** 을 클릭합니다.
+1. Azure Databricks 워크스페이스에서 왼쪽 사이드바의 **워크스페이스** 을 클릭합니다.
 2. 이 랩을 저장할 폴더로 이동하거나 생성합니다.
 3. 폴더 옆의 **⋮** 메뉴를 클릭한 다음 **가져오기** 를 선택합니다.
 4. **URL** 을 선택하고 다음 URL을 입력한 다음 **가져오기** 를 클릭합니다:
@@ -89,7 +89,7 @@ https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/06-design-implement-dat
 
 > ⚠️ 먼저 노트북에서 연습 1을 완료한 다음 여기로 돌아오세요.
 
-1. Databricks 작업 영역에서 왼쪽 사이드바의 **카탈로그** 를 클릭하여 **카탈로그 탐색기** 를 엽니다.
+1. Databricks 워크스페이스에서 왼쪽 사이드바의 **카탈로그** 를 클릭하여 **카탈로그 탐색기** 를 엽니다.
 2. **banking_lab** 카탈로그를 확장한 다음 **silver** 스키마를 확장합니다.
 3. **dim_customer** 테이블을 클릭하여 세부 정보 패널을 엽니다.
 4. **세부 정보** 탭 아래에서 **저장소 위치** 필드를 찾습니다.

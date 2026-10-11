@@ -43,14 +43,14 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 ## 필수 조건
 
-- [랩 00: Azure Databricks 환경 설정](00-setup.md)을 사용하여 프로비저닝된 **Azure Databricks Premium 작업 영역**이 있습니다.
+- [랩 00: Azure Databricks 환경 설정](00-setup.md)을 사용하여 프로비저닝된 **Azure Databricks Premium 워크스페이스**이 있습니다.
 - 기본 SQL 및 Python/PySpark 개념에 익숙합니다.
 
 ---
 
 ## 노트북 가져오기
 
-1. Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역** 을 클릭합니다.
+1. Databricks 워크스페이스에서 왼쪽 사이드바의 **워크스페이스** 을 클릭합니다.
 
 2. 랩을 저장할 폴더로 이동하거나 생성합니다.
 

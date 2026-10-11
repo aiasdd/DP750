@@ -38,8 +38,8 @@ lab:
 | 부분 | 주제 | 위치 |
 |------|-------|--------|
 | **파트 1** | pytest를 사용한 단위 테스트 구현 | 노트북 |
-| **파트 2** | Databricks 자산 번들 구성 | 작업 영역 터미널 |
-| **파트 3** | Databricks CLI로 번들 배포 및 검증 | 작업 영역 터미널 |
+| **파트 2** | Databricks 자산 번들 구성 | 워크스페이스 터미널 |
+| **파트 3** | Databricks CLI로 번들 배포 및 검증 | 워크스페이스 터미널 |
 
 ---
 
@@ -59,8 +59,8 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 ## 필수 조건
 
-- [랩 00: Azure Databricks 환경 설정](00-setup.md)을 사용하여 프로비저닝된 **Azure Databricks Premium 작업 영역**이 있습니다.
-- 작업 영역에서 작업을 생성할 수 있는 권한이 있습니다(파트 3에 필요).
+- [랩 00: Azure Databricks 환경 설정](00-setup.md)을 사용하여 프로비저닝된 **Azure Databricks Premium 워크스페이스**이 있습니다.
+- 워크스페이스에서 작업을 생성할 수 있는 권한이 있습니다(파트 3에 필요).
 - Python 및 pytest에 대한 기본 이해가 있습니다.
 
 ---
@@ -69,7 +69,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 ### 노트북 가져오기
 
-1. Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역** 을 클릭합니다.
+1. Databricks 워크스페이스에서 왼쪽 사이드바의 **워크스페이스** 을 클릭합니다.
 2. 랩을 저장할 폴더로 이동하거나 생성합니다.
 3. **⋮**(kebab 메뉴)를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기** 를 선택합니다.
 4. **URL** 을 선택하고 다음 URL을 입력한 다음 **가져오기** 를 클릭합니다:
@@ -112,13 +112,13 @@ Databricks 자산 번들(DAB)을 사용하면 Databricks 리소스(작업, 파�
    databricks --version
    ```
 
-2. Azure Databricks 작업 영역에 대해 CLI를 인증합니다:
+2. Azure Databricks 워크스페이스에 대해 CLI를 인증합니다:
 
    ```powershell
    databricks auth login --host https://<귀사의-작업-영역-url>
    ```
 
-   **<귀사의-작업-영역-url>** 을 작업 영역의 URL로 바꿉니다(예: https://adb-1234567890123456.7.azuredatabricks.net). 브라우저 프롬프트를 따라 인증을 완료합니다.
+   **<귀사의-작업-영역-url>** 을 워크스페이스의 URL로 바꿉니다(예: https://adb-1234567890123456.7.azuredatabricks.net). 브라우저 프롬프트를 따라 인증을 완료합니다.
 
 3. 새 프로젝트 디렉터리를 생성하고 이동합니다:
 
@@ -142,7 +142,7 @@ Databricks 자산 번들(DAB)을 사용하면 Databricks 리소스(작업, 파�
     - transform-data — validate-data에 종속되며 ./notebooks/transform.py 실행
 - 다음이 있는 대상 섹션:
   - dev 대상(기본값, 개발 모드, 환경 = development)
-  - prod 대상(프로덕션 모드, 자체 작업 영역 호스트, 환경 = production)
+  - prod 대상(프로덕션 모드, 자체 워크스페이스 호스트, 환경 = production)
 
 아래 PowerShell 스니펫을 **시작점**으로 사용하고 `# TODO`로 표시된 섹션을 채웁니다:
 
@@ -178,7 +178,7 @@ targets:
       environment: development
   # TODO: 다음을 수행하는 'prod' 대상 추가:
   # - 모드를 프로덕션으로 설정
-  # - 작업 영역 호스트 설정(지금은 자리 표시자 URL 사용)
+  # - 워크스페이스 호스트 설정(지금은 자리 표시자 URL 사용)
   # - 환경 변수를 'production'으로 오버라이드
 '@ | Set-Content databricks.yml
 ```
@@ -198,7 +198,7 @@ targets:
 
 ## 파트 3: Databricks CLI로 번들 배포 및 검증
 
-번들이 구성되었으므로 **Databricks CLI** 를 사용하여 검증, 미리 보기 및 작업 영역에 배포합니다.
+번들이 구성되었으므로 **Databricks CLI** 를 사용하여 검증, 미리 보기 및 워크스페이스에 배포합니다.
 
 ### 단계 1 — 번들 검증
 
@@ -208,13 +208,13 @@ order-pipeline-bundle 디렉터리 내에서 다음 명령을 실행합니다. �
 databricks bundle validate
 ```
 
-검증에 성공하면 번들 이름, 대상 환경 및 작업 영역 경로를 보여주는 요약이 표시됩니다. 오류가 있으면 출력을 검토하고 계속하기 전에 YAML을 수정합니다.
+검증에 성공하면 번들 이름, 대상 환경 및 워크스페이스 경로를 보여주는 요약이 표시됩니다. 오류가 있으면 출력을 검토하고 계속하기 전에 YAML을 수정합니다.
 
 > 🤖 **팁:** 검증 오류 메시지를 복사하여 Genie Code에 붙여넣어 설명과 제안된 수정 사항을 얻습니다.
 
 ### 단계 2 — 배포 계획 미리 보기
 
-작업 영역에 변경하기 전에 배포가 무엇을 생성하거나 업데이트할 것인지 미리 봅니다:
+워크스페이스에 변경하기 전에 배포가 무엇을 생성하거나 업데이트할 것인지 미리 봅니다:
 
 ```powershell
 databricks bundle plan
@@ -235,8 +235,8 @@ databricks bundle deploy -t dev
 ```
 
 배포 중에 CLI:
-- 노트북 파일을 작업 영역에 업로드합니다
-- 작업 영역의 **작업 및 파이프라인** 섹션에서 order-pipeline-job을 생성합니다(`[dev <사용자이름>]`으로 접두사 붙임, 개발 모드가 활성화되어 있기 때문)
+- 노트북 파일을 워크스페이스에 업로드합니다
+- 워크스페이스의 **작업 및 파이프라인** 섹션에서 order-pipeline-job을 생성합니다(`[dev <사용자이름>]`으로 접두사 붙임, 개발 모드가 활성화되어 있기 때문)
 
 ### 단계 4 — 배포된 리소스 확인
 
@@ -246,13 +246,13 @@ databricks bundle deploy -t dev
 databricks bundle summary
 ```
 
-출력에는 생성된 작업에 대한 직접 URL이 포함됩니다. 브라우저에서 URL을 열어 작업이 두 작업(validate-data 및 transform-data)이 올바르게 구성된 작업 영역에 나타나는지 확인합니다.
+출력에는 생성된 작업에 대한 직접 URL이 포함됩니다. 브라우저에서 URL을 열어 작업이 두 작업(validate-data 및 transform-data)이 올바르게 구성된 워크스페이스에 나타나는지 확인합니다.
 
 > 🤖 **팁:** *"Databricks 자산 번들 개발 모드는 작업 이름 및 일정에 어떤 영향을 미칩니까?"*라고 하여 작업이 사용자 이름으로 접두사가 붙는 이유를 이해합니다.
 
 ### 단계 5 — 정리(선택 사항)
 
-작업 영역에서 배포된 리소스를 제거하려면:
+워크스페이스에서 배포된 리소스를 제거하려면:
 
 ```powershell
 databricks bundle destroy -t dev

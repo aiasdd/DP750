@@ -55,7 +55,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 ## 필수 조건
 
-- [랩 00: Azure Databricks 환경 설정](00-setup.md)을 사용하여 프로비저닝된 **Azure Databricks Premium 작업 영역**이 있습니다.
+- [랩 00: Azure Databricks 환경 설정](00-setup.md)을 사용하여 프로비저닝된 **Azure Databricks Premium 워크스페이스**이 있습니다.
 - Unity Catalog에서 카탈로그 및 스키마를 생성할 수 있는 권한이 있습니다.
 - PySpark DataFrames에 대한 기본 이해가 도움이 됩니다.
 
@@ -67,7 +67,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 > ⚠️ **Photon을 비활성화해야 합니다.** Photon은 Databricks의 벡터화된 쿼리 엔진입니다. 활성화되면 셔플 및 스큐 처리를 자동으로 최적화하여 이 랩이 시연하도록 설계된 성능 문제를 숨깁니다. Photon이 활성화되어 있으면 Spark UI에서 스큐된 작업 분포나 높은 셔플 메트릭을 볼 수 없습니다.
 
-1. Databricks 작업 영역에서 왼쪽 사이드바의 **컴퓨팅** 을 클릭합니다.
+1. Databricks 워크스페이스에서 왼쪽 사이드바의 **컴퓨팅** 을 클릭합니다.
 2. **컴퓨팅 생성** 을 클릭합니다.
 3. 다음 최소 설정으로 클러스터를 구성합니다:
 
@@ -93,7 +93,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 ## 노트북 가져오기
 
-1. Databricks 작업 영역에서 왼쪽 사이드바의 **작업 영역** 을 클릭합니다.
+1. Databricks 워크스페이스에서 왼쪽 사이드바의 **워크스페이스** 을 클릭합니다.
 2. 랩을 저장할 폴더로 이동하거나 생성합니다.
 3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기** 를 선택합니다.
 4. **URL** 을 선택하고 다음 URL을 입력한 다음 **가져오기** 를 클릭합니다:
@@ -110,7 +110,7 @@ https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/13-monitor-troubleshoot
 
 ### Spark UI 열기
 
-1. Databricks 작업 영역에서 왼쪽 사이드바의 **컴퓨팅** 을 클릭한 다음 **perf-lab** 클러스터를 클릭합니다. 클러스터 세부 정보 페이지에서 **Spark UI** 탭을 클릭합니다. Spark UI가 새 브라우저 탭에서 열립니다.
+1. Databricks 워크스페이스에서 왼쪽 사이드바의 **컴퓨팅** 을 클릭한 다음 **perf-lab** 클러스터를 클릭합니다. 클러스터 세부 정보 페이지에서 **Spark UI** 탭을 클릭합니다. Spark UI가 새 브라우저 탭에서 열립니다.
 2. **작업** 페이지에 도착하며, 이 세션 중에 트리거된 모든 Spark 작업이 나열됩니다.
 
 ### 스큐된 집계 작업 식별
