@@ -5,7 +5,7 @@ from pyspark.sql import Row
 from pyspark.sql.types import StructType, StructField, StringType, DateType, DecimalType, IntegerType, DoubleType, BooleanType
     
 def setup_01(spark): 
-    spark.sql(f"CREATE CATALOG IF NOT EXISTS trainer_demo")
+    spark.sql(f"CREATE CATALOG IF NOT EXISTS trainer_demo MANAGED LOCATION 'abfss://unity-catalog-storage@dbstoragenqn6fyfgf4zrk.dfs.core.windows.net/7405611644271688/trainer_demo'")
     spark.sql(f"USE CATALOG trainer_demo")
 
     spark.sql(f"CREATE SCHEMA IF NOT EXISTS demo_01")
@@ -2056,7 +2056,7 @@ def setup_11(spark):
 def setup(spark):
     print("Creating catalog trainer_demo")
 
-    spark.sql(f"CREATE CATALOG IF NOT EXISTS trainer_demo")
+    spark.sql(f"CREATE CATALOG IF NOT EXISTS trainer_demo MANAGED LOCATION 'abfss://unity-catalog-storage@dbstoragenqn6fyfgf4zrk.dfs.core.windows.net/7405611644271688/trainer_demo'")
     spark.sql(f"USE CATALOG trainer_demo")
 
     setup_01(spark)
