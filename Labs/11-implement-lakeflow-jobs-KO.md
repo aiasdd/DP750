@@ -131,6 +131,10 @@ https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/11-implement-lakeflow-j
 
 실제 파이프라인에서는 CDR 처리 작업이 완료된 후 요약 보고서를 보내는 두 번째 작업을 원할 수 있습니다. 여기서는 Gold 테이블에서 읽는 짧은 SQL 작업으로 이를 시뮬레이션합니다.
 
+> **SQL query** 작업 유형은 인라인 SQL을 허용하지 않으며 SQL 편집기에 이미 저장된 쿼리만 참조할 수 있습니다. 따라서 먼저 쿼리를 만들고 저장한 다음 작업에 추가합니다.
+
+----
+이전버전
 1. **TelConnect CDR Pipeline** 작업 편집기에서 **process_cdrs** 아래의 **+ 작업 추가** 를 클릭합니다.
    ![alt text](image-32.png)
 2. **유형** 드롭다운 목록에서 **SQL** 을 선택합니다.
@@ -147,6 +151,34 @@ https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/11-implement-lakeflow-j
 6. **종속**이 이미 **process_cdrs** 로 설정되어 있고 **실행 조건**이 **모두 성공**으로 설정되어 있는지 확인합니다.
 7. **태스크 만들기** 를 클릭합니다.
    ![alt text](image-47.png)
+----
+
+
+#### SQL 쿼리 만들기 및 저장
+
+1. 왼쪽 사이드바에서 **SQL Editor**를 클릭합니다.
+2. 새 SQL 쿼리를 만들고 사용 가능한 **Serverless SQL warehouse**를 선택합니다.
+3. 다음 쿼리를 편집기에 붙여 넣습니다.
+
+   ```sql
+   SELECT region, network_type, total_calls, drop_rate_pct
+   FROM telconnect_lab.gold.network_summary
+   ORDER BY drop_rate_pct DESC;
+   ```
+
+4. 쿼리가 작동하는지 확인하려면 **Run**을 클릭합니다.
+5. 위쪽의 쿼리 이름(예: *New Query 2026-...*)을 클릭하고 이름을 `summarize_gold_query`로 바꿉니다.
+6. **Save**를 클릭합니다.
+
+#### 작업에 SQL 쿼리 작업 추가
+
+1. **TelConnect CDR Pipeline** 작업 편집기로 돌아가서 **process_cdrs** 아래의 **+ Add task**를 클릭합니다.
+2. 작업 이름을 `summarize_gold`로 지정합니다.
+3. **Type** 드롭다운에서 **SQL query**를 선택합니다.
+4. **SQL query** 드롭다운에서 **summarize_gold_query**를 검색하여 선택합니다.
+5. **SQL warehouse** 선택기에서 사용 가능한 Serverless SQL warehouse를 선택합니다.
+6. **Depends on**이 이미 **process_cdrs**로 설정되어 있고 **Run if dependencies** 조건이 **All succeeded**인지 확인합니다.
+7. **Save task**를 클릭합니다.
 
 #### DAG 확인
 

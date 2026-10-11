@@ -159,13 +159,31 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
    | 컴퓨팅        | **서버리스**                                                                                     |
 
    ClearCover Claims Quality Pipeline
-파이프라인 편집기에서 왼쪽 창(에셋 브라우저)을 찾습니다. 메뉴를 열고 **가져오기**를 선택한 다음, 가져온 `09-implement-manage-data-quality-constraints.py` 파일을 찾아 파이프라인 소스 코드로 추가합니다.
+4. 파이프라인 편집기에서 왼쪽 창(에셋 브라우저)을 찾습니다. 메뉴를 열고 **가져오기**를 선택한 다음, 가져온 `09-implement-manage-data-quality-constraints.py` 파일을 찾아 파이프라인 소스 코드로 추가합니다.
 가져온 파이프라인 파일을 열고 실습 3~5를 진행하는 동안 계속 열어 둡니다. 이제 데이터 품질 제약 조건을 추가하기 위해 이 파일을 편집하게 됩니다.
 
 `https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-unity-catalog-KO.py`
 ![alt text](image-12.png)
 ![alt text](image-13.png)
 
+-----------
+Create the pipeline:
+
+In the Databricks workspace left sidebar, click Jobs & Pipelines.
+
+Click Create ETL pipeline (Python).
+
+Click the gear (⚙️) icon to open the pipeline settings dialog, then configure the pipeline with the following settings:
+
+Setting	Value
+Pipeline name	ClearCover Claims Quality Pipeline
+Pipeline mode	Triggered
+Target catalog	insurance_lab, schema silver
+Compute	Serverless
+In the pipeline editor, locate the left pane (asset browser). Open its menu and select Import, then browse to your imported 09-implement-manage-data-quality-constraints.py file to add it as the pipeline source code.
+
+https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/blob/main/Instructions/Labs/09-implement-manage-data-quality-constraints-unity-catalog.md
+-------------
 ### 작업 3.1: `claims_validated()`에 Null 허용 여부 및 상태 관련 기대치(expectation) 추가
 
 09-implement-manage-data-quality-constraints-unity-catalog.py를 열고 다음 기대치를 *claims_validated()* 함수에 추가합니다. 모든 데코레이터를 `@dp.table(...)` 및 `def claims_validated():`사이에 배치합니다.

@@ -76,6 +76,7 @@ HealthBridge의 데이터 엔지니어링 팀은 대화형 개발용 공유 클�
 1. 왼쪽 사이드바에서 **컴퓨트** 를 선택합니다.
 2. **Compute 만들기** 를 선택합니다.
     ![Lab020creatingcluster2](Media/Lab020creatingcluster2.png)
+3. Set the Simple form dropdown to OFF.
 4. 클러스터 생성 양식에서 다음을 설정합니다:
 
     | 설정          | 값              |
@@ -83,7 +84,7 @@ HealthBridge의 데이터 엔지니어링 팀은 대화형 개발용 공유 클�
     | **클러스터 이름** | `healthbridge-dev` |
     | **정책**       | 제한 없음       |
     | **클러스터 모드** | 다중 노드         |
-    | **액세스 모드**  | 공유             |
+    | **액세스 모드**  | Standard (formerly: Shared)             |
 
 5. **생성** 을 선택하지 **마세요** — 아래의 설정을 계속합니다.
 
