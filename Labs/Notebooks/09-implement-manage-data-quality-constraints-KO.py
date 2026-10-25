@@ -28,9 +28,9 @@ from pyspark.sql.functions import col, count, sum as spark_sum
 #   @dp.expect_or_fail(name, condition)   — 파이프라인을 실패시킴
 #
 # 🤖 Genie Code에게 질문하기:
-#   "Show me how to add expect_or_drop, expect, and expect_or_fail
-#    decorators to a Lakeflow Spark Declarative Pipelines Python
-#    function to enforce nullability and status constraints"
+#   "Lakeflow Spark 선언적 파이프라인(Declarative Pipelines)의 Python 함수에
+#  `expect_or_drop`, `expect`, `expect_or_fail` 데코레이터를 추가하여,
+#  null 허용 여부(nullability) 및 상태 제약 조건을 적용하는 방법을 알려주세요."
 # --------------------------------------------------------------
 
 @dp.table(name='silver.claims_validated')
@@ -62,9 +62,10 @@ def claims_validated():
 # 해당 컬럼에 JSON으로 캡처됩니다.
 #
 # 🤖 Genie Code에게 질문하기:
-#   "Write a PySpark Auto Loader readStream using cloudFiles format
-#    csv with schemaEvolutionMode rescue and a _rescued_data column
-#    to capture unexpected new columns from schema drift"
+#   PySpark Auto Loader를 사용하여 cloudFiles의 CSV 형식에
+#   schemaEvolutionMode를 rescue로 설정하고, 
+#   스키마 변경으로 인해 예상치 못한 새 열이 추가되는 것을 감지하기 위한 
+#   _rescued_data 열을 포함하는 readStream을 작성하세요.
 # --------------------------------------------------------------
 
 @dp.table(name='silver.claims_rescued')

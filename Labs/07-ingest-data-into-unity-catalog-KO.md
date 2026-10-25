@@ -86,13 +86,13 @@ Lakeflow Spark 선언적 파이프라인(이전 Delta Live Tables)은 자동 오
 
 ## 랩 개요
 
-노트북은 네 개의 연습으로 구조화되어 있습니다:
+노트북은 네 개의 실습으로 구조구성되어화되어 있습니다:
 
-| 연습 | 주제 | 기술 |
+| 실습 | 주제 | 기술 |
 |---|---|---|
 | 1 | 카탈로그 계층 구조 설정 | SQL DDL — CREATE CATALOG, CREATE SCHEMA, CREATE VOLUME |
 | 2 | DataFrames를 사용한 배치 수집 | PySpark spark.read / df.write |
 | 3 | SQL 기반 파일 수집 | COPY INTO, CREATE TABLE AS SELECT |
 | 4 | Auto Loader | cloudFiles 형식을 사용한 spark.readStream |
 
-연습을 순서대로 진행합니다. 각 연습은 이전 연습에서 생성된 카탈로그 및 데이터를 기반으로 합니다.
+실습을 순서대로 진행합니다. 각 실습은 이전 단계에서 생성된 카탈로그 및 데이터를 기반으로 합니다.

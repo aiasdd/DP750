@@ -149,7 +149,7 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
 1. Databricks 워크스페이스 왼쪽 사이드바에서 **작업 및 파이프라인** 을 클릭합니다.
 2. **ETL 파이프라인 생성** 을 클릭합니다.
    ![alt text](image-10.png)
-3. 다음 설정으로 파이프라인을 구성합니다:
+3. 톱니바퀴(⚙️) 아이콘을 클릭하여 파이프라인 설정 대화 상자를 열고, 다음 설정에 따라 파이프라인을 구성합니다.
 
    | 설정        | 값                                                                                              |
    | -------------- | -------------------------------------------------------------------------------------------------- |
@@ -158,32 +158,15 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
    | 대상 카탈로그 | **insurance_lab**, 스키마 **silver**                                                               |
    | 컴퓨팅        | **서버리스**                                                                                     |
 
-   ClearCover Claims Quality Pipeline
-4. 파이프라인 편집기에서 왼쪽 창(에셋 브라우저)을 찾습니다. 메뉴를 열고 **가져오기**를 선택한 다음, 가져온 `09-implement-manage-data-quality-constraints.py` 파일을 찾아 파이프라인 소스 코드로 추가합니다.
+   ![alt text](image-61.png)
+
+4. 파이프라인 편집기에서 왼쪽 창(에셋 브라우저)을 찾습니다. 메뉴를 열고 **가져오기**를 선택한 다음,  `09-implement-manage-data-quality-constraints.py` 파일을 찾아 파이프라인 소스 코드로 추가합니다.
 가져온 파이프라인 파일을 열고 실습 3~5를 진행하는 동안 계속 열어 둡니다. 이제 데이터 품질 제약 조건을 추가하기 위해 이 파일을 편집하게 됩니다.
 
-`https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-unity-catalog-KO.py`
-![alt text](image-12.png)
-![alt text](image-13.png)
+`https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-KO.py`
+![alt text](image-63.png)
+![alt text](image-64.png)
 
------------
-Create the pipeline:
-
-In the Databricks workspace left sidebar, click Jobs & Pipelines.
-
-Click Create ETL pipeline (Python).
-
-Click the gear (⚙️) icon to open the pipeline settings dialog, then configure the pipeline with the following settings:
-
-Setting	Value
-Pipeline name	ClearCover Claims Quality Pipeline
-Pipeline mode	Triggered
-Target catalog	insurance_lab, schema silver
-Compute	Serverless
-In the pipeline editor, locate the left pane (asset browser). Open its menu and select Import, then browse to your imported 09-implement-manage-data-quality-constraints.py file to add it as the pipeline source code.
-
-https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/blob/main/Instructions/Labs/09-implement-manage-data-quality-constraints-unity-catalog.md
--------------
 ### 작업 3.1: `claims_validated()`에 Null 허용 여부 및 상태 관련 기대치(expectation) 추가
 
 09-implement-manage-data-quality-constraints-unity-catalog.py를 열고 다음 기대치를 *claims_validated()* 함수에 추가합니다. 모든 데코레이터를 `@dp.table(...)` 및 `def claims_validated():`사이에 배치합니다.
@@ -198,8 +181,9 @@ https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Soluti
 조건을 위반하는 행을 삭제하려면 `@dp.expect_or_drop`을, 삭제하지 않고 경고만 하려면 `@dp.expect`를, 위반 시 파이프라인을 중단하려면 `@dp.expect_or_fail`을 사용합니다.
 
 > 🤖 **Genie Code에 요청:**
-> *"Lakeflow Spark 선언형 파이프라인 Python 함수에서 expect_or_drop, expect 및 expect_or_fail 데코레이터를 사용하는 방법을 보여주세요"*
+> `Lakeflow Spark 선언형 파이프라인 Python 함수에서 expect_or_drop, expect 및 expect_or_fail 데코레이터를 사용하는 방법을 보여주세요`
 
+![alt text](image-65.png)
 ---
 
 ## 실습 4: 데이터 유형 확인
@@ -216,7 +200,9 @@ claims_validated() 함수 본문(**return 문 이전**)에서 두 개의 withCol
 변환된 열은 원본을 대체하므로 다운스트림 기대치 및 소비자는 유형이 지정된 값을 봅니다.
 
 > 🤖 **Genie Code에 요청:**
-> *"PySpark에서 withColumn 및 col().cast()를 사용하여 스트리밍 데이터프레임 열을 STRING에서 DATE 유형으로 변환하고 다른 열을 STRING에서 DECIMAL(12,2)로 변환합니다. 전체 withColumn 구문을 보여주세요."*
+> `PySpark에서 withColumn 및 col().cast()를 사용하여 스트리밍 데이터프레임 열을 STRING에서 DATE 유형으로 변환하고 다른 열을 STRING에서 DECIMAL(12,2)로 변환합니다. 전체 withColumn 구문을 보여주세요.`
+
+![alt text](image-66.png)
 
 ### 작업 4.2: 파싱할 수 없는 날짜가 포함된 레코드 삭제
 
@@ -247,8 +233,12 @@ Task 4.1에서 형 변환(cast)을 수행한 후에도 `claim_date`가 여전히
 
 > 💡 **힌트:** 모든 기대치 데코레이터를 @dp.table(...) 및 def claims_validated():.사이에 배치합니다. 순서는 결과에 영향을 주지 않습니다 — 모든 기대치가 각 행에서 평가됩니다.
 
+![alt text](image-67.png)
+
 > 🤖 **Genie Code에 요청:**
-> *"Lakeflow Spark 선언형 파이프라인을 Python으로 사용하고 있습니다. col().cast()를 적용하여 열을 STRING에서 DATE로 변환한 후 캐스트가 실패한 행을 삭제하려면 어느 기대치 조건을 사용합니까?"*
+> `Python에서 Lakeflow Spark Declarative Pipelines을 사용하고 있습니다. `col().cast()`를 적용하여 특정 컬럼의 타입을 STRING에서 DATE로 변환했는데, 이때 변환에 실패한 행들을 제거하려면 어떤 기대 조건(expectation condition)을 사용해야 하나요?`
+
+![alt text](image-68.png)
 
 ---
 
@@ -280,10 +270,11 @@ Auto Loader(`cloudFiles` 형식)와 `spark.readStream`을 사용하여 다음 �
 **pass** 문을 제거하고 구성된 readStream을 반환합니다.
 
 > 🤖 **Genie Code에 요청:**
-> *"`cloudFiles` 형식의 CSV, `schemaEvolutionMode`를 `rescue`로 설정하고 `_rescued_data` 열을 포함하는 PySpark Auto Loader `readStream` 블록 전체를 작성합니다. 그리고 각 옵션이 어떤 역할을 하는지 설명하세요."*
+> `schemaEvolutionMode 구조와 _rescued_data 컬럼을 포함하여 cloudFiles 형식 CSV를 사용하는 완전한 PySpark Auto Loader readStream 블록을 작성하세요. 각 옵션이 무엇을 하는지 설명하세요.`
 
 > 💡 **힌트:** 소스 파일이 기대치된 스키마와 일치할 경우, 모든 행에서 `_rescued_data` 값은 `NULL`이 됩니다. 향후 파일에 새로운 열(예: `fraud_score`)이 추가되더라도 파이프라인이 중단되지 않고, 해당 값들은 `_rescued_data` 열에 JSON 형태로 저장됩니다.
 
+![alt text](image-69.png)
 ---
 
 ## 실습 6: 파이프라인 실행 및 모니터링
@@ -297,16 +288,19 @@ Auto Loader(`cloudFiles` 형식)와 `spark.readStream`을 사용하여 다음 �
 ### 작업 6.2: 파이프라인 실행
 
 **시작** 을 클릭하여 전체 파이프라인 실행을 트리거합니다. 실행이 완료될 때까지 기다립니다.
+![alt text](image-70.png)
 
 그래프 보기에서 파이프라인 DAG를 관찰합니다. 세 개의 데이터셋 노드가 표시되어야 합니다:
 - silver.claims_validated
 - silver.claims_rescued
 - gold.claims_summary
+![alt text](image-71.png)
 
 ### 작업 6.3: 데이터 품질 메트릭 모니터링
 
 1. 파이프라인 그래프에서 **claims_validated** 데이터셋 노드를 클릭합니다.
-2. 오른쪽 패널에서 **데이터 품질** 탭을 엽니다.
+2. **테이블 메트릭** 탭을 엽니다.
+   ![alt text](image-73.png)
 3. 기대치 결과를 검토하고 다음 질문에 답변합니다:
    - 어떤 기대치 검사에서 레코드가 **삭제(drop)** 되었으며, 그 개수는 몇 개입니까?
    - 어떤 기대치 검사에서 **경고(warning)** 가 발생했습니까(레코드는 유지되지만 위반 사항이 기록됨)?
@@ -341,8 +335,9 @@ WHERE _rescued_data IS NOT NULL;
 ```
 
 > 🤖 **Genie Code에 요청:**
-> *"insurance_lab.bronze.claims_raw와 insurance_lab.silver.claims_validated의 데이터 건수를 비교했을 때, 각 단계에서 데이터가 감소한 사실이 Bronze 데이터의 품질 문제에 대해 어떤 점을 시사하는지 설명해 주세요.”*
+> `insurance_lab.bronze.claims_raw와 insurance_lab.silver.claims_validated의 데이터 건수를 비교했을 때, 각 단계에서 데이터가 감소한 사실이 Bronze 데이터의 품질 문제에 대해 어떤 점을 시사하는지 설명해 주세요.`
 
+   ![alt text](image-74.png)
 ---
 
 ## 정리(선택 사항)

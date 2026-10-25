@@ -1,29 +1,29 @@
-# Hospitality Pipeline — Notebook-based Pipeline (Procedural Approach)
-# Module: Design and implement data pipelines
-# Unit:   Create pipeline with notebook / task dependencies
+# 호텔업 파이프라인 — 노트북 기반 파이프라인 (절차적 접근 방식)
+# 모듈: 데이터 파이프라인 설계 및 구현
+# 단원: 노트북 및 작업(Task) 간 의존성을 활용한 파이프라인 생성
 #
-# Industry context:
-#   StayWell Hotels needs a nightly report that calculates cancellation rates
-#   per property. Because the logic requires a custom Python function to
-#   classify cancellation reasons (which is hard to express declaratively),
-#   this processing step is implemented as a notebook task inside a Lakeflow Job.
+# 산업적 배경:
+#   StayWell Hotels는 숙소별 예약 취소율을 계산하는 일일 보고서가 필요합니다.
+#   취소 사유를 분류하기 위해 사용자 정의 파이썬 함수가 필요한데,
+#   이는 선언적(declarative) 방식으로 표현하기 어렵기 때문에
+#   해당 처리 단계를 Lakeflow 작업(Job) 내의 노트북 작업(Notebook Task)으로 구현합니다.
 #
-# Demo objectives:
-#   - Show the PROCEDURAL / notebook approach: read → transform → write.
-#   - Demonstrate dbutils.widgets for runtime parameters.
-#   - Show dbutils.notebook.exit() to signal success/failure to the job.
-#   - Show pass_parameters_between_tasks using dbutils.jobs.taskValues.
-#   - This notebook is intended to be a TASK in a Lakeflow Job, NOT run
-#     standalone. The trainer should create a Job with two notebook tasks:
-#       Task 1: this file  (ingest_cancellations)
-#       Task 2: a second notebook that reads the output table
-#     and configure Task 2 to depend on Task 1.
+# 데모 목표:
+#   - 절차적(procedural) 노트북 접근 방식(읽기 → 변환 → 쓰기)을 보여줍니다.
+#   - 런타임 매개변수를 위한 `dbutils.widgets` 사용법을 시연합니다.
+#   - 작업의 성공/실패 여부를 알리기 위해 `dbutils.notebook.exit()`를 사용하는 방법을 보여줍니다.
+#   - `dbutils.jobs.taskValues`를 사용하여 작업 간 매개변수를 전달하는 방법을 보여줍니다.
+#   - 이 노트북은 Lakeflow 작업 내의 '작업(Task)'으로 실행하기 위한 것이며,
+#     단독으로 실행해서는 안 됩니다. 강사는 두 개의 노트북 작업으로 구성된 작업을 생성해야 합니다:
+#       작업 1: 본 파일 (ingest_cancellations)
+#       작업 2: 출력 테이블을 읽어오는 별도의 노트북
+#     또한, 작업 2가 작업 1에 의존하도록 설정해야 합니다.
 #
-# NOTE: This file is a plain Python script for trainer reference.
-#       Copy the code blocks into separate workspace notebooks when demoing.
+# 참고: 이 파일은 강사 참고용으로 작성된 일반 파이썬 스크립트입니다.
+#       데모 진행 시 코드 블록을 복사하여 별도의 워크스페이스 노트북에 붙여넣으세요.
 
-# ── CELL 1: Widget / parameter setup ─────────────────────────────────────────
-# Trainer: show how parameters make notebooks flexible and reusable across runs.
+# ── 셀 1: 위젯 / 매개변수 설정 ─────────────────────────────────────────
+# 강사: 매개변수를 통해 노트북을 어떻게 유연하고 재사용 가능하게 만들 수 있는지 보여주세요.
 
 dbutils.widgets.text("process_date",  "", "Process Date (YYYY-MM-DD)")
 dbutils.widgets.text("property_id",   "ALL", "Property ID (or ALL)")
