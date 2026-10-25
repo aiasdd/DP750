@@ -135,15 +135,6 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
 
 파이프라인 코드를 작성하기 전에 시작 파이프라인 파일을 가져오고 Databricks에서 Lakeflow Spark 선언형 파이프라인을 생성합니다.
 
-**파이프라인 파일 가져오기:**
-
-1. Databricks 워크스페이스에서 왼쪽 사이드바의 **워크스페이스** 을 클릭합니다.
-2. 랩 노트북을 저장한 폴더로 이동합니다.
-3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기** 를 선택합니다.
-4. **URL** 을 선택하고 다음 URL을 입력한 다음 **가져오기** 를 클릭합니다:
-   `https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-unity-catalog-KO.py`
-5. 파일은 워크스페이스에 Python 소스 파일로 표시됩니다 — 다음 단계를 위해 경로를 기록합니다.
-
 **파이프라인 생성:**
 
 1. Databricks 워크스페이스 왼쪽 사이드바에서 **작업 및 파이프라인** 을 클릭합니다.
