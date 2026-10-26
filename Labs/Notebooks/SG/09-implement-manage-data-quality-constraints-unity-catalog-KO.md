@@ -145,7 +145,7 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
 
    | 설정        | 값                                                                                              |
    | -------------- | -------------------------------------------------------------------------------------------------- |
-   | 파이프라인 이름  | **ClearCover Claims Quality Pipeline**                                                             |
+   | 파이프라인 이름  | `ClearCover Claims Quality Pipeline`                                                             |
    | 파이프라인 모드  | **트리거됨**                                                                                      |
    | 대상 카탈로그 | **insurance_lab**, 스키마 **silver**                                                               |
    | 컴퓨팅        | **서버리스**                                                                                     |
