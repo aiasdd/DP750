@@ -385,6 +385,10 @@
           card.className = "card";
 
           const badge = item.lab === "00" ? "<span class=\"chip\">Setup</span>" : `<span>${item.minutes}</span>`;
+          const solutionFile = item.notebook.replace("-KO.ipynb", "-with-answers-KO.ipynb");
+          const solutionHref = item.lab === "09"
+            ? `Labs/Notebooks/Solutions/${solutionFile.replace(".ipynb", ".py")}`
+            : `notebook.html?file=Labs/Notebooks/Solutions/${solutionFile}`;
 
           card.innerHTML = `
             <div class="meta"><strong>Lab ${item.lab}</strong>${badge}</div>
@@ -393,6 +397,7 @@
             <div class="card-links">
               <a href="lab.html?file=Labs/${item.md}">가이드</a>
               <a href="notebook.html?file=Labs/Notebooks/${item.notebook}">노트북</a>
+              ${item.lab !== "00" ? `<a href="${solutionHref}" aria-label="Lab ${item.lab} Solution">Solution</a>` : ""}
             </div>
           `;
 

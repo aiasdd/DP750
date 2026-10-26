@@ -248,7 +248,12 @@
         md: "09-implement-manage-data-quality-constraints-unity-catalog-KO.md",
         minutes: "50 min",
         note: "Lakeflow 선언형 파이프라인에서 데이터 품질 제약 조건을 구현하고, 널 검사, 범위 검증, 스키마 드리프트를 처리합니다.",
-        notebook: "09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb"
+        notebook: "09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb",
+        files: [
+          { label: "Python (KO)", path: "09-implement-manage-data-quality-constraints-KO.py" },
+          { label: "Python (EN)", path: "09-implement-manage-data-quality-constraints.py" },
+          { label: "Solution Python (EN)", path: "Solutions/09-implement-manage-data-quality-constraints-unity-catalog-with-answers.py" }
+        ]
       },
       {
         lab: "10",
@@ -272,7 +277,10 @@
         md: "12-implement-development-lifecycle-processes-in-azure-databricks-KO.md",
         minutes: "50 min",
         note: "pytest로 데이터 변환 파이프라인 테스트 전략을 구현하고, Databricks CLI로 파이프라인을 자산 번들로 패키징·배포합니다.",
-        notebook: "12-implement-development-lifecycle-processes-in-azure-databricks-KO.ipynb"
+        notebook: "12-implement-development-lifecycle-processes-in-azure-databricks-KO.ipynb",
+        files: [
+          { label: "Solution YAML", path: "Solutions/12-databricks-bundle-with-answers.yml" }
+        ]
       },
       {
         lab: "13",
@@ -311,6 +319,10 @@
           card.className = "card";
 
           const badge = item.lab === "00" ? "<span class=\"chip\">Setup</span>" : `<span>${item.minutes}</span>`;
+          const solutionFile = item.notebook.replace("-KO.ipynb", "-with-answers-KO.ipynb");
+          const solutionHref = item.lab === "09"
+            ? `Labs/Notebooks/Solutions/${solutionFile.replace(".ipynb", ".py")}`
+            : `notebook.html?file=Labs/Notebooks/Solutions/${solutionFile}`;
 
           card.innerHTML = `
             <div class="meta"><strong>Lab ${item.lab}</strong>${badge}</div>
@@ -319,6 +331,8 @@
             <div class="card-links">
               <a href="lab.html?file=Labs/${item.md}">가이드</a>
               <a href="notebook.html?file=Labs/Notebooks/${item.notebook}">노트북</a>
+              ${item.lab !== "00" ? `<a href="${solutionHref}" aria-label="Lab ${item.lab} Solution">Solution</a>` : ""}
+              ${(item.files || []).map((file) => `<a href="Labs/Notebooks/${file.path}" aria-label="Lab ${item.lab} ${file.label}">${file.label}</a>`).join("")}
             </div>
           `;
 
