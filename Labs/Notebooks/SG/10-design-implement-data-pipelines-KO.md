@@ -69,7 +69,7 @@ https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/10-design-implement-dat
 ```
 
 ```
-https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/10-design-implement-data-pipelines-KO.ipynb
+https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/SG/10-design-implement-data-pipelines-KO.ipynb
 ```
 
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.

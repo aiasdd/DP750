@@ -69,7 +69,7 @@ https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/09-implement-manage-dat
 ```
 
 ```
-https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb
+https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/SG/09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb
 ```
 
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
