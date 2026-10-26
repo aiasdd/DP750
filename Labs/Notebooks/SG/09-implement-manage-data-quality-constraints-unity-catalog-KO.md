@@ -200,35 +200,30 @@ claims_validated() 함수 본문(**return 문 이전**)에서 두 개의 withCol
 
 Task 4.1에서 형 변환(cast)을 수행한 후에도 `claim_date`가 여전히 NULL인 행은 원래 값이 유효하지 않았음을 의미합니다. `@dp.expect_or_drop` 데코레이터를 추가하여 이러한 행을 삭제합니다:
 
-```
-기대치 이름: valid_claim_date
-조건:        claim_date IS NOT NULL
-```
+**기대치 이름**: `valid_claim_date`
+**조건**: `claim_date IS NOT NULL`
 
 ### 작업 4.3: 구문 분석할 수 없거나 누락된 금액이 있는 기록 삭제
 
 마찬가지로 claim_amount를 캐스트할 수 없는 행을 삭제합니다:
 
-```
-기대치 이름: valid_claim_amount
-조건:        claim_amount IS NOT NULL
-```
+**기대치 이름**: `valid_claim_amount`
+**조건**: `claim_amount IS NOT NULL`
+
 
 ### 작업 4.4: 음수 청구 금액이 있는 기록 삭제
 
 음수 청구 금액은 모든 보험 상황에서 유효하지 않습니다. 이러한 행을 삭제합니다:
 
-```
-기대치 이름: non_negative_amount
-조건:        claim_amount >= 0
-```
+**기대치 이름**: `non_negative_amount`
+**조건**: `claim_amount >= 0`
 
 > 💡 **힌트:** 모든 기대치 데코레이터를 @dp.table(...) 및 def claims_validated():.사이에 배치합니다. 순서는 결과에 영향을 주지 않습니다 — 모든 기대치가 각 행에서 평가됩니다.
 
 ![alt text](image-67.png)
 
 > 🤖 **Genie Code에 요청:**
-> `Python에서 Lakeflow Spark Declarative Pipelines을 사용하고 있습니다. `col().cast()`를 적용하여 특정 컬럼의 타입을 STRING에서 DATE로 변환했는데, 이때 변환에 실패한 행들을 제거하려면 어떤 기대 조건(expectation condition)을 사용해야 하나요?`
+> `Python에서 Lakeflow Spark Declarative Pipelines을 사용하고 있습니다.`col().cast()`를 적용하여 특정 컬럼의 타입을 STRING에서 DATE로 변환했는데, 이때 변환에 실패한 행들을 제거하려면 어떤 기대 조건(expectation condition)을 사용해야 하나요?`
 
 ![alt text](image-68.png)
 
