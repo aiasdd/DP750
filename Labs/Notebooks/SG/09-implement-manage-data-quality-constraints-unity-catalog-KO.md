@@ -64,9 +64,9 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기** 를 선택합니다.
 4. **URL** 을 선택하고 다음 URL을 입력한 다음 **가져오기** 를 클릭합니다:
 
-```
-https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/SG/09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb
-```
+   ```
+   https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/SG/09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb
+   ```
 
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
 
@@ -152,10 +152,9 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
 
    ![alt text](image-61.png)
 
-4. 파이프라인 편집기에서 왼쪽 창(에셋 브라우저)을 찾습니다. 메뉴를 열고 **가져오기**를 선택한 다음,  `09-implement-manage-data-quality-constraints.py` 파일을 찾아 파이프라인 소스 코드로 추가합니다.
-가져온 파이프라인 파일을 열고 실습 3~5를 진행하는 동안 계속 열어 둡니다. 이제 데이터 품질 제약 조건을 추가하기 위해 이 파일을 편집하게 됩니다.
+4. 파이프라인 편집기에서 왼쪽 창(에셋 브라우저)을 찾습니다. 메뉴를 열고 **가져오기**를 선택한 다음, `https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/SG/09-implement-manage-data-quality-constraints-KO.py` 파일을 파이프라인 소스 코드로 추가합니다.
+가져온 파이프라인 파일을 열고 실습 3~5를 진행하는 동안 계속 열어 둡니다. 이제 데이터 품질 제약 조건을 추가하기 위해 이 파일을 편집하게 됩니다. 소스 코드를 가져온 후 파이프라인으로 전환된 상태인지 확인합니다.
 
-`https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/SG/09-implement-manage-data-quality-constraints-KO.py`
 ![alt text](image-63.png)
 ![alt text](image-64.png)
 
