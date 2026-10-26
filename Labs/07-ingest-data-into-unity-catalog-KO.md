@@ -76,12 +76,8 @@ Lakeflow Spark 선언적 파이프라인(이전 Delta Live Tables)은 자동 오
 3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기** 를 선택합니다.
 4. **URL** 을 선택하고 다음 URL을 입력한 다음 **가져오기** 를 클릭합니다:
    
-   ```
-   https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/07-ingest-data-into-unity-catalog-KO.ipynb
-   ```
-  
     ```
-    https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/07-ingest-data-into-unity-catalog-KO.ipynb
+    https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/SG/07-ingest-data-into-unity-catalog-KO.ipynb
     ```
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
 

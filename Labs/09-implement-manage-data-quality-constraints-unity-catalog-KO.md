@@ -64,13 +64,9 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 3. **⋮**(kebab) 메뉴를 클릭하거나 폴더를 마우스 오른쪽 단추로 클릭한 다음 **가져오기** 를 선택합니다.
 4. **URL** 을 선택하고 다음 URL을 입력한 다음 **가져오기** 를 클릭합니다:
 
-```
-https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb
-```
-
-```
-https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb
-```
+   ```
+   https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/SG/09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb
+   ```
 
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
 
@@ -149,19 +145,16 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
 
    | 설정        | 값                                                                                              |
    | -------------- | -------------------------------------------------------------------------------------------------- |
-   | 파이프라인 이름  | **ClearCover Claims Quality Pipeline**                                                             |
+   | 파이프라인 이름  | `ClearCover Claims Quality Pipeline`                                                             |
    | 파이프라인 모드  | **트리거됨**                                                                                      |
    | 대상 카탈로그 | **insurance_lab**, 스키마 **silver**                                                               |
    | 컴퓨팅        | **서버리스**                                                                                     |
 
    ![alt text](image-61.png)
 
-4. 파이프라인 편집기에서 왼쪽 창(에셋 브라우저)을 찾습니다. 메뉴를 열고 **가져오기**를 선택한 다음,  `09-implement-manage-data-quality-constraints.py` 파일을 찾아 파이프라인 소스 코드로 추가합니다.
-가져온 파이프라인 파일을 열고 실습 3~5를 진행하는 동안 계속 열어 둡니다. 이제 데이터 품질 제약 조건을 추가하기 위해 이 파일을 편집하게 됩니다.
+4. 파이프라인 편집기에서 왼쪽 창(에셋 브라우저)을 찾습니다. 메뉴를 열고 **가져오기**를 선택한 다음, `https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/SG/09-implement-manage-data-quality-constraints-KO.py` 파일을 파이프라인 소스 코드로 추가합니다.
+가져온 파이프라인 파일을 열고 실습 3~5를 진행하는 동안 계속 열어 둡니다. 이제 데이터 품질 제약 조건을 추가하기 위해 이 파일을 편집하게 됩니다. 소스 코드를 가져온 후 파이프라인으로 전환된 상태인지 확인합니다.
 
-`https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-KO.py`
-
-`https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-KO.py`
 ![alt text](image-63.png)
 ![alt text](image-64.png)
 
@@ -206,35 +199,30 @@ claims_validated() 함수 본문(**return 문 이전**)에서 두 개의 withCol
 
 Task 4.1에서 형 변환(cast)을 수행한 후에도 `claim_date`가 여전히 NULL인 행은 원래 값이 유효하지 않았음을 의미합니다. `@dp.expect_or_drop` 데코레이터를 추가하여 이러한 행을 삭제합니다:
 
-```
-기대치 이름: valid_claim_date
-조건:        claim_date IS NOT NULL
-```
+**기대치 이름**: `valid_claim_date`
+**조건**: `claim_date IS NOT NULL`
 
 ### 작업 4.3: 구문 분석할 수 없거나 누락된 금액이 있는 기록 삭제
 
 마찬가지로 claim_amount를 캐스트할 수 없는 행을 삭제합니다:
 
-```
-기대치 이름: valid_claim_amount
-조건:        claim_amount IS NOT NULL
-```
+**기대치 이름**: `valid_claim_amount`
+**조건**: `claim_amount IS NOT NULL`
+
 
 ### 작업 4.4: 음수 청구 금액이 있는 기록 삭제
 
 음수 청구 금액은 모든 보험 상황에서 유효하지 않습니다. 이러한 행을 삭제합니다:
 
-```
-기대치 이름: non_negative_amount
-조건:        claim_amount >= 0
-```
+**기대치 이름**: `non_negative_amount`
+**조건**: `claim_amount >= 0`
 
 > 💡 **힌트:** 모든 기대치 데코레이터를 @dp.table(...) 및 def claims_validated():.사이에 배치합니다. 순서는 결과에 영향을 주지 않습니다 — 모든 기대치가 각 행에서 평가됩니다.
 
 ![alt text](image-67.png)
 
 > 🤖 **Genie Code에 요청:**
-> `Python에서 Lakeflow Spark Declarative Pipelines을 사용하고 있습니다. `col().cast()`를 적용하여 특정 컬럼의 타입을 STRING에서 DATE로 변환했는데, 이때 변환에 실패한 행들을 제거하려면 어떤 기대 조건(expectation condition)을 사용해야 하나요?`
+> `Python에서 Lakeflow Spark Declarative Pipelines을 사용하고 있습니다.`col().cast()`를 적용하여 특정 컬럼의 타입을 STRING에서 DATE로 변환했는데, 이때 변환에 실패한 행들을 제거하려면 어떤 기대 조건(expectation condition)을 사용해야 하나요?`
 
 ![alt text](image-68.png)
 
