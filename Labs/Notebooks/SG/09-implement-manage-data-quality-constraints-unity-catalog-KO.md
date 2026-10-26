@@ -155,9 +155,7 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
 4. 파이프라인 편집기에서 왼쪽 창(에셋 브라우저)을 찾습니다. 메뉴를 열고 **가져오기**를 선택한 다음,  `09-implement-manage-data-quality-constraints.py` 파일을 찾아 파이프라인 소스 코드로 추가합니다.
 가져온 파이프라인 파일을 열고 실습 3~5를 진행하는 동안 계속 열어 둡니다. 이제 데이터 품질 제약 조건을 추가하기 위해 이 파일을 편집하게 됩니다.
 
-`https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-KO.py`
-
-`https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-KO.py`
+`https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/SG/09-implement-manage-data-quality-constraints-KO.py`
 ![alt text](image-63.png)
 ![alt text](image-64.png)
 
