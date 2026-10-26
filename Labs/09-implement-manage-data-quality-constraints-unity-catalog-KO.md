@@ -67,6 +67,11 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 ```
 https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb
 ```
+
+```
+https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb
+```
+
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
 
 ---
@@ -155,6 +160,8 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
 가져온 파이프라인 파일을 열고 실습 3~5를 진행하는 동안 계속 열어 둡니다. 이제 데이터 품질 제약 조건을 추가하기 위해 이 파일을 편집하게 됩니다.
 
 `https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-KO.py`
+
+`https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/09-implement-manage-data-quality-constraints-KO.py`
 ![alt text](image-63.png)
 ![alt text](image-64.png)
 

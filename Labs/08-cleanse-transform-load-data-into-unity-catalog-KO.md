@@ -61,6 +61,9 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 ```
 https://github.com/aiasdd/DP750/blob/main/Labs/Notebooks/08-cleanse-transform-load-data-into-unity-catalog-KO.ipynb
 ```
+```
+https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/08-cleanse-transform-load-data-into-unity-catalog-KO.ipynb
+```
 
 5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
 
