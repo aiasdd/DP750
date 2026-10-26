@@ -382,7 +382,8 @@
     let allCells = [];
     const headings = [];
 
-    const isAllowedPath = file.startsWith("Labs/Notebooks/") && file.endsWith(".ipynb") && !file.includes("..");
+    const isNotebook = file.endsWith(".ipynb");
+    const isAllowedPath = /^Labs\/Notebooks\/(?:[A-Za-z0-9_-]+\/)*[A-Za-z0-9_-]+\.(?:ipynb|py|ya?ml)$/.test(file);
 
     function toText(source) {
       if (Array.isArray(source)) {
@@ -470,20 +471,34 @@
     });
 
     if (!isAllowedPath) {
-      showError("잘못된 노트북 경로입니다.");
-      throw new Error("Invalid notebook path");
+      showError("잘못된 파일 경로입니다.");
+      throw new Error("Invalid file path");
     }
 
     fetch(file)
       .then((response) => {
         if (!response.ok) {
-          throw new Error("노트북 파일을 불러오지 못했습니다.");
+          throw new Error("파일을 불러오지 못했습니다.");
         }
-        return response.json();
+        if (isNotebook) {
+          return response.json();
+        }
+        return response.text().then((source) => ({
+          cells: [{
+            cell_type: "code",
+            metadata: { language: file.endsWith(".py") ? "python" : "yaml" },
+            source
+          }]
+        }));
       })
       .then((notebook) => {
         const cells = Array.isArray(notebook.cells) ? notebook.cells : [];
-        summary.textContent = `총 ${cells.length}개 셀`;
+        summary.textContent = isNotebook ? `총 ${cells.length}개 셀` : file.split("/").pop();
+        if (!isNotebook) {
+          document.title = `${file.split("/").pop()} · Source Viewer`;
+          filterBtns.forEach((btn) => { btn.hidden = true; });
+          document.querySelector(".toc-sidebar").hidden = true;
+        }
 
         if (cells.length === 0) {
           showError("노트북 셀이 없습니다.");
@@ -501,7 +516,7 @@
 
           const label = document.createElement("div");
           label.className = "cell-head-label";
-          label.textContent = `Cell ${index + 1} · ${type}`;
+          label.textContent = isNotebook ? `Cell ${index + 1} · ${type}` : (file.endsWith(".py") ? "Python" : "YAML");
 
           head.appendChild(label);
 
