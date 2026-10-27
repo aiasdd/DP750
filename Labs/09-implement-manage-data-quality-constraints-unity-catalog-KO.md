@@ -47,7 +47,7 @@ lab:
 이 랩의 모든 실습 전체에서 **Genie Code를 사용할 것을 강력히 권장합니다**. 모든 실습에는 시작할 제안 프롬프트가 포함되어 있습니다. Genie Code는 귀사의 페어 프로그래머입니다 — 코드를 생성하고, 오류를 이해하고, 대안을 탐색하는 데 사용하세요.
 
 Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg)을 선택하거나 키보드 단축키를 사용합니다.
----
+
 
 ## 필수 조건
 
