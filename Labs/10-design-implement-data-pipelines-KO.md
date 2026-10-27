@@ -126,7 +126,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 18. DAG 보기를 검토합니다. 순차적으로 배열된 3개의 노드가 표시되어야 합니다:
     
-    `**ingest_bronze → clean_silver → aggregate_gold**`
+    **ingest_bronze → clean_silver → aggregate_gold**
     
 19. 작업 2와 작업 3이 각각 이전 작업에 "종속"임을 확인합니다.
 

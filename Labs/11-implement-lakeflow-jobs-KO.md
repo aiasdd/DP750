@@ -167,7 +167,8 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 8. DAG 보기를 검토합니다. 다음이 표시되어야 합니다:
    
-   `**process_cdrs → summarize_gold**`
+   **process_cdrs → summarize_gold**
+   ![alt text](image-75.png)
 
 ### 연습 3: 파일 도착 트리거 구성
 
