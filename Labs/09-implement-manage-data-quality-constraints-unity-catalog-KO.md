@@ -222,7 +222,9 @@ Task 4.1에서 형 변환(cast)을 수행한 후에도 `claim_date`가 여전히
 ![alt text](image-67.png)
 
 > 🤖 **Genie Code에 요청:**
-> `Python에서 Lakeflow Spark Declarative Pipelines을 사용하고 있습니다.`col().cast()`를 적용하여 특정 컬럼의 타입을 STRING에서 DATE로 변환했는데, 이때 변환에 실패한 행들을 제거하려면 어떤 기대 조건(expectation condition)을 사용해야 하나요?`
+```
+Python에서 Lakeflow Spark Declarative Pipelines을 사용하고 있습니다. `col().cast()`를 적용하여 특정 컬럼의 타입을 STRING에서 DATE로 변환했는데, 이때 변환에 실패한 행들을 제거하려면 어떤 기대 조건(expectation condition)을 사용해야 하나요?
+```
 
 ![alt text](image-68.png)
 
