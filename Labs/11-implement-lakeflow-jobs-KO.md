@@ -111,7 +111,9 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 #### 작업 매개변수 추가
 
 9. 오른쪽 창의 **작업 parameter** 섹션에서 **parameter 편집** 을 클릭합니다.
-10. 키를 `processing_date`로 설정하고 값을 `{{job.trigger.time.iso_date}}`로 설정합니다.
+10. 다음을 설정합니다:
+    - **키:** `processing_date`
+    - **값:** `{{job.trigger.time.iso_date}}`
 
    > 이 동적 값은 작업이 트리거된 날짜를 삽입하여 노트북의 위젯 기본값과 일치합니다.
 
@@ -134,27 +136,6 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 > **SQL query** 작업 유형은 인라인 SQL을 허용하지 않으며 SQL 편집기에 이미 저장된 쿼리만 참조할 수 있습니다. 따라서 먼저 쿼리를 만들고 저장한 다음 작업에 추가합니다.
 
-----
-이전버전
-1. **TelConnect CDR Pipeline** 작업 편집기에서 **process_cdrs** 아래의 **+ 작업 추가** 를 클릭합니다.
-   ![alt text](image-32.png)
-2. **유형** 드롭다운 목록에서 **SQL** 을 선택합니다.
-3. 태스크 이름 `summarize_gold`로 지정합니다.
-4. **SQL** 필드에서 다음을 입력합니다:
-
-   ```sql
-   SELECT region, network_type, total_calls, drop_rate_pct
-   FROM telconnect_lab.gold.network_summary
-   ORDER BY drop_rate_pct DESC;
-   ```
-
-5. **SQL 웨어하우스** 선택기에서 사용 가능한 서버리스 SQL 웨어하우스를 선택합니다.
-6. **종속**이 이미 **process_cdrs** 로 설정되어 있고 **실행 조건**이 **모두 성공**으로 설정되어 있는지 확인합니다.
-7. **태스크 만들기** 를 클릭합니다.
-   ![alt text](image-47.png)
-----
-
-
 #### SQL 쿼리 만들기 및 저장
 
 1. 왼쪽 사이드바에서 **SQL Editor**를 클릭합니다.
@@ -173,22 +154,21 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 
 #### 작업에 SQL 쿼리 작업 추가
 
-1. **TelConnect CDR Pipeline** 작업 편집기로 돌아가서 **process_cdrs** 아래의 **+ Add task**를 클릭합니다.
-2. 작업 이름을 `summarize_gold`로 지정합니다.
-3. **Type** 드롭다운에서 **SQL query**를 선택합니다.
+1. **TelConnect CDR Pipeline** 작업 편집기에서 **process_cdrs** 아래의 **+ 작업 추가** 를 클릭합니다.
+   ![alt text](image-32.png)
+2. **유형** 드롭다운 목록에서 **SQL Query** 를 선택합니다.
+3. 태스크 이름 `summarize_gold`로 지정합니다.
 4. **SQL query** 드롭다운에서 **summarize_gold_query**를 검색하여 선택합니다.
-5. **SQL warehouse** 선택기에서 사용 가능한 Serverless SQL warehouse를 선택합니다.
-6. **Depends on**이 이미 **process_cdrs**로 설정되어 있고 **Run if dependencies** 조건이 **All succeeded**인지 확인합니다.
-7. **Save task**를 클릭합니다.
+5. **SQL 웨어하우스** 선택기에서 사용 가능한 서버리스 SQL 웨어하우스를 선택합니다.
+6. **종속**이 이미 **process_cdrs** 로 설정되어 있고 **실행 조건**이 **모두 성공**으로 설정되어 있는지 확인합니다.
+7. **태스크 만들기** 를 클릭합니다.
+   ![alt text](image-47.png)
 
 #### DAG 확인
 
 8. DAG 보기를 검토합니다. 다음이 표시되어야 합니다:
-   ```
-   process_cdrs → summarize_gold
-   ```
-
----
+   
+   `**process_cdrs → summarize_gold**`
 
 ### 연습 3: 파일 도착 트리거 구성
 
