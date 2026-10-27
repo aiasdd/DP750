@@ -10,7 +10,7 @@ lab:
   level: 300
   islab: true
   primarytopics:
-    - Azure Databricks
+    - Azure Databricks서
 ---
 
 ---
@@ -68,7 +68,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
    https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/SG/09-implement-manage-data-quality-constraints-unity-catalog-KO.ipynb
    ```
 
-5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
+5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **다목적 클러스터** 컴퓨팅을 선택합니다.
 
 ---
 
@@ -148,7 +148,7 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
    | 파이프라인 이름  | `ClearCover Claims Quality Pipeline`                                                             |
    | 파이프라인 모드  | **트리거됨**                                                                                      |
    | 대상 카탈로그 | **insurance_lab**, 스키마 **silver**                                                               |
-   | 컴퓨팅        | **서버리스**                                                                                     |
+   | 컴퓨팅        | **다목적 클러스터**                                                                                     |
 
    ![alt text](image-61.png)
 

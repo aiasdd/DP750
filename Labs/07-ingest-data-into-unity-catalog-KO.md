@@ -79,7 +79,7 @@ Lakeflow Spark 선언적 파이프라인(이전 Delta Live Tables)은 자동 오
     ```
     https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/SG/07-ingest-data-into-unity-catalog-KO.ipynb
     ```
-5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
+5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **다목적 클러스터** 컴퓨팅을 선택합니다.
 
 ---
 
