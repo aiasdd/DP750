@@ -162,7 +162,7 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
 
 09-implement-manage-data-quality-constraints-unity-catalog.py를 열고 다음 기대치를 *claims_validated()* 함수에 추가합니다. 모든 데코레이터를 `@dp.table(...)` 및 `def claims_validated():`사이에 배치합니다.
 
-| 기대치 이름  | 조건                                 | 동작        |
+| expectation 이름  | 조건                                 | 동작        |
 | ----------------- | ----------------------------------------- | ------------- |
 | valid_claim_id    | `claim_id IS NOT NULL`                    | Drop (삭제)          |
 | valid_customer_id | `customer_id IS NOT NULL`                 | Drop (삭제)     |
@@ -199,14 +199,14 @@ claims_validated() 함수 본문(**return 문 이전**)에서 두 개의 withCol
 
 Task 4.1에서 형 변환(cast)을 수행한 후에도 `claim_date`가 여전히 NULL인 행은 원래 값이 유효하지 않았음을 의미합니다. `@dp.expect_or_drop` 데코레이터를 추가하여 이러한 행을 삭제합니다:
 
-**기대치 이름**: `valid_claim_date`
+**expectation 이름**: `valid_claim_date`
 **조건**: `claim_date IS NOT NULL`
 
 ### 작업 4.3: 구문 분석할 수 없거나 누락된 금액이 있는 기록 삭제
 
 마찬가지로 claim_amount를 캐스트할 수 없는 행을 삭제합니다:
 
-**기대치 이름**: `valid_claim_amount`
+**expectation 이름**: `valid_claim_amount`
 **조건**: `claim_amount IS NOT NULL`
 
 
@@ -214,7 +214,7 @@ Task 4.1에서 형 변환(cast)을 수행한 후에도 `claim_date`가 여전히
 
 음수 청구 금액은 모든 보험 상황에서 유효하지 않습니다. 이러한 행을 삭제합니다:
 
-**기대치 이름**: `non_negative_amount`
+**expectation 이름**: `non_negative_amount`
 **조건**: `claim_amount >= 0`
 
 > 💡 **힌트:** 모든 기대치 데코레이터를 @dp.table(...) 및 def claims_validated():.사이에 배치합니다. 순서는 결과에 영향을 주지 않습니다 — 모든 기대치가 각 행에서 평가됩니다.
@@ -230,7 +230,7 @@ Task 4.1에서 형 변환(cast)을 수행한 후에도 `claim_date`가 여전히
 
 ## 실습 5: Rescued Data(구조 외 데이터)를 활용한 스키마 드리프트(Schema Drift) 처리
 
-ClearCover는 여러 파트너 중개업체로부터 보험 청구 파일을 수신합니다. 간혹 중개업체가 사전 통보 없이 `broker_reference`나 `fraud_score`와 같은 추가 열을 포함하는 경우가 있습니다. 이런 상황에서 파이프라인이 중단되게 하는 대신, 기대치치 못한 데이터를 별도의 열에 저장하여 추후 분석할 수 있도록 설정하고자 합니다.
+ClearCover는 여러 파트너 중개업체로부터 보험 청구 파일을 수신합니다. 간혹 중개업체가 사전 통보 없이 `broker_reference`나 `fraud_score`와 같은 추가 열을 포함하는 경우가 있습니다. 이런 상황에서 파이프라인이 중단되게 하는 대신, 기대치를 충족하지못한 데이터를 별도의 열에 저장하여 추후 분석할 수 있도록 설정하고자 합니다.
 
 ### 작업 5.1: Rescue 스키마 진화 모드(rescue schema evolution mode)를 적용한 Auto Loader 구현
 
