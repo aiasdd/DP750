@@ -70,7 +70,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
    https://raw.githubusercontent.com/aiasdd/DP750/refs/heads/main/Labs/Notebooks/SG/11-implement-lakeflow-jobs-KO.ipynb
    ```
 
-5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **서버리스** 컴퓨팅을 선택합니다.
+5. 가져온 노트북을 열고 위쪽의 컴퓨팅 선택기에서 **다목적 컴퓨팅** 을 선택합니다.
 
 ### 노트북 실행
 
@@ -104,7 +104,7 @@ Genie Code를 열려면 모든 노트북 셀 오른쪽에 있는 ![assistant-ico
 4. **다른 태스트 유형 추가** 를 클릭하여 **노트북** 을 선택합니다.
 5. **태스크 이름** `process_cdrs`를 입력합니다.
 6. **소스** 드롭다운에서 **워크스페이스** 을 선택한 다음 가져온 노트북의 경로(*11-implement-lakeflow-jobs*)로 이동합니다.
-7. **컴퓨팅** 선택기에서 **서버리스** 를 선택합니다.
+7. **컴퓨팅** 선택기에서 **다목적 컴퓨팅** 을 선택합니다.
 8. **태스크 만들기** 을 클릭합니다.
    ![alt text](image-28.png)
 
