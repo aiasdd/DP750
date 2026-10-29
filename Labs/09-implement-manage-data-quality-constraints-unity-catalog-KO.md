@@ -219,6 +219,13 @@ Task 4.1에서 형 변환(cast)을 수행한 후에도 `claim_date`가 여전히
 **expectation 이름**: `"non_negative_amount"`
 **조건**: `"claim_amount >= 0"`
 
+예시:
+```
+@dp.expect_or_drop("valid_claim_date", "claim_date IS NOT NULL")
+@dp.expect_or_drop("valid_claim_amount","claim_amount IS NOT NULL")
+@dp.expect_or_drop("non_negative_amount","claim_amount >= 0")
+```
+
 > 💡 **힌트:** 모든 기대치 데코레이터를 @dp.table(...) 및 def claims_validated():.사이에 배치합니다. 순서는 결과에 영향을 주지 않습니다 — 모든 기대치가 각 행에서 평가됩니다.
 
 ![alt text](image-67.png)
