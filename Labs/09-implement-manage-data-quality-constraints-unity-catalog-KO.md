@@ -148,7 +148,6 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
    | 파이프라인 이름  | `ClearCover Claims Quality Pipeline`                                                             |
    | 파이프라인 모드  | **트리거됨**                                                                                      |
    | 대상 카탈로그 | **insurance_lab**, 스키마 **silver**                                                               |
-   | 컴퓨팅        | **다목적 클러스터**                                                                                     |
 
    ![alt text](image-61.png)
 
@@ -156,6 +155,9 @@ DESCRIBE TABLE insurance_lab.bronze.claims_raw;
 가져온 파이프라인 파일을 열고 실습 3~5를 진행하는 동안 계속 열어 둡니다. 이제 데이터 품질 제약 조건을 추가하기 위해 이 파일을 편집하게 됩니다. 소스 코드를 가져온 후 파이프라인으로 전환된 상태인지 확인합니다.
 
 ![alt text](image-63.png)
+
+![alt text](image-80.png)
+
 ![alt text](image-64.png)
 
 ### 작업 3.1: `claims_validated()`에 Null 허용 여부 및 상태 관련 기대치(expectation) 추가
